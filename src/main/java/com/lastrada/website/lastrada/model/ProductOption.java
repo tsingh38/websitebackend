@@ -18,6 +18,8 @@ public class ProductOption {
 	private BigDecimal optionPriceForNormal;
 	private BigDecimal optionPriceForFamily;
 	private BigDecimal optionPriceForParty;
+	
+	public ProductOption() {}
 	public Long getId() {
 		return id;
 	}
@@ -58,6 +60,17 @@ public class ProductOption {
 		return optionPriceForParty;
 	}
 	public void setOptionPriceForParty(BigDecimal optionPriceForParty) {
+		this.optionPriceForParty = optionPriceForParty;
+	}
+	
+	public ProductOption(String productOptionDescription, BigDecimal optionPrice, BigDecimal optionPriceForSmall,
+			BigDecimal optionPriceForNormal, BigDecimal optionPriceForFamily, BigDecimal optionPriceForParty) {
+		super();
+		this.productOptionDescription = productOptionDescription;
+		this.optionPrice = optionPrice;
+		this.optionPriceForSmall = optionPriceForSmall;
+		this.optionPriceForNormal = optionPriceForNormal;
+		this.optionPriceForFamily = optionPriceForFamily;
 		this.optionPriceForParty = optionPriceForParty;
 	}
 	@Override
@@ -126,17 +139,7 @@ public class ProductOption {
 				+ optionPriceForNormal + ", optionPriceForFamily=" + optionPriceForFamily + ", optionPriceForParty="
 				+ optionPriceForParty + "]";
 	}
-	public ProductOption(String productOptionDescription, BigDecimal optionPrice, BigDecimal optionPriceForSmall,
-			BigDecimal optionPriceForNormal, BigDecimal optionPriceForFamily, BigDecimal optionPriceForParty) {
-		super();
-		this.productOptionDescription = productOptionDescription;
-		this.optionPrice = optionPrice;
-		this.optionPriceForSmall = optionPriceForSmall;
-		this.optionPriceForNormal = optionPriceForNormal;
-		this.optionPriceForFamily = optionPriceForFamily;
-		this.optionPriceForParty = optionPriceForParty;
-	}
-	
+
 	
 
 }

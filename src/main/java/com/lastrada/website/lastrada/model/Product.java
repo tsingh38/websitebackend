@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 
@@ -22,19 +23,19 @@ public class Product {
 	private String optionDescription;
 	private BigDecimal productBasePrice;
 	@OneToMany
-	@JoinTable(name="prduct_productadditiond")
+	@JoinTable(name="prduct_productaddition",joinColumns=@JoinColumn(name="Product_id"), inverseJoinColumns=@JoinColumn(name="ProductAddition_id"))
 	private Set<ProductAddition>productAdditions=new HashSet<>();
+	@OneToMany
+	@JoinTable(name="prduct_productoption",joinColumns=@JoinColumn(name="Option_id"), inverseJoinColumns=@JoinColumn(name="ProductOption_id"))
 	private Set<ProductOption>productOptions=new HashSet<>();
 	
 	
-	public Product(String description, String optionDescription, BigDecimal productBasePrice,
-			Set<ProductAddition> productAdditions, Set<ProductOption> productOptions) {
+	public Product() {}
+	public Product(String description, String optionDescription, BigDecimal productBasePrice) {
 		super();
 		this.description = description;
 		this.optionDescription = optionDescription;
 		this.productBasePrice = productBasePrice;
-		this.productAdditions = productAdditions;
-		this.productOptions = productOptions;
 	}
 
 

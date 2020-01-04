@@ -2,10 +2,12 @@ package com.lastrada.website.lastrada.model;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 
 @Entity
 public class ProductAddition{
@@ -19,7 +21,7 @@ public class ProductAddition{
 	private BigDecimal additionsPriceForFamily;
 	private BigDecimal additionsPriceForParty;
 	
-	
+	public ProductAddition() {}
 	
 	public ProductAddition(String additionDescription, BigDecimal additionPrice, BigDecimal additionsPriceForSmall,
 			BigDecimal additionsPriceForNormal, BigDecimal additionsPriceForFamily, BigDecimal additionsPriceForParty) {
