@@ -22,13 +22,13 @@ public class Product {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	private String description;
-	private ProductCategory productCategory;
+	private String productCategory;
 	private String optionDescription;
 	private BigDecimal productBasePrice;
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinTable(name="prduct_productaddition",joinColumns=@JoinColumn(name="Product_id"), inverseJoinColumns=@JoinColumn(name="ProductAddition_id"))
 	private Set<ProductAddition>productAdditions=new HashSet<>();
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinTable(name="prduct_productoption",joinColumns=@JoinColumn(name="Option_id"), inverseJoinColumns=@JoinColumn(name="ProductOption_id"))
 	private Set<ProductOption>productOptions=new HashSet<>();
 	
@@ -37,7 +37,7 @@ public class Product {
 	public Product(String description, ProductCategory productCategory,String optionDescription, BigDecimal productBasePrice) {
 		super();
 		this.description = description;
-		this.productCategory=productCategory;
+		this.productCategory=productCategory.toString();
 		this.optionDescription = optionDescription;
 		this.productBasePrice = productBasePrice;
 	}
@@ -61,7 +61,7 @@ public class Product {
 	public String getProductCategory() {
 		return productCategory;
 	}
-	public void setProductCategory(ProductCategory productCategory) {
+	public void setProductCategory(String productCategory) {
 		this.productCategory = productCategory;
 	}
 	public void setDescription(String description) {

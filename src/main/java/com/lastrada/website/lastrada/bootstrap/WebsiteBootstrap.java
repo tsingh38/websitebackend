@@ -15,7 +15,7 @@ import com.lastrada.website.lastrada.model.ProductAddition;
 import com.lastrada.website.lastrada.model.ProductCategory;
 import com.lastrada.website.lastrada.model.ProductOption;
 import com.lastrada.website.lastrada.repository.ProductAdditionRepository;
-import com.lastrada.website.lastrada.repository.ProductCategoryRepository;
+
 import com.lastrada.website.lastrada.repository.ProductOptionRepository;
 import com.lastrada.website.lastrada.repository.ProductRepository;
 
@@ -30,11 +30,7 @@ public class WebsiteBootstrap implements ApplicationListener<ContextRefreshedEve
 	
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent arg0) {
-		//initProductCategoryData();
-		//initProductAdditionData();
-		//initProductOptionsData();
-		//initProductData();
-		
+		initProducts();
 	}
 	
 	public WebsiteBootstrap( ProductRepository productRepository, ProductAdditionRepository productAdditionRepository,
@@ -48,6 +44,7 @@ public class WebsiteBootstrap implements ApplicationListener<ContextRefreshedEve
 	
 	private void initProducts() {
 		ProductOption productOpton1=new ProductOption("mit Cocktailsauce", new BigDecimal(0), null, null, null, null);
+		
 		ProductOption productOpton2=new ProductOption("mit Joghurtsauce", new BigDecimal(0), null, null, null, null);
 		ProductOption productOpton3=new ProductOption("ohne Sauce", new BigDecimal(0), null, null, null, null);
 		ProductOption productOpton4=new ProductOption("mit Pommes frites", new BigDecimal(0), null, null, null, null);
@@ -67,6 +64,26 @@ public class WebsiteBootstrap implements ApplicationListener<ContextRefreshedEve
 		ProductOption productOpton20=new ProductOption("mit Essig und öl",new BigDecimal(0),null,null,null,null);
 		ProductOption productOpton21=new ProductOption("mit Joghurtsauce",new BigDecimal(0),null,null,null,null);
 		ProductOption productOpton22=new ProductOption("ohne Dressing",new BigDecimal(0),null,null,null,null);
+		this.productOptionRepository.save(productOpton1);
+		this.productOptionRepository.save(productOpton2);
+		this.productOptionRepository.save(productOpton3);
+		this.productOptionRepository.save(productOpton4);
+		this.productOptionRepository.save(productOpton5);
+		this.productOptionRepository.save(productOpton6);
+		this.productOptionRepository.save(productOpton7);
+		this.productOptionRepository.save(productOpton8);
+		this.productOptionRepository.save(productOpton9);
+		this.productOptionRepository.save(productOpton10);
+		this.productOptionRepository.save(productOpton11);
+		this.productOptionRepository.save(productOpton12);
+		this.productOptionRepository.save(productOpton13);
+		this.productOptionRepository.save(productOpton14);
+		this.productOptionRepository.save(productOpton17);
+		this.productOptionRepository.save(productOpton18);
+		this.productOptionRepository.save(productOpton19);
+		this.productOptionRepository.save(productOpton20);
+		this.productOptionRepository.save(productOpton21);
+		this.productOptionRepository.save(productOpton22);
 		
 		ProductAddition pa1=new ProductAddition("Sahnesauce", new BigDecimal(1.00), null, null, null, null);
 		ProductAddition pa2=new ProductAddition("Fladenbrot", new BigDecimal(2.50), null, null, null, null);
@@ -98,6 +115,35 @@ public class WebsiteBootstrap implements ApplicationListener<ContextRefreshedEve
 		ProductAddition pa28=new ProductAddition("Zwiebeln", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
 		ProductAddition pa29=new ProductAddition("käserand", null, new BigDecimal(2.00), new BigDecimal(2.50), new BigDecimal(1.50), new BigDecimal(1.50));
 
+this.productAdditionRepository.save(pa1);
+this.productAdditionRepository.save(pa2);
+this.productAdditionRepository.save(pa3);
+this.productAdditionRepository.save(pa4);
+this.productAdditionRepository.save(pa5);
+this.productAdditionRepository.save(pa6);
+this.productAdditionRepository.save(pa7);
+this.productAdditionRepository.save(pa8);
+this.productAdditionRepository.save(pa9);
+this.productAdditionRepository.save(pa10);
+this.productAdditionRepository.save(pa11);
+this.productAdditionRepository.save(pa12);
+this.productAdditionRepository.save(pa13);
+this.productAdditionRepository.save(pa14);
+this.productAdditionRepository.save(pa15);
+this.productAdditionRepository.save(pa16);
+this.productAdditionRepository.save(pa17);
+this.productAdditionRepository.save(pa18);
+this.productAdditionRepository.save(pa19);
+this.productAdditionRepository.save(pa20);
+this.productAdditionRepository.save(pa21);
+this.productAdditionRepository.save(pa22);
+this.productAdditionRepository.save(pa23);
+this.productAdditionRepository.save(pa24);
+this.productAdditionRepository.save(pa25);
+this.productAdditionRepository.save(pa26);
+this.productAdditionRepository.save(pa27);
+this.productAdditionRepository.save(pa28);
+this.productAdditionRepository.save(pa29);
 
 		
 		// Alkohlische Getränke
@@ -614,7 +660,178 @@ public class WebsiteBootstrap implements ApplicationListener<ContextRefreshedEve
 			product155.getProductOptions().add(productOpton21);
 			product155.getProductOptions().add(productOpton22);
 			
+			
+			// Indische Vorspeise
+			
+			Product product156= new Product("Samosa (2 Stück)",ProductCategory.Indische_Vorspeisen," frittierte Teigtaschen mit Kartoffeln und Erbsen\n Wahl aus: mit Fladenbrot.", new BigDecimal(4.50));
+			product156.getProductAdditions().add(pa2);
+			Product product157= new Product("Mix-Gemüse Pakora",ProductCategory.Indische_Vorspeisen," frittiert in Kichererbsenmehlteig\n Wahl aus: mit Fladenbrot.", new BigDecimal(5.00));
+			product157.getProductAdditions().add(pa2);
+			Product product158= new Product("Hähnchenfleisch Pakora",ProductCategory.Indische_Vorspeisen," frittiert in Kichererbsenmehlteig \n Wahl aus: mit Fladenbrot.", new BigDecimal(6.00));
+			product158.getProductAdditions().add(pa2);
 		
+			
+			this.productRepository.save(product1);
+			this.productRepository.save(product2);
+			this.productRepository.save(product3);
+			this.productRepository.save(product4);
+			this.productRepository.save(product5);
+			this.productRepository.save(product6);
+			this.productRepository.save(product7);
+			this.productRepository.save(product8);
+			this.productRepository.save(product9);
+			this.productRepository.save(product10);
+				this.productRepository.save(product11);
+			this.productRepository.save(product12);
+			this.productRepository.save(product13);
+			this.productRepository.save(product14);
+			this.productRepository.save(product15);
+			this.productRepository.save(product16);
+			this.productRepository.save(product17);
+			this.productRepository.save(product18);
+			this.productRepository.save(product19);
+			this.productRepository.save(product20);
+				this.productRepository.save(product21);
+			this.productRepository.save(product22);
+			this.productRepository.save(product23);
+			this.productRepository.save(product24);
+			this.productRepository.save(product25);
+			this.productRepository.save(product26);
+			this.productRepository.save(product27);
+			this.productRepository.save(product28);
+			this.productRepository.save(product28Star);
+			this.productRepository.save(product29);
+			this.productRepository.save(product30);
+				this.productRepository.save(product31);
+			this.productRepository.save(product32);
+			this.productRepository.save(product33);
+			this.productRepository.save(product34);
+			this.productRepository.save(product35);
+			this.productRepository.save(product36);
+			this.productRepository.save(product37);
+			this.productRepository.save(product38);
+			this.productRepository.save(product39);
+			this.productRepository.save(product40);
+				this.productRepository.save(product41);
+			this.productRepository.save(product42);
+			this.productRepository.save(product43);
+			this.productRepository.save(product44);
+			this.productRepository.save(product45);
+			this.productRepository.save(product46);
+			this.productRepository.save(product47);
+			this.productRepository.save(product48);
+			this.productRepository.save(product49);
+			this.productRepository.save(product50);
+				this.productRepository.save(product51);
+			this.productRepository.save(product52);
+			this.productRepository.save(product53);
+			this.productRepository.save(product54);
+			this.productRepository.save(product55);
+			this.productRepository.save(product56);
+			this.productRepository.save(product57);
+			this.productRepository.save(product58);
+			this.productRepository.save(product59);
+			this.productRepository.save(product60);
+				this.productRepository.save(product61);
+			this.productRepository.save(product62);
+			this.productRepository.save(product63);
+			this.productRepository.save(product64);
+			this.productRepository.save(product65);
+			this.productRepository.save(product66);
+			this.productRepository.save(product67);
+			this.productRepository.save(product68);
+			this.productRepository.save(product69);
+			this.productRepository.save(product70);
+				this.productRepository.save(product71);
+			this.productRepository.save(product72);
+			this.productRepository.save(product73);
+			this.productRepository.save(product74);
+			this.productRepository.save(product75);
+			this.productRepository.save(product76);
+			this.productRepository.save(product77);
+			this.productRepository.save(product78);
+			this.productRepository.save(product79);
+			this.productRepository.save(product80);
+				this.productRepository.save(product81);
+			this.productRepository.save(product82);
+			this.productRepository.save(product83);
+			this.productRepository.save(product84);
+			this.productRepository.save(product85);
+			this.productRepository.save(product86);
+			this.productRepository.save(product87);
+			this.productRepository.save(product88);
+			this.productRepository.save(product89);
+			this.productRepository.save(product90);
+				this.productRepository.save(product91);
+			this.productRepository.save(product92);
+			this.productRepository.save(product93);
+			this.productRepository.save(product94);
+			this.productRepository.save(product95);
+			this.productRepository.save(product96);
+			this.productRepository.save(product97);
+			this.productRepository.save(product98);
+			this.productRepository.save(product99);
+			this.productRepository.save(product100);
+				this.productRepository.save(product101);
+			this.productRepository.save(product102);
+			this.productRepository.save(product103);
+			this.productRepository.save(product104);
+			this.productRepository.save(product105);
+			this.productRepository.save(product106);
+			this.productRepository.save(product107);
+			this.productRepository.save(product108);
+			this.productRepository.save(product109);
+			this.productRepository.save(product110);
+				this.productRepository.save(product111);
+			this.productRepository.save(product112);
+			this.productRepository.save(product113);
+			this.productRepository.save(product114);
+			this.productRepository.save(product115);
+			this.productRepository.save(product116);
+			this.productRepository.save(product117);
+			this.productRepository.save(product118);
+			this.productRepository.save(product119);
+			this.productRepository.save(product120);
+				this.productRepository.save(product121);
+			this.productRepository.save(product122);
+			this.productRepository.save(product123);
+			this.productRepository.save(product124);
+			this.productRepository.save(product125);
+			this.productRepository.save(product126);
+			this.productRepository.save(product127);
+			this.productRepository.save(product128);
+			this.productRepository.save(product129);
+			this.productRepository.save(product130);
+				this.productRepository.save(product131);
+			this.productRepository.save(product132);
+			this.productRepository.save(product133);
+			this.productRepository.save(product134);
+			this.productRepository.save(product135);
+			this.productRepository.save(product136);
+			this.productRepository.save(product137);
+			this.productRepository.save(product138);
+			this.productRepository.save(product139);
+			this.productRepository.save(product140);
+				this.productRepository.save(product141);
+			this.productRepository.save(product142);
+			this.productRepository.save(product143);
+			this.productRepository.save(product144);
+			this.productRepository.save(product145);
+			this.productRepository.save(product146);
+			this.productRepository.save(product147);
+			this.productRepository.save(product148);
+			this.productRepository.save(product149);
+			this.productRepository.save(product150);
+				this.productRepository.save(product151);
+			this.productRepository.save(product152);
+			this.productRepository.save(product153);
+			this.productRepository.save(product154);
+			this.productRepository.save(product155);
+			this.productRepository.save(product156);
+			this.productRepository.save(product157);
+			this.productRepository.save(product158);
+			
+			
 			
 	}
 	
@@ -695,139 +912,9 @@ public class WebsiteBootstrap implements ApplicationListener<ContextRefreshedEve
 		return productAdditions;
 		
 	}
-	private void initProductOptionsData() {
-		ProductOption productOpton1=new ProductOption("mit Cocktailsauce", new BigDecimal(0), null, null, null, null);
-		ProductOption productOpton2=new ProductOption("mit Joghurtsauce", new BigDecimal(0), null, null, null, null);
-		ProductOption productOpton3=new ProductOption("ohne Sauce", new BigDecimal(0), null, null, null, null);
-		ProductOption productOpton4=new ProductOption("mit Pommes frites", new BigDecimal(0), null, null, null, null);
-		ProductOption productOpton5=new ProductOption("mit  Spätzle", new BigDecimal(0), null, null, null, null);
-		ProductOption productOpton6=new ProductOption("ohne Beilage", new BigDecimal(0), null, null, null, null);
-		ProductOption productOpton7=new ProductOption("mit Chilisauce", new BigDecimal(0), null, null, null, null);
-		ProductOption productOpton8=new ProductOption("mit  Currysauce", new BigDecimal(0), null, null, null, null);
-		ProductOption productOpton9=new ProductOption("ohne Sauce", new BigDecimal(0), null, null, null, null);
-		ProductOption productOpton10=new ProductOption("mit  Reis", new BigDecimal(0), null, null, null, null);
-		ProductOption productOpton11=new ProductOption("mit  Gnocchi", new BigDecimal(0), null, null, null, null);
-		ProductOption productOpton12=new ProductOption("mit  Rigatoni", new BigDecimal(0), null, null, null, null);
-		ProductOption productOpton13=new ProductOption("mit  Spaghetti", new BigDecimal(0), null, null, null, null);
-		ProductOption productOpton14=new ProductOption("mit  Tortellini", new BigDecimal(0), null, null, null, null);
-		ProductOption productOpton15=new ProductOption("klein:7,50 €", new BigDecimal(7.50), null, null, null, null);
-		ProductOption productOpton16=new ProductOption("Groß:9,00 €", new BigDecimal(9.00), null, null, null, null);
-		ProductOption productOpton17=new ProductOption("klein, Ø26cm:", null, null, null, null, null);
-		ProductOption productOpton18=new ProductOption("Groß, Ø30cm:", null, null, null, null, null);
-		ProductOption productOpton19=new ProductOption("Familie,46cm x 33cm:", null, null, null, null, null);
-		ProductOption productOpton20=new ProductOption("Party,60cm x 40cm:", null, null, null, null, null);
-	}
 	
-	private void initProductAdditionData() {
-		
-		ProductAddition pa1=new ProductAddition("Sahnesauce", new BigDecimal(1.00), null, null, null, null);
-		ProductAddition pa2=new ProductAddition("Fladenbrot", new BigDecimal(2.50), null, null, null, null);
-		ProductAddition pa3=new ProductAddition("Ananas", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa4=new ProductAddition("Artischocken", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa5=new ProductAddition("Broccoli",null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa6=new ProductAddition("Champignons", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa7=new ProductAddition("Ei", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa8=new ProductAddition("Gorgonzola", null, new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(3.50), new BigDecimal(5.00));
-		ProductAddition pa9=new ProductAddition("Gyrosfleisch", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa10=new ProductAddition("Hähnchenfleisch",null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa11=new ProductAddition("Käse,extra", null, new BigDecimal(1.00), new BigDecimal(1.00),new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa12=new ProductAddition("knoblauch", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa13=new ProductAddition("krabben", null, new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(3.50), new BigDecimal(5.00));
-		ProductAddition pa14=new ProductAddition("Lachs", null, new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50), new BigDecimal(5.00));
-		ProductAddition pa15=new ProductAddition("Mais", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa16=new ProductAddition("Meeresfrüchten", null, new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(3.50), new BigDecimal(5.00));
-		ProductAddition pa17=new ProductAddition("Mozzarella", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa18=new ProductAddition("Paprika", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa19=new ProductAddition("Peperoni", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa20=new ProductAddition("Salami", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa21=new ProductAddition("Sardellen", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa22=new ProductAddition("Schafskäse", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa23=new ProductAddition("Schinken", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa24=new ProductAddition("Spinat", null, new BigDecimal(1.00), new BigDecimal(1.00),new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa25=new ProductAddition("Thunfisch", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa26=new ProductAddition("Tomaten", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa27=new ProductAddition("Tzatziki", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa28=new ProductAddition("Zwiebeln", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa29=new ProductAddition("käserand", null, new BigDecimal(2.00), new BigDecimal(2.50), new BigDecimal(1.50), new BigDecimal(1.50));
-		this.productAdditionRepository.save(pa1);
-		this.productAdditionRepository.save(pa2);
-		this.productAdditionRepository.save(pa3);
-		this.productAdditionRepository.save(pa4);
-		this.productAdditionRepository.save(pa5);
-		this.productAdditionRepository.save(pa6);
-		this.productAdditionRepository.save(pa7);
-		this.productAdditionRepository.save(pa8);
-		this.productAdditionRepository.save(pa9);
-		this.productAdditionRepository.save(pa10);
-		this.productAdditionRepository.save(pa11);
-		this.productAdditionRepository.save(pa12);
-		this.productAdditionRepository.save(pa13);
-		this.productAdditionRepository.save(pa14);
-		this.productAdditionRepository.save(pa15);
-		this.productAdditionRepository.save(pa16);
-		this.productAdditionRepository.save(pa17);
-		this.productAdditionRepository.save(pa18);
-		this.productAdditionRepository.save(pa19);
-		this.productAdditionRepository.save(pa20);
-		this.productAdditionRepository.save(pa21);
-		this.productAdditionRepository.save(pa22);
-		this.productAdditionRepository.save(pa23);
-		this.productAdditionRepository.save(pa24);
-		this.productAdditionRepository.save(pa25);
-		this.productAdditionRepository.save(pa26);
-		this.productAdditionRepository.save(pa27);
-		this.productAdditionRepository.save(pa28);
-		this.productAdditionRepository.save(pa29);
+	
 	
 
-		
-	}
-	
-	
-	private void initProductCategoryData() {
-		
-	}
-//	private void initData() {
-//		ProductOption productOption1 = new ProductOption("Pizza klein 26 ", null, new BigDecimal(12), null, null, null);
-//		ProductOption productOption2 = new ProductOption("Pizza normal 28 ", null, null, new BigDecimal(12), null, null);
-//		ProductOption productOption3 = new ProductOption("Pizza family 32 ", null, null, null, new BigDecimal(12), null);
-//		ProductOption productOption4 = new ProductOption("Pizza party 38 ", null, null, null, null, new BigDecimal(12));
-//		ProductOption productOption5 = new ProductOption("Salsa Sauce ", new BigDecimal(1.5), null, null, null, null);
-//		ProductOption productOption6 = new ProductOption("Noodle Pesto ", new BigDecimal(2), null, null, null, null);
-//		
-//		this.productOptionRepository.save(productOption1);
-//		this.productOptionRepository.save(productOption2);
-//		this.productOptionRepository.save(productOption3);
-//		this.productOptionRepository.save(productOption4);
-//		this.productOptionRepository.save(productOption5);
-//		this.productOptionRepository.save(productOption6);
-//		
-//		ProductAddition productAddition1 = new ProductAddition("mit fladenbrot",new BigDecimal(2),null,null,null,null);
-//		ProductAddition productAddition2 = new ProductAddition("mit brocolli",null,new BigDecimal(2),new BigDecimal(2.5),new BigDecimal(3),new BigDecimal(4));
-//
-//		ProductAddition productAddition3 = new ProductAddition("mit käse",null,new BigDecimal(2),new BigDecimal(2.5),new BigDecimal(3),new BigDecimal(4));
-//
-//		ProductAddition productAddition4 = new ProductAddition("mit oliven",new BigDecimal(1),new BigDecimal(2),new BigDecimal(2.5),new BigDecimal(3),new BigDecimal(4));
-//
-//		this.productAdditionRepository.save(productAddition1);
-//		this.productAdditionRepository.save(productAddition2);
-//		this.productAdditionRepository.save(productAddition3);
-//		this.productAdditionRepository.save(productAddition4);
-//		
-//		
-//		Product productPizzaMargheritta= new Product("Margherita","Pizza", "Große wahl",new BigDecimal(6.9));
-//		productPizzaMargheritta.getProductAdditions().add(productAddition2);
-//		productPizzaMargheritta.getProductAdditions().add(productAddition4);
-//		productPizzaMargheritta.getProductOptions().add(productOption1);
-//		productPizzaMargheritta.getProductOptions().add(productOption2);
-//		productPizzaMargheritta.getProductOptions().add(productOption3);
-//		productPizzaMargheritta.getProductOptions().add(productOption4);
-//		this.productRepository.save(productPizzaMargheritta);
-//		Product productBhartha= new Product("Bhartha","Indisch","bio zutaten",new BigDecimal(10.00));
-//		productBhartha.getProductAdditions().add(productAddition1);
-//		productBhartha.getProductOptions().add(productOption5);
-//		productBhartha.getProductOptions().add(productOption6);
-//		this.productRepository.save(productBhartha);
-//	}
 
 }

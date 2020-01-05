@@ -20,8 +20,6 @@ public class OrderItem {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(unique = true)
 	private ProductCategory orderItemCategory;
 	private Long quantity;
 	private BigDecimal orderItemTotalPrice;
