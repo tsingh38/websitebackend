@@ -3,6 +3,8 @@ package com.lastrada.website.lastrada.bootstrap;
 
 
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -59,6 +61,12 @@ public class WebsiteBootstrap implements ApplicationListener<ContextRefreshedEve
 		ProductOption productOpton12=new ProductOption("mit  Rigatoni", new BigDecimal(0), null, null, null, null);
 		ProductOption productOpton13=new ProductOption("mit  Spaghetti", new BigDecimal(0), null, null, null, null);
 		ProductOption productOpton14=new ProductOption("mit  Tortellini", new BigDecimal(0), null, null, null, null);
+		ProductOption productOpton17=new ProductOption("klein, Ø26cm:", null, new BigDecimal(7.50), null, null, null);
+		ProductOption productOpton18=new ProductOption("Groß, Ø30cm:", null, null, new BigDecimal(9.00), null, null);
+		ProductOption productOpton19=new ProductOption("mit Cocktail -Dressing",new BigDecimal(0),null,null,null,null);
+		ProductOption productOpton20=new ProductOption("mit Essig und öl",new BigDecimal(0),null,null,null,null);
+		ProductOption productOpton21=new ProductOption("mit Joghurtsauce",new BigDecimal(0),null,null,null,null);
+		ProductOption productOpton22=new ProductOption("ohne Dressing",new BigDecimal(0),null,null,null,null);
 		
 		ProductAddition pa1=new ProductAddition("Sahnesauce", new BigDecimal(1.00), null, null, null, null);
 		ProductAddition pa2=new ProductAddition("Fladenbrot", new BigDecimal(2.50), null, null, null, null);
@@ -364,6 +372,328 @@ public class WebsiteBootstrap implements ApplicationListener<ContextRefreshedEve
 			product102.getProductOptions().add(productOpton12);
 			product102.getProductOptions().add(productOpton13);
 			product102.getProductOptions().add(productOpton14);
+			
+			
+			// Pizzabrot
+			
+			Product product103=new Product("Pizzabrot mit Kräutern ",ProductCategory.PizzabrotØ30,"",new BigDecimal(4.00));
+			Product product104=new Product("Pizzabrot mit Tomatensauce",ProductCategory.PizzabrotØ30,"",new BigDecimal(4.00));
+			
+			
+			// Calzone
+			Product product105=new Product("Calzone",ProductCategory.Calzone,"mit Putenfleisch, Käse, Paprika und Champignons\n Wahl aus: Klein oder Groß.",null);
+			product105.getProductOptions().add(productOpton17);
+			product105.getProductOptions().add(productOpton18);
+			Product product106=new Product("Calzone Gyros",ProductCategory.Calzone,"mit Gyrosfleisch, Schafskäse, Tomatenscheiben, Zwiebeln und Tzatziki \n Wahl aus: Klein oder Groß.",null);
+			product106.getProductOptions().add(productOpton17);
+			product106.getProductOptions().add(productOpton18);
+			Product product107=new Product("Pizza La Strada Spezial Calzone",ProductCategory.Calzone,"mit Gyrosfleisch, Champignons, Zwiebeln, Hackfleisch, Schinken und Tzatziki\n Wahl aus: Klein oder Groß.",null);
+			product107.getProductOptions().add(productOpton17);
+			product107.getProductOptions().add(productOpton18);
+			
+			
+			// Vegetarische Pizza
+			
+			Product product108= new Product("Pizza Tomatenscheiben-Zwiebeln-Champignons-frische Paprika",ProductCategory.Vegatarische_Pizza,"Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
+			product108.setProductAdditions(getAllPizzaAdditions());
+			product108.setProductOptions(getAllPizzaOptions(new BigDecimal(7.90), new BigDecimal(9.00), new BigDecimal(18.50), new BigDecimal(23.50)));
+			Product product109= new Product("Pizza Artischocken-Paprika-Zwiebeln-Champignons-Oliven-Peperoni ",ProductCategory.Vegatarische_Pizza,"Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
+			product109.setProductAdditions(getAllPizzaAdditions());
+			product109.setProductOptions(getAllPizzaOptions(new BigDecimal(7.90), new BigDecimal(9.00), new BigDecimal(18.50), new BigDecimal(23.50)));
+			Product product110= new Product("Pizza Mozzarella mit Tomatenscheiben ",ProductCategory.Vegatarische_Pizza,"Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
+			product110.setProductAdditions(getAllPizzaAdditions());
+			product110.setProductOptions(getAllPizzaOptions(new BigDecimal(7.90), new BigDecimal(9.00), new BigDecimal(18.50), new BigDecimal(23.50)));
+			Product product111= new Product("Pizza Mozzarella mit Spinat ",ProductCategory.Vegatarische_Pizza,"Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
+			product111.setProductOptions(getAllPizzaOptions(new BigDecimal(7.90), new BigDecimal(9.00), new BigDecimal(18.50), new BigDecimal(23.50)));
+			product111.setProductAdditions(getAllPizzaAdditions());
+			Product product112= new Product("Pizza Artischocken-Ananas-Champignons-Zwiebeln-Peperoni-Paprika ",ProductCategory.Vegatarische_Pizza,"und Knobaluch \n Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
+			product112.setProductOptions(getAllPizzaOptions(new BigDecimal(7.90), new BigDecimal(9.00), new BigDecimal(18.50), new BigDecimal(23.50)));
+			product112.setProductAdditions(getAllPizzaAdditions());
+			
+			
+			// Pizza
+			Product product113= new Product("Pizza Margherita",ProductCategory.Pizza,"Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
+			product113.setProductAdditions(getAllPizzaAdditions());
+			product113.setProductOptions(getAllPizzaOptions(new BigDecimal(5.70), new BigDecimal(6.70), new BigDecimal(15.70), new BigDecimal(19.00)));
+			
+			Product product114= new Product("Pizza Rinder-Salami ",ProductCategory.Pizza,"Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
+			product114.setProductAdditions(getAllPizzaAdditions());
+			product114.setProductOptions(getAllPizzaOptions(new BigDecimal(6.40), new BigDecimal(7.90), new BigDecimal(16.00), new BigDecimal(19.90)));
+
+			Product product115= new Product("Pizza Geflügelschinken",ProductCategory.Pizza,"Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
+			product115.setProductAdditions(getAllPizzaAdditions());
+			product115.setProductOptions(getAllPizzaOptions(new BigDecimal(6.40), new BigDecimal(7.90), new BigDecimal(16.00), new BigDecimal(19.90)));
+
+			Product product116= new Product("Pizza türkische Salami",ProductCategory.Pizza,"mit Sucuk \n Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
+			product116.setProductAdditions(getAllPizzaAdditions());
+			product116.setProductOptions(getAllPizzaOptions(new BigDecimal(6.40), new BigDecimal(7.90), new BigDecimal(16.00), new BigDecimal(19.90)));
+
+			Product product117= new Product("Pizza Champignons ",ProductCategory.Pizza,"Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
+			product117.setProductAdditions(getAllPizzaAdditions());
+			product117.setProductOptions(getAllPizzaOptions(new BigDecimal(6.40), new BigDecimal(7.90), new BigDecimal(16.00), new BigDecimal(19.90)));
+
+			Product product118= new Product("Pizza Thunfisch-Zwiebeln",ProductCategory.Pizza,"Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
+			product118.setProductAdditions(getAllPizzaAdditions());
+			product118.setProductOptions(getAllPizzaOptions(new BigDecimal(6.90), new BigDecimal(8.40), new BigDecimal(17.50), new BigDecimal(21.00)));
+
+			Product product119= new Product("Pizza Schinken-Salami",ProductCategory.Pizza,"Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
+			product119.setProductAdditions(getAllPizzaAdditions());
+			product119.setProductOptions(getAllPizzaOptions(new BigDecimal(6.90), new BigDecimal(8.40), new BigDecimal(17.50), new BigDecimal(21.00)));
+
+			Product product120= new Product("Pizza Schinken-Champignons ",ProductCategory.Pizza,"Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
+			product120.setProductAdditions(getAllPizzaAdditions());
+			product120.setProductOptions(getAllPizzaOptions(new BigDecimal(6.90), new BigDecimal(8.40), new BigDecimal(17.50), new BigDecimal(21.00)));
+
+			Product product121= new Product("Pizza Hawaii",ProductCategory.Pizza,"mit Schinken und Ananas \n Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
+			product121.setProductAdditions(getAllPizzaAdditions());
+			product121.setProductOptions(getAllPizzaOptions(new BigDecimal(6.90), new BigDecimal(8.40), new BigDecimal(17.50), new BigDecimal(21.00)));
+
+			Product product122= new Product("Pizza Salami-Hackfleisch-Champignons",ProductCategory.Pizza,"Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
+			product122.setProductAdditions(getAllPizzaAdditions());
+			product122.setProductOptions(getAllPizzaOptions(new BigDecimal(6.90), new BigDecimal(8.40), new BigDecimal(17.50), new BigDecimal(21.00)));
+
+			Product product123= new Product("Pizza Salami-Schinken-Artischocken-Zwiebeln ",ProductCategory.Pizza,"Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
+			product123.setProductAdditions(getAllPizzaAdditions());
+			product123.setProductOptions(getAllPizzaOptions(new BigDecimal(6.90), new BigDecimal(8.40), new BigDecimal(17.50), new BigDecimal(21.00)));
+
+			Product product124= new Product("Pizza Salami-Schinken-Champignons ",ProductCategory.Pizza,"Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
+			product124.setProductAdditions(getAllPizzaAdditions());
+			product124.setProductOptions(getAllPizzaOptions(new BigDecimal(6.90), new BigDecimal(8.40), new BigDecimal(17.50), new BigDecimal(21.00)));
+
+			Product product125= new Product("Pizza Schinken-Champignons-Artischocken-Oliven",ProductCategory.Pizza,"Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
+			product125.setProductAdditions(getAllPizzaAdditions());
+			product125.setProductOptions(getAllPizzaOptions(new BigDecimal(6.90), new BigDecimal(8.40), new BigDecimal(17.50), new BigDecimal(21.00)));
+
+			Product product126= new Product("Pizza Creme fraiche ",ProductCategory.Pizza,"Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
+			product126.setProductAdditions(getAllPizzaAdditions());
+			product126.setProductOptions(getAllPizzaOptions(new BigDecimal(6.90), new BigDecimal(8.40), new BigDecimal(17.50), new BigDecimal(21.00)));
+
+			Product product127= new Product("Pizza Diavolo",ProductCategory.Pizza,"mit Salami, Zwiebeln, Peperoni und Chili, scharf \n Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
+			product127.setProductAdditions(getAllPizzaAdditions());
+			product127.setProductOptions(getAllPizzaOptions(new BigDecimal(6.90), new BigDecimal(8.40), new BigDecimal(17.50), new BigDecimal(21.00)));
+
+			Product product128= new Product("Pizza Sardellen-Mozzarella-Basilikum-Tomatenscheiben",ProductCategory.Pizza,"Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
+			product128.setProductAdditions(getAllPizzaAdditions());
+			product128.setProductOptions(getAllPizzaOptions(new BigDecimal(7.90), new BigDecimal(9.40), new BigDecimal(19.50), new BigDecimal(24.50)));
+
+			Product product129= new Product("Pizza Vier Jahreszeiten",ProductCategory.Pizza,"mit Salami, Schinken, Paprika, Champignons und Ei \n Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
+			product129.setProductAdditions(getAllPizzaAdditions());
+			product129.setProductOptions(getAllPizzaOptions(new BigDecimal(7.90), new BigDecimal(9.40), new BigDecimal(19.50), new BigDecimal(24.50)));
+
+			Product product130= new Product("Pizza Meeresfrüchte ",ProductCategory.Pizza,"Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
+			product130.setProductAdditions(getAllPizzaAdditions());
+			product130.setProductOptions(getAllPizzaOptions(new BigDecimal(7.90), new BigDecimal(9.40), new BigDecimal(19.50), new BigDecimal(24.50)));
+
+			Product product131= new Product("Pizza Bolognese",ProductCategory.Pizza,"mit Zwiebeln, Hackfleisch und scharfer Peperoni \n Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
+			product131.setProductAdditions(getAllPizzaAdditions());
+			product131.setProductOptions(getAllPizzaOptions(new BigDecimal(7.90), new BigDecimal(9.40), new BigDecimal(19.50), new BigDecimal(24.50)));
+
+			Product product132= new Product("Pizza Quattro Formaggi",ProductCategory.Pizza,"mit vier Käsesorten \n Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
+			product132.setProductAdditions(getAllPizzaAdditions());
+			product132.setProductOptions(getAllPizzaOptions(new BigDecimal(7.90), new BigDecimal(9.40), new BigDecimal(19.50), new BigDecimal(24.50)));
+
+			Product product133= new Product("Pizza La Strada ",ProductCategory.Pizza,"mit Schinken, Mais, Paprika, Champignons, Peperoni und Hackfleisch \n Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
+			product133.setProductAdditions(getAllPizzaAdditions());
+			product133.setProductOptions(getAllPizzaOptions(new BigDecimal(7.90), new BigDecimal(9.40), new BigDecimal(19.50), new BigDecimal(24.50)));
+
+			Product product134= new Product("Pizza Salami-Schinken-Champignons-Paprika-Hackfleisch-Zwiebeln-Peperoni",ProductCategory.Pizza,"Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
+			product134.setProductAdditions(getAllPizzaAdditions());
+			product134.setProductOptions(getAllPizzaOptions(new BigDecimal(7.90), new BigDecimal(9.40), new BigDecimal(19.50), new BigDecimal(24.50)));
+
+			Product product135= new Product("Grill Pizza ",ProductCategory.Pizza,"mit gegrilltem Hühnerfleisch, Champignons und Peperoni \n Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
+			product135.setProductAdditions(getAllPizzaAdditions());
+			product135.setProductOptions(getAllPizzaOptions(new BigDecimal(7.90), new BigDecimal(9.40), new BigDecimal(19.50), new BigDecimal(24.50)));
+
+			Product product136= new Product("Pizza Mexicana",ProductCategory.Pizza,"mit Bohnen, Oliven, Hackfleisch, Chili, Zwiebeln und Peperoni \n Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
+			product136.setProductAdditions(getAllPizzaAdditions());
+			product136.setProductOptions(getAllPizzaOptions(new BigDecimal(7.90), new BigDecimal(9.40), new BigDecimal(19.50), new BigDecimal(24.50)));
+
+			Product product137= new Product("Pizza Schinken-Gorgonzola-Rucola ",ProductCategory.Pizza,"Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
+			product137.setProductAdditions(getAllPizzaAdditions());
+			product137.setProductOptions(getAllPizzaOptions(new BigDecimal(7.90), new BigDecimal(9.40), new BigDecimal(19.50), new BigDecimal(24.50)));
+
+			Product product138= new Product("Pizza Spezial",ProductCategory.Pizza,"mit Hühnerfleisch, Champignons, Paprika, Zwiebeln und Curry \n Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
+			product138.setProductAdditions(getAllPizzaAdditions());
+			product138.setProductOptions(getAllPizzaOptions(new BigDecimal(7.90), new BigDecimal(9.40), new BigDecimal(19.50), new BigDecimal(24.50)));
+
+			Product product139= new Product("Pizza Orientale",ProductCategory.Pizza,"mit türkischer Salami, Schafskäse und roten Zwiebeln \n Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
+			product139.setProductAdditions(getAllPizzaAdditions());
+			product139.setProductOptions(getAllPizzaOptions(new BigDecimal(7.90), new BigDecimal(9.40), new BigDecimal(19.50), new BigDecimal(24.50)));
+
+			Product product140= new Product("Pizza Lachs",ProductCategory.Pizza,"mit Spinat, Knoblauch und Mozzarella \n Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
+			product140.setProductAdditions(getAllPizzaAdditions());
+			product140.setProductOptions(getAllPizzaOptions(new BigDecimal(7.90), new BigDecimal(9.40), new BigDecimal(19.50), new BigDecimal(24.50)));
+
+			Product product141= new Product("Pizza Gyros",ProductCategory.Pizza,"mit Mozzarella, Tomaten und Zwiebeln \n Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
+			product141.setProductAdditions(getAllPizzaAdditions());
+			product141.setProductOptions(getAllPizzaOptions(new BigDecimal(7.90), new BigDecimal(9.40), new BigDecimal(19.50), new BigDecimal(24.50)));
+				
+			// Salat
+			
+			Product product142= new Product("Gemischter Salat (klein)",ProductCategory.Salat,"Wahl aus: mit Cocktail-Dressing, mit Essig und Öl, mit Joghurtsauce oder ohne Dressing.",new BigDecimal(3.40));
+			product142.getProductOptions().add(productOpton19);
+			product142.getProductOptions().add(productOpton20);
+			product142.getProductOptions().add(productOpton21);
+			product142.getProductOptions().add(productOpton22);
+			
+			Product product143= new Product("Rucolasalat (klein)",ProductCategory.Salat,"mit Feta, frischen Tomaten und Olivenöl \n Wahl aus: mit Cocktail-Dressing, mit Essig und Öl, mit Joghurtsauce oder ohne Dressing.",new BigDecimal(5.50));
+			product143.getProductOptions().add(productOpton19);
+			product143.getProductOptions().add(productOpton20);
+			product143.getProductOptions().add(productOpton21);
+			product143.getProductOptions().add(productOpton22);
+			
+			Product product144= new Product("Tomatensalat (klein)",ProductCategory.Salat,"mit Zwiebeln \n Wahl aus: mit Cocktail-Dressing, mit Essig und Öl, mit Joghurtsauce oder ohne Dressing.",new BigDecimal(4.30));
+			product144.getProductOptions().add(productOpton19);
+			product144.getProductOptions().add(productOpton20);
+			product144.getProductOptions().add(productOpton21);
+			product144.getProductOptions().add(productOpton22);
+			
+			Product product145= new Product("Krabben-Cocktail Salat (klein)",ProductCategory.Salat,"Wahl aus: mit Cocktail-Dressing, mit Essig und Öl, mit Joghurtsauce oder ohne Dressing.",new BigDecimal(6.90));
+			product145.getProductOptions().add(productOpton19);
+			product145.getProductOptions().add(productOpton20);
+			product145.getProductOptions().add(productOpton21);
+			product145.getProductOptions().add(productOpton22);
+			
+			Product product146= new Product("Mozzarella-Teller (klein)",ProductCategory.Salat,"mit Tomaten und Zwiebeln \n Wahl aus: mit Cocktail-Dressing, mit Essig und Öl, mit Joghurtsauce oder ohne Dressing.",new BigDecimal(4.80));
+			product146.getProductOptions().add(productOpton19);
+			product146.getProductOptions().add(productOpton20);
+			product146.getProductOptions().add(productOpton21);
+			product146.getProductOptions().add(productOpton22);
+			
+			Product product147= new Product("Gemischter Salat",ProductCategory.Salat,"mit grünem Salat, Gurken, Tomaten, Karotten, Bohnen, Mais und milder Peperoni \n Wahl aus: mit Cocktail-Dressing, mit Essig und Öl, mit Joghurtsauce oder ohne Dressing.",new BigDecimal(4.90));
+			product147.getProductOptions().add(productOpton19);
+			product147.getProductOptions().add(productOpton20);
+			product147.getProductOptions().add(productOpton21);
+			product147.getProductOptions().add(productOpton22);
+			
+			Product product148= new Product("Salat Nizza",ProductCategory.Salat,"mit grünem Salat, Zwiebeln, Thunfisch, Oliven, Tomaten und Gurken \n Wahl aus: mit Cocktail-Dressing, mit Essig und Öl, mit Joghurtsauce oder ohne Dressing.",new BigDecimal(6.50));
+			product148.getProductOptions().add(productOpton19);
+			product148.getProductOptions().add(productOpton20);
+			product148.getProductOptions().add(productOpton21);
+			product148.getProductOptions().add(productOpton22);
+			
+			Product product149= new Product("Thunfischsalat",ProductCategory.Salat,"mit grünem Salat, Thunfisch, Oliven, Artischocken, Tomaten und Ei \n Wahl aus: mit Cocktail-Dressing, mit Essig und Öl, mit Joghurtsauce oder ohne Dressing.",new BigDecimal(7.50));
+			product149.getProductOptions().add(productOpton19);
+			product149.getProductOptions().add(productOpton20);
+			product149.getProductOptions().add(productOpton21);
+			product149.getProductOptions().add(productOpton22);
+			
+			Product product150= new Product("Italienischer Salat",ProductCategory.Salat,"mit grünem Salat, Tomaten, Gurken, Paprika, Schinken, Thunfisch, Käse, Ei und Oliven \n Wahl aus: mit Cocktail-Dressing, mit Essig und Öl, mit Joghurtsauce oder ohne Dressing.",new BigDecimal(7.50));
+			product150.getProductOptions().add(productOpton19);
+			product150.getProductOptions().add(productOpton20);
+			product150.getProductOptions().add(productOpton21);
+			product150.getProductOptions().add(productOpton22);
+			
+			Product product151= new Product("Mexikanischer Salat ",ProductCategory.Salat,"mit grünem Salat, Pute, Mais, Bohnen, frischer Paprika, Peperoni, Tomaten und Gurken \n Wahl aus: mit Cocktail-Dressing, mit Essig und Öl, mit Joghurtsauce oder ohne Dressing.",new BigDecimal(7.50));
+			product151.getProductOptions().add(productOpton19);
+			product151.getProductOptions().add(productOpton20);
+			product151.getProductOptions().add(productOpton21);
+			product151.getProductOptions().add(productOpton22);
+			
+			Product product152= new Product("Amerikanischer Salat",ProductCategory.Salat,"mit grünem Salat, gegrilltem Geflügelfleisch,Tomaten, Mais, Paprika, Karotten, Gurken und Ei \n Wahl aus: mit Cocktail-Dressing, mit Essig und Öl, mit Joghurtsauce oder ohne Dressing.",new BigDecimal(7.50));
+			product152.getProductOptions().add(productOpton19);
+			product152.getProductOptions().add(productOpton20);
+			product152.getProductOptions().add(productOpton21);
+			product152.getProductOptions().add(productOpton22);
+			
+			Product product153= new Product("Rösti Salat ",ProductCategory.Salat,"großer gemischter Salat mit Rösti und gegrilltem Geflügelfleisch \n Wahl aus: mit Cocktail-Dressing, mit Essig und Öl, mit Joghurtsauce oder ohne Dressing.",new BigDecimal(7.50));
+			product153.getProductOptions().add(productOpton19);
+			product153.getProductOptions().add(productOpton20);
+			product153.getProductOptions().add(productOpton21);
+			product153.getProductOptions().add(productOpton22);
+			
+			Product product154= new Product("Meeresfrüchtesalat",ProductCategory.Salat,"mit grünem Salat, Zitronenscheiben und Oliven \n Wahl aus: mit Cocktail-Dressing, mit Essig und Öl, mit Joghurtsauce oder ohne Dressing.",new BigDecimal(7.50));
+			product154.getProductOptions().add(productOpton19);
+			product154.getProductOptions().add(productOpton20);
+			product154.getProductOptions().add(productOpton21);
+			product154.getProductOptions().add(productOpton22);
+			
+			Product product155= new Product("La Strada Salat",ProductCategory.Salat,"mit grünem Salat, Schinken, Käse, Bohnen, Mais, Krabben, frischen Tomaten und Ei \n Wahl aus: mit Cocktail-Dressing, mit Essig und Öl, mit Joghurtsauce oder ohne Dressing.",new BigDecimal(7.50));
+			product155.getProductOptions().add(productOpton19);
+			product155.getProductOptions().add(productOpton20);
+			product155.getProductOptions().add(productOpton21);
+			product155.getProductOptions().add(productOpton22);
+			
+		
+			
+	}
+	
+	private Set<ProductOption> getAllPizzaOptions(BigDecimal small,BigDecimal big,BigDecimal family,BigDecimal party){
+		
+		Set<ProductOption>pizzaOption=new HashSet<>();	
+		ProductOption productOptionSmall=new ProductOption("klein, Ø26cm:", null, small, null, null, null);
+		ProductOption productOptionBig=new ProductOption("Groß, Ø30cm:", null, null, big, null, null);
+		ProductOption productOptionFamily=new ProductOption("Familie,46cm x 33cm:", null, null, null, family, null);
+		ProductOption productOptionParty=new ProductOption("Party,60cm x 40cm:", null, null, null, null, party);
+		pizzaOption.add(productOptionSmall);
+		pizzaOption.add(productOptionBig);
+		pizzaOption.add(productOptionFamily);
+		pizzaOption.add(productOptionParty);
+		return pizzaOption;
+	}
+	
+	private Set<ProductAddition> getAllPizzaAdditions() {
+		Set<ProductAddition>productAdditions=new HashSet<>();
+		ProductAddition pa1=new ProductAddition("Sahnesauce", new BigDecimal(1.00), null, null, null, null);
+		ProductAddition pa2=new ProductAddition("Fladenbrot", new BigDecimal(2.50), null, null, null, null);
+		ProductAddition pa3=new ProductAddition("Ananas", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
+		ProductAddition pa4=new ProductAddition("Artischocken", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
+		ProductAddition pa5=new ProductAddition("Broccoli",null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
+		ProductAddition pa6=new ProductAddition("Champignons", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
+		ProductAddition pa7=new ProductAddition("Ei", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
+		ProductAddition pa8=new ProductAddition("Gorgonzola", null, new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(3.50), new BigDecimal(5.00));
+		ProductAddition pa9=new ProductAddition("Gyrosfleisch", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
+		ProductAddition pa10=new ProductAddition("Hähnchenfleisch",null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
+		ProductAddition pa11=new ProductAddition("Käse,extra", null, new BigDecimal(1.00), new BigDecimal(1.00),new BigDecimal(1.50), new BigDecimal(1.50));
+		ProductAddition pa12=new ProductAddition("knoblauch", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
+		ProductAddition pa13=new ProductAddition("krabben", null, new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(3.50), new BigDecimal(5.00));
+		ProductAddition pa14=new ProductAddition("Lachs", null, new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50), new BigDecimal(5.00));
+		ProductAddition pa15=new ProductAddition("Mais", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
+		ProductAddition pa16=new ProductAddition("Meeresfrüchten", null, new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(3.50), new BigDecimal(5.00));
+		ProductAddition pa17=new ProductAddition("Mozzarella", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
+		ProductAddition pa18=new ProductAddition("Paprika", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
+		ProductAddition pa19=new ProductAddition("Peperoni", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
+		ProductAddition pa20=new ProductAddition("Salami", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
+		ProductAddition pa21=new ProductAddition("Sardellen", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
+		ProductAddition pa22=new ProductAddition("Schafskäse", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
+		ProductAddition pa23=new ProductAddition("Schinken", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
+		ProductAddition pa24=new ProductAddition("Spinat", null, new BigDecimal(1.00), new BigDecimal(1.00),new BigDecimal(1.50), new BigDecimal(1.50));
+		ProductAddition pa25=new ProductAddition("Thunfisch", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
+		ProductAddition pa26=new ProductAddition("Tomaten", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
+		ProductAddition pa27=new ProductAddition("Tzatziki", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
+		ProductAddition pa28=new ProductAddition("Zwiebeln", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
+		ProductAddition pa29=new ProductAddition("käserand", null, new BigDecimal(2.00), new BigDecimal(2.50), new BigDecimal(1.50), new BigDecimal(1.50));
+		productAdditions.add(pa1);
+		productAdditions.add(pa2);
+		productAdditions.add(pa3);
+		productAdditions.add(pa4);
+		productAdditions.add(pa5);
+		productAdditions.add(pa6);
+		productAdditions.add(pa7);
+		productAdditions.add(pa8);
+		productAdditions.add(pa9);
+		productAdditions.add(pa10);
+		productAdditions.add(pa11);
+		productAdditions.add(pa12);
+		productAdditions.add(pa13);
+		productAdditions.add(pa14);
+		productAdditions.add(pa15);
+		productAdditions.add(pa16);
+		productAdditions.add(pa17);
+		productAdditions.add(pa18);
+		productAdditions.add(pa19);
+		productAdditions.add(pa20);
+		productAdditions.add(pa21);
+		productAdditions.add(pa22);
+		productAdditions.add(pa23);
+		productAdditions.add(pa24);
+		productAdditions.add(pa25);
+		productAdditions.add(pa26);
+		productAdditions.add(pa27);
+		productAdditions.add(pa28);
+		productAdditions.add(pa29);
+		return productAdditions;
+		
 	}
 	private void initProductOptionsData() {
 		ProductOption productOpton1=new ProductOption("mit Cocktailsauce", new BigDecimal(0), null, null, null, null);

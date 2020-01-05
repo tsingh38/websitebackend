@@ -61,7 +61,7 @@ public class Product {
 	public String getProductCategory() {
 		return productCategory;
 	}
-	public void setProductCategory(String productCategory) {
+	public void setProductCategory(ProductCategory productCategory) {
 		this.productCategory = productCategory;
 	}
 	public void setDescription(String description) {
