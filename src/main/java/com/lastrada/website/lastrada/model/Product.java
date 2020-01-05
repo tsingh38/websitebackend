@@ -22,8 +22,6 @@ public class Product {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	private String description;
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(unique = true)
 	private ProductCategory productCategory;
 	private String optionDescription;
 	private BigDecimal productBasePrice;
@@ -60,10 +58,10 @@ public class Product {
 	}
 
 
-	public ProductCategory getProductCategory() {
+	public String getProductCategory() {
 		return productCategory;
 	}
-	public void setProductCategory(ProductCategory productCategory) {
+	public void setProductCategory(String productCategory) {
 		this.productCategory = productCategory;
 	}
 	public void setDescription(String description) {
