@@ -1,0 +1,4 @@
+Install node.js
+Intall java jdk 1.8
+Install Mysql 
+above steps need to be elaborated
