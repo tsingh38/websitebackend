@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 
 @Entity
@@ -20,6 +22,9 @@ public class Product {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	private String description;
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(unique = true)
+	private ProductCategory productCategory;
 	private String optionDescription;
 	private BigDecimal productBasePrice;
 	@OneToMany
@@ -31,9 +36,10 @@ public class Product {
 	
 	
 	public Product() {}
-	public Product(String description, String optionDescription, BigDecimal productBasePrice) {
+	public Product(String description, ProductCategory productCategory,String optionDescription, BigDecimal productBasePrice) {
 		super();
 		this.description = description;
+		this.productCategory=productCategory;
 		this.optionDescription = optionDescription;
 		this.productBasePrice = productBasePrice;
 	}
@@ -54,6 +60,12 @@ public class Product {
 	}
 
 
+	public ProductCategory getProductCategory() {
+		return productCategory;
+	}
+	public void setProductCategory(ProductCategory productCategory) {
+		this.productCategory = productCategory;
+	}
 	public void setDescription(String description) {
 		this.description = description;
 	}
