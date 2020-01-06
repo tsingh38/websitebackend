@@ -5,10 +5,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class ProductOption {
@@ -21,7 +24,8 @@ public class ProductOption {
 	private BigDecimal optionPriceForNormal;
 	private BigDecimal optionPriceForFamily;
 	private BigDecimal optionPriceForParty;
-	@ManyToMany(mappedBy = "productOptions")
+	@ManyToMany(fetch = FetchType.LAZY,mappedBy = "productOptions")
+	@JsonBackReference
 	private Set<Product>product=new HashSet<>();
 	public ProductOption() {}
 	public Long getId() {

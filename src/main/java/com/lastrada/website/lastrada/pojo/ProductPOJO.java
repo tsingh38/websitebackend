@@ -1,48 +1,33 @@
-package com.lastrada.website.lastrada.model;
+package com.lastrada.website.lastrada.pojo;
+
+
 
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.lastrada.website.lastrada.model.ProductAddition;
+import com.lastrada.website.lastrada.model.ProductOption;
 
 
-@Entity
-public class Product {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+public class ProductPOJO {
+
+	
 	private Long id;
 	private String description;
 	private String productCategory;
 	private String optionDescription;
 	private BigDecimal productBasePrice;
-	@ManyToMany( fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
-	@JoinTable(name="product_productaddition",joinColumns=@JoinColumn(name="Product_id"), inverseJoinColumns=@JoinColumn(name="ProductAddition_id"))
+	 @JsonBackReference
 	private Set<ProductAddition>productAdditions=new HashSet<>();
-	@ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
-	@JoinTable(name="product_productoption",joinColumns=@JoinColumn(name="Product_id"), inverseJoinColumns=@JoinColumn(name="ProductOption_id"))
+	 @JsonBackReference
 	private Set<ProductOption>productOptions=new HashSet<>();
 	
 	
-	public Product() {}
-	public Product(String description, ProductCategory productCategory,String optionDescription, BigDecimal productBasePrice) {
-		super();
-		this.description = description;
-		this.productCategory=productCategory.toString();
-		this.optionDescription = optionDescription;
-		this.productBasePrice = productBasePrice;
-	}
+public ProductPOJO() {}
+	
 
 
 	public Long getId() {
@@ -125,47 +110,7 @@ public class Product {
 	}
 
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Product other = (Product) obj;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (optionDescription == null) {
-			if (other.optionDescription != null)
-				return false;
-		} else if (!optionDescription.equals(other.optionDescription))
-			return false;
-		if (productAdditions == null) {
-			if (other.productAdditions != null)
-				return false;
-		} else if (!productAdditions.equals(other.productAdditions))
-			return false;
-		if (productBasePrice == null) {
-			if (other.productBasePrice != null)
-				return false;
-		} else if (!productBasePrice.equals(other.productBasePrice))
-			return false;
-		if (productOptions == null) {
-			if (other.productOptions != null)
-				return false;
-		} else if (!productOptions.equals(other.productOptions))
-			return false;
-		return true;
-	}
+	
 
 
 	@Override
