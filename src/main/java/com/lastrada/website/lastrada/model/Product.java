@@ -26,10 +26,10 @@ public class Product {
 	private String productCategory;
 	private String optionDescription;
 	private BigDecimal productBasePrice;
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.MERGE)
 	@JoinTable(name="product_productaddition",joinColumns=@JoinColumn(name="Product_id"), inverseJoinColumns=@JoinColumn(name="ProductAddition_id"))
 	private Set<ProductAddition>productAdditions=new HashSet<>();
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.MERGE)
 	@JoinTable(name="product_productoption",joinColumns=@JoinColumn(name="Product_id"), inverseJoinColumns=@JoinColumn(name="ProductOption_id"))
 	private Set<ProductOption>productOptions=new HashSet<>();
 	
