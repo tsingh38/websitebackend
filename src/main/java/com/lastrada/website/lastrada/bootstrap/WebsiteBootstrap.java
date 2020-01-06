@@ -6,6 +6,8 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.xml.crypto.Data;
+
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -30,7 +32,10 @@ public class WebsiteBootstrap implements ApplicationListener<ContextRefreshedEve
 	
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent arg0) {
-		initProducts();
+		// Lastrada initial Data
+	//	it should run only once to fill the Data. make sure to comment it afterwards.
+		
+		//initProducts();
 	}
 	
 	public WebsiteBootstrap( ProductRepository productRepository, ProductAdditionRepository productAdditionRepository,
@@ -163,8 +168,6 @@ public class WebsiteBootstrap implements ApplicationListener<ContextRefreshedEve
 		ProductAddition pa29=new ProductAddition("käserand", null, new BigDecimal(2.00), new BigDecimal(2.50), new BigDecimal(1.50), new BigDecimal(1.50));
 
 		Set<ProductAddition>pizzaAdditionsOnly=new HashSet<>();
-		pizzaAdditionsOnly.add(pa1);
-		pizzaAdditionsOnly.add(pa2);
 		pizzaAdditionsOnly.add(pa3);
 		pizzaAdditionsOnly.add(pa4);
 		pizzaAdditionsOnly.add(pa5);
@@ -192,36 +195,10 @@ public class WebsiteBootstrap implements ApplicationListener<ContextRefreshedEve
 		pizzaAdditionsOnly.add(pa27);
 		pizzaAdditionsOnly.add(pa28);
 		pizzaAdditionsOnly.add(pa29);
-		
+
 this.productAdditionRepository.save(pa1);
 this.productAdditionRepository.save(pa2);
-this.productAdditionRepository.save(pa3);
-this.productAdditionRepository.save(pa4);
-this.productAdditionRepository.save(pa5);
-this.productAdditionRepository.save(pa6);
-this.productAdditionRepository.save(pa7);
-this.productAdditionRepository.save(pa8);
-this.productAdditionRepository.save(pa9);
-this.productAdditionRepository.save(pa10);
-this.productAdditionRepository.save(pa11);
-this.productAdditionRepository.save(pa12);
-this.productAdditionRepository.save(pa13);
-this.productAdditionRepository.save(pa14);
-this.productAdditionRepository.save(pa15);
-this.productAdditionRepository.save(pa16);
-this.productAdditionRepository.save(pa17);
-this.productAdditionRepository.save(pa18);
-this.productAdditionRepository.save(pa19);
-this.productAdditionRepository.save(pa20);
-this.productAdditionRepository.save(pa21);
-this.productAdditionRepository.save(pa22);
-this.productAdditionRepository.save(pa23);
-this.productAdditionRepository.save(pa24);
-this.productAdditionRepository.save(pa25);
-this.productAdditionRepository.save(pa26);
-this.productAdditionRepository.save(pa27);
-this.productAdditionRepository.save(pa28);
-this.productAdditionRepository.save(pa29);
+this.productAdditionRepository.saveAll(pizzaAdditionsOnly);
 
 		
 		// Alkohlische Getränke
@@ -566,7 +543,7 @@ this.productAdditionRepository.save(pa29);
 			product114.getProductOptions().add(pizza1990);
 			
 			Product product115= new Product("Pizza Geflügelschinken",ProductCategory.Pizza,"Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
-			product115.setProductAdditions(getAllPizzaAdditions());
+			product115.setProductAdditions(pizzaAdditionsOnly);
 			product115.getProductOptions().add(pizza640);
 			product115.getProductOptions().add(pizza790Second);
 			product115.getProductOptions().add(pizza1600);
@@ -585,7 +562,6 @@ this.productAdditionRepository.save(pa29);
 			product117.getProductOptions().add(pizza1990);
 			Product product118= new Product("Pizza Thunfisch-Zwiebeln",ProductCategory.Pizza,"Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
 			product118.setProductAdditions(pizzaAdditionsOnly);
-			product118.setProductOptions(getAllPizzaOptions(new BigDecimal(6.90), new BigDecimal(8.40), new BigDecimal(17.50), new BigDecimal(21.00)));
 			product118.getProductOptions().add(pizza690);
 			product118.getProductOptions().add(pizza840);
 			product118.getProductOptions().add(pizza1750);
@@ -646,7 +622,6 @@ this.productAdditionRepository.save(pa29);
 			product127.getProductOptions().add(pizza2100);
 			Product product128= new Product("Pizza Sardellen-Mozzarella-Basilikum-Tomatenscheiben",ProductCategory.Pizza,"Wahl aus: Klein, Ø 26cm, Groß, Ø 30cm, Familie, 46cm x 33cm oder Party, 60cm x 40cm.",null);
 			product128.setProductAdditions(pizzaAdditionsOnly);
-			product128.setProductOptions(getAllPizzaOptions(new BigDecimal(7.90), new BigDecimal(9.40), new BigDecimal(19.50), new BigDecimal(24.50)));
 			product128.getProductOptions().add(pizza790);
 			product128.getProductOptions().add(pizza940);
 			product128.getProductOptions().add(pizza1950);
@@ -907,167 +882,88 @@ this.productAdditionRepository.save(pa29);
 			this.productRepository.save(product78);
 			this.productRepository.save(product79);
 			this.productRepository.save(product80);
-//				this.productRepository.save(product81);
-//			this.productRepository.save(product82);
-//			this.productRepository.save(product83);
-//			this.productRepository.save(product84);
-//			this.productRepository.save(product85);
-//			this.productRepository.save(product86);
-//			this.productRepository.save(product87);
-//			this.productRepository.save(product88);
-//			this.productRepository.save(product89);
-//			this.productRepository.save(product90);
-//				this.productRepository.save(product91);
-//			this.productRepository.save(product92);
-//			this.productRepository.save(product93);
-//			this.productRepository.save(product94);
-//			this.productRepository.save(product95);
-//			this.productRepository.save(product96);
-//			this.productRepository.save(product97);
-//			this.productRepository.save(product98);
-//			this.productRepository.save(product99);
-//			this.productRepository.save(product100);
-//				this.productRepository.save(product101);
-//			this.productRepository.save(product102);
-//			this.productRepository.save(product103);
-//			this.productRepository.save(product104);
-//			this.productRepository.save(product105);
-//			this.productRepository.save(product106);
-//			this.productRepository.save(product107);
-//			this.productRepository.save(product108);
-//			this.productRepository.save(product109);
-//			this.productRepository.save(product110);
-//				this.productRepository.save(product111);
-//			this.productRepository.save(product112);
-//			this.productRepository.save(product113);
-//			this.productRepository.save(product114);
-//			this.productRepository.save(product115);
-//			this.productRepository.save(product116);
-//			this.productRepository.save(product117);
-//			this.productRepository.save(product118);
-//			this.productRepository.save(product119);
-//			this.productRepository.save(product120);
-//				this.productRepository.save(product121);
-//			this.productRepository.save(product122);
-//			this.productRepository.save(product123);
-//			this.productRepository.save(product124);
-//			this.productRepository.save(product125);
-//			this.productRepository.save(product126);
-//			this.productRepository.save(product127);
-//			this.productRepository.save(product128);
-//			this.productRepository.save(product129);
-//			this.productRepository.save(product130);
-//				this.productRepository.save(product131);
-//			this.productRepository.save(product132);
-//			this.productRepository.save(product133);
-//			this.productRepository.save(product134);
-//			this.productRepository.save(product135);
-//			this.productRepository.save(product136);
-//			this.productRepository.save(product137);
-//			this.productRepository.save(product138);
-//			this.productRepository.save(product139);
-//			this.productRepository.save(product140);
-//				this.productRepository.save(product141);
-//			this.productRepository.save(product142);
-//			this.productRepository.save(product143);
-//			this.productRepository.save(product144);
-//			this.productRepository.save(product145);
-//			this.productRepository.save(product146);
-//			this.productRepository.save(product147);
-//			this.productRepository.save(product148);
-//			this.productRepository.save(product149);
-//			this.productRepository.save(product150);
-//				this.productRepository.save(product151);
-//			this.productRepository.save(product152);
-//			this.productRepository.save(product153);
-//			this.productRepository.save(product154);
-//			this.productRepository.save(product155);
-//			this.productRepository.save(product156);
-//			this.productRepository.save(product157);
-//			this.productRepository.save(product158);
+				this.productRepository.save(product81);
+			this.productRepository.save(product82);
+			this.productRepository.save(product83);
+			this.productRepository.save(product84);
+			this.productRepository.save(product85);
+			this.productRepository.save(product86);
+			this.productRepository.save(product87);
+			this.productRepository.save(product88);
+			this.productRepository.save(product89);
+			this.productRepository.save(product90);
+				this.productRepository.save(product91);
+			this.productRepository.save(product92);
+			this.productRepository.save(product93);
+			this.productRepository.save(product94);
+			this.productRepository.save(product95);
+			this.productRepository.save(product96);
+			this.productRepository.save(product97);
+			this.productRepository.save(product98);
+			this.productRepository.save(product99);
+			this.productRepository.save(product100);
+				this.productRepository.save(product101);
+			this.productRepository.save(product102);
+			this.productRepository.save(product103);
+			this.productRepository.save(product104);
+			this.productRepository.save(product105);
+			this.productRepository.save(product106);
+			this.productRepository.save(product107);
+			this.productRepository.save(product108);
+			this.productRepository.save(product109);
+			this.productRepository.save(product110);
+				this.productRepository.save(product111);
+			this.productRepository.save(product112);
+			this.productRepository.save(product113);
+			this.productRepository.save(product114);
+			this.productRepository.save(product115);
+			this.productRepository.save(product116);
+			this.productRepository.save(product117);
+			this.productRepository.save(product118);
+			this.productRepository.save(product119);
+			this.productRepository.save(product120);
+				this.productRepository.save(product121);
+			this.productRepository.save(product122);
+			this.productRepository.save(product123);
+			this.productRepository.save(product124);
+			this.productRepository.save(product125);
+			this.productRepository.save(product126);
+			this.productRepository.save(product127);
+			this.productRepository.save(product128);
+			this.productRepository.save(product129);
+			this.productRepository.save(product130);
+				this.productRepository.save(product131);
+			this.productRepository.save(product132);
+			this.productRepository.save(product133);
+			this.productRepository.save(product134);
+			this.productRepository.save(product135);
+			this.productRepository.save(product136);
+			this.productRepository.save(product137);
+			this.productRepository.save(product138);
+			this.productRepository.save(product139);
+			this.productRepository.save(product140);
+				this.productRepository.save(product141);
+			this.productRepository.save(product142);
+			this.productRepository.save(product143);
+			this.productRepository.save(product144);
+			this.productRepository.save(product145);
+			this.productRepository.save(product146);
+			this.productRepository.save(product147);
+			this.productRepository.save(product148);
+			this.productRepository.save(product149);
+			this.productRepository.save(product150);
+				this.productRepository.save(product151);
+			this.productRepository.save(product152);
+			this.productRepository.save(product153);
+			this.productRepository.save(product154);
+			this.productRepository.save(product155);
+			this.productRepository.save(product156);
+			this.productRepository.save(product157);
+			this.productRepository.save(product158);
 //			
 			
 			
 	}
-	
-	private Set<ProductOption> getAllPizzaOptions(BigDecimal small,BigDecimal big,BigDecimal family,BigDecimal party){
-		
-		Set<ProductOption>pizzaOption=new HashSet<>();	
-		ProductOption productOptionSmall=new ProductOption("klein, Ø26cm:", null, small, null, null, null);
-		ProductOption productOptionBig=new ProductOption("Groß, Ø30cm:", null, null, big, null, null);
-		ProductOption productOptionFamily=new ProductOption("Familie,46cm x 33cm:", null, null, null, family, null);
-		ProductOption productOptionParty=new ProductOption("Party,60cm x 40cm:", null, null, null, null, party);
-		pizzaOption.add(productOptionSmall);
-		pizzaOption.add(productOptionBig);
-		pizzaOption.add(productOptionFamily);
-		pizzaOption.add(productOptionParty);
-		return pizzaOption;
-	}
-	
-	private Set<ProductAddition> getAllPizzaAdditions() {
-		Set<ProductAddition>productAdditions=new HashSet<>();
-		ProductAddition pa1=new ProductAddition("Sahnesauce", new BigDecimal(1.00), null, null, null, null);
-		ProductAddition pa2=new ProductAddition("Fladenbrot", new BigDecimal(2.50), null, null, null, null);
-		ProductAddition pa3=new ProductAddition("Ananas", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa4=new ProductAddition("Artischocken", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa5=new ProductAddition("Broccoli",null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa6=new ProductAddition("Champignons", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa7=new ProductAddition("Ei", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa8=new ProductAddition("Gorgonzola", null, new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(3.50), new BigDecimal(5.00));
-		ProductAddition pa9=new ProductAddition("Gyrosfleisch", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa10=new ProductAddition("Hähnchenfleisch",null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa11=new ProductAddition("Käse,extra", null, new BigDecimal(1.00), new BigDecimal(1.00),new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa12=new ProductAddition("knoblauch", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa13=new ProductAddition("krabben", null, new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(3.50), new BigDecimal(5.00));
-		ProductAddition pa14=new ProductAddition("Lachs", null, new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50), new BigDecimal(5.00));
-		ProductAddition pa15=new ProductAddition("Mais", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa16=new ProductAddition("Meeresfrüchten", null, new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(3.50), new BigDecimal(5.00));
-		ProductAddition pa17=new ProductAddition("Mozzarella", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa18=new ProductAddition("Paprika", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa19=new ProductAddition("Peperoni", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa20=new ProductAddition("Salami", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa21=new ProductAddition("Sardellen", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa22=new ProductAddition("Schafskäse", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa23=new ProductAddition("Schinken", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa24=new ProductAddition("Spinat", null, new BigDecimal(1.00), new BigDecimal(1.00),new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa25=new ProductAddition("Thunfisch", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa26=new ProductAddition("Tomaten", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa27=new ProductAddition("Tzatziki", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa28=new ProductAddition("Zwiebeln", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa29=new ProductAddition("käserand", null, new BigDecimal(2.00), new BigDecimal(2.50), new BigDecimal(1.50), new BigDecimal(1.50));
-		productAdditions.add(pa1);
-		productAdditions.add(pa2);
-		productAdditions.add(pa3);
-		productAdditions.add(pa4);
-		productAdditions.add(pa5);
-		productAdditions.add(pa6);
-		productAdditions.add(pa7);
-		productAdditions.add(pa8);
-		productAdditions.add(pa9);
-		productAdditions.add(pa10);
-		productAdditions.add(pa11);
-		productAdditions.add(pa12);
-		productAdditions.add(pa13);
-		productAdditions.add(pa14);
-		productAdditions.add(pa15);
-		productAdditions.add(pa16);
-		productAdditions.add(pa17);
-		productAdditions.add(pa18);
-		productAdditions.add(pa19);
-		productAdditions.add(pa20);
-		productAdditions.add(pa21);
-		productAdditions.add(pa22);
-		productAdditions.add(pa23);
-		productAdditions.add(pa24);
-		productAdditions.add(pa25);
-		productAdditions.add(pa26);
-		productAdditions.add(pa27);
-		productAdditions.add(pa28);
-		productAdditions.add(pa29);
-		return productAdditions;
-		
-	}
-	
 	
 	
 
