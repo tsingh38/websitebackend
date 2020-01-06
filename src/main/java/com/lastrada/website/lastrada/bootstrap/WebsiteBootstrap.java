@@ -30,7 +30,7 @@ public class WebsiteBootstrap implements ApplicationListener<ContextRefreshedEve
 	
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent arg0) {
-		initProducts();
+		//initProducts();
 	}
 	
 	public WebsiteBootstrap( ProductRepository productRepository, ProductAdditionRepository productAdditionRepository,

@@ -1,12 +1,15 @@
 package com.lastrada.website.lastrada.model;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 
 @Entity
@@ -20,6 +23,8 @@ public class ProductAddition{
 	private BigDecimal additionsPriceForNormal;
 	private BigDecimal additionsPriceForFamily;
 	private BigDecimal additionsPriceForParty;
+	@ManyToMany(mappedBy = "productAdditions")
+	private Set<Product>product=new HashSet<>();
 	
 	public ProductAddition() {}
 	
@@ -43,6 +48,15 @@ public class ProductAddition{
 	public String getAdditionDescription() {
 		return additionDescription;
 	}
+	
+	public Set<Product> getProduct() {
+		return product;
+	}
+
+	public void setProduct(Set<Product> product) {
+		this.product = product;
+	}
+
 	public void setAdditionDescription(String additionDescription) {
 		this.additionDescription = additionDescription;
 	}

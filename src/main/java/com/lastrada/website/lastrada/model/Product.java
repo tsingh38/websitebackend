@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -25,11 +26,11 @@ public class Product {
 	private String productCategory;
 	private String optionDescription;
 	private BigDecimal productBasePrice;
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinTable(name="prduct_productaddition",joinColumns=@JoinColumn(name="Product_id"), inverseJoinColumns=@JoinColumn(name="ProductAddition_id"))
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name="product_productaddition",joinColumns=@JoinColumn(name="Product_id"), inverseJoinColumns=@JoinColumn(name="ProductAddition_id"))
 	private Set<ProductAddition>productAdditions=new HashSet<>();
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinTable(name="prduct_productoption",joinColumns=@JoinColumn(name="Option_id"), inverseJoinColumns=@JoinColumn(name="ProductOption_id"))
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name="product_productoption",joinColumns=@JoinColumn(name="Product_id"), inverseJoinColumns=@JoinColumn(name="ProductOption_id"))
 	private Set<ProductOption>productOptions=new HashSet<>();
 	
 	

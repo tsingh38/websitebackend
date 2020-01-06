@@ -1,11 +1,14 @@
 package com.lastrada.website.lastrada.model;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class ProductOption {
@@ -18,13 +21,22 @@ public class ProductOption {
 	private BigDecimal optionPriceForNormal;
 	private BigDecimal optionPriceForFamily;
 	private BigDecimal optionPriceForParty;
-	
+	@ManyToMany(mappedBy = "productOptions")
+	private Set<Product>product=new HashSet<>();
 	public ProductOption() {}
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	
+	public Set<Product> getProduct() {
+		return product;
+	}
+	public void setProduct(Set<Product> product) {
+		this.product = product;
 	}
 	public String getProductOptionDescription() {
 		return productOptionDescription;
