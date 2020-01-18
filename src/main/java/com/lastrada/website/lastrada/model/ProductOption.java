@@ -24,6 +24,7 @@ public class ProductOption {
 	private BigDecimal optionPriceForNormal;
 	private BigDecimal optionPriceForFamily;
 	private BigDecimal optionPriceForParty;
+	private boolean isDefault;
 	@ManyToMany(fetch = FetchType.LAZY,mappedBy = "productOptions")
 	@JsonBackReference
 	private Set<Product>product=new HashSet<>();
@@ -36,6 +37,12 @@ public class ProductOption {
 	}
 	
 	
+	public boolean isDefault() {
+		return isDefault;
+	}
+	public void setDefault(boolean isDefault) {
+		this.isDefault = isDefault;
+	}
 	public Set<Product> getProduct() {
 		return product;
 	}
@@ -88,6 +95,7 @@ public class ProductOption {
 		this.optionPriceForNormal = optionPriceForNormal;
 		this.optionPriceForFamily = optionPriceForFamily;
 		this.optionPriceForParty = optionPriceForParty;
+		this.isDefault=this.optionPriceForNormal!=null? true:false;
 	}
 	@Override
 	public int hashCode() {

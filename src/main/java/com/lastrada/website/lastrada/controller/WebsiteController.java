@@ -1,9 +1,9 @@
 package com.lastrada.website.lastrada.controller;
 
+import com.lastrada.website.lastrada.model.CustOrder;
 import com.lastrada.website.lastrada.model.Product;
 import com.lastrada.website.lastrada.model.ProductAddition;
 import com.lastrada.website.lastrada.model.ProductOption;
-import com.lastrada.website.lastrada.pojo.ProductPOJO;
 import com.lastrada.website.lastrada.services.ShopService;
 
 import java.util.List;
@@ -27,7 +27,12 @@ public class WebsiteController {
 	    public  List<Product>  fetchAllItems() {
 	     return shopService.fetchAllItems();
 	    }
-	   
+	@CrossOrigin
+	  @RequestMapping(value = "/saveOrder")
+	   public ResponseEntity saveOrder(@RequestBody CustOrder order) {
+		   shopService.saveCustomerOrder(order);
+		   return ResponseEntity.ok(HttpStatus.OK);
+	   }
 	   
 	   @RequestMapping(value = "/saveProduct")
 	   public ResponseEntity saveProduct(@RequestBody Product product) {

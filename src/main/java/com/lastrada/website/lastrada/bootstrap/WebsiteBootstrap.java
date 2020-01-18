@@ -283,20 +283,20 @@ this.productAdditionRepository.saveAll(pizzaAdditionsOnly);
 		
 		// Döner kebab
 		
-		Product product42=new Product("Döner Kebab",ProductCategory.Döner_kebab,"Drehhackfleischspieß im Fladenbrot mit Salat und Sauce \n Wahl aus: mit Cocktailsauce, mit Joghurtsauce oder ohne Sauce.",new BigDecimal(5));
+		Product product42=new Product("Döner Kebab",ProductCategory.Döner_kebab,"Drehhackfleischspieß im Fladenbrot mit Salat und Sauce. \n Wahl aus: mit Cocktailsauce, mit Joghurtsauce oder ohne Sauce.",new BigDecimal(5));
 		product42.getProductOptions().add(productOpton1);
 		product42.getProductOptions().add(productOpton2);
 		product42.getProductOptions().add(productOpton3);
-		Product product43=new Product("Döner Kebab Spezial",ProductCategory.Döner_kebab,"Drehhackfleischspieß im Fladenbrot mitWeichkäse, Salat und Sauce \n Wahl aus: mit Cocktailsauce, mit Joghurtsauce oder ohne Sauce.",new BigDecimal(5.00));
+		Product product43=new Product("Döner Kebab Spezial",ProductCategory.Döner_kebab,"Drehhackfleischspieß im Fladenbrot mitWeichkäse, Salat und Sauce. \n Wahl aus: mit Cocktailsauce, mit Joghurtsauce oder ohne Sauce.",new BigDecimal(5.00));
 		product43.getProductOptions().add(productOpton1);
 		product43.getProductOptions().add(productOpton2);
 		product43.getProductOptions().add(productOpton3);
-		Product product44=new Product("Döner Box ",ProductCategory.Döner_kebab,"mit Pommes frites, Drehhackfleischspieß und Sauce \n Wahl aus: mit Cocktailsauce, mit Joghurtsauce oder ohne Sauce.",new BigDecimal(5.00));
+		Product product44=new Product("Döner Box ",ProductCategory.Döner_kebab,"mit Pommes frites, Drehhackfleischspieß und Sauce. \n Wahl aus: mit Cocktailsauce, mit Joghurtsauce oder ohne Sauce.",new BigDecimal(5.00));
 		product44.getProductOptions().add(productOpton1);
 		product44.getProductOptions().add(productOpton2);
 		product44.getProductOptions().add(productOpton3);
 		Product product45=new Product("Döner Box mit Salat ",ProductCategory.Döner_kebab,"und Drehhackfleischspieß",new BigDecimal(5.00));
-		Product product46=new Product("Yufka Dürüm",ProductCategory.Döner_kebab,"mit Drehhackfleischspieß, Salat und Sauce \n Wahl aus: mit Cocktailsauce, mit Joghurtsauce oder ohne Sauce.",new BigDecimal(5.50));
+		Product product46=new Product("Yufka Dürüm",ProductCategory.Döner_kebab,"mit Drehhackfleischspieß, Salat und Sauce. \n Wahl aus: mit Cocktailsauce, mit Joghurtsauce oder ohne Sauce.",new BigDecimal(5.50));
 		product46.getProductOptions().add(productOpton1);
 		product46.getProductOptions().add(productOpton2);
 		product46.getProductOptions().add(productOpton3);
@@ -314,15 +314,15 @@ this.productAdditionRepository.saveAll(pizzaAdditionsOnly);
 		// Internationalw Gerichte
 		Product product51 = new Product("Pommes frites",ProductCategory.International_Gerichte,"mit Ketchup",new BigDecimal(3.20));
 		Product product52 = new Product("Frühlingsrollen (8 Stück)",ProductCategory.International_Gerichte,"mit Chilisauce",new BigDecimal(3.50));
-		Product product53 = new Product("Chicken Wings ",ProductCategory.International_Gerichte,"mit Pommes frites und einer Sauce nach Wahl \n Wahl aus: mit Chilisauce, mit Currysauce oder ohne Sauce.",new BigDecimal(6.70));
+		Product product53 = new Product("Chicken Wings ",ProductCategory.International_Gerichte,"mit Pommes frites und einer Sauce nach Wahl. \n Wahl aus: mit Chilisauce, mit Currysauce oder ohne Sauce.",new BigDecimal(6.70));
 		product53.getProductOptions().add(productOpton7);
 		product53.getProductOptions().add(productOpton8);
 		product53.getProductOptions().add(productOpton9);
-		Product product54 = new Product("Chicken Nuggets ",ProductCategory.International_Gerichte,"mit Pommes frites und einer Sauce nach Wahl \n Wahl aus: mit Chilisauce, mit Currysauce oder ohne Sauce.",new BigDecimal(5.70 ));
+		Product product54 = new Product("Chicken Nuggets ",ProductCategory.International_Gerichte,"mit Pommes frites und einer Sauce nach Wahl. \n Wahl aus: mit Chilisauce, mit Currysauce oder ohne Sauce.",new BigDecimal(5.70 ));
 		product54.getProductOptions().add(productOpton7);
 		product54.getProductOptions().add(productOpton8);
 		product54.getProductOptions().add(productOpton9);
-		Product product55 = new Product("Wiener Schnitzel ",ProductCategory.International_Gerichte,"mit einer Beilage nach Wahl und Salat \n Wahl aus: mit Pommes frites, mit Spätzle oder ohne Beilage.",new BigDecimal(8.90));
+		Product product55 = new Product("Wiener Schnitzel ",ProductCategory.International_Gerichte,"mit einer Beilage nach Wahl und Salat. \n Wahl aus: mit Pommes frites, mit Spätzle oder ohne Beilage.",new BigDecimal(8.90));
 		product55.getProductOptions().add(productOpton4);
 		product55.getProductOptions().add(productOpton5);
 		product55.getProductOptions().add(productOpton6);
@@ -330,22 +330,22 @@ this.productAdditionRepository.saveAll(pizzaAdditionsOnly);
 		Product product57 = new Product("Kartoffelauflauf mit Tomaten und Käse-Sahnesauce",ProductCategory.International_Gerichte,"",new BigDecimal(8.90));
 		Product product58 = new Product("Kartoffelauflauf mit Spinat, Mozzarella, Tomatensauce",ProductCategory.International_Gerichte,"und mit Käse überbacken",new BigDecimal(8.90));
 		Product product59 = new Product("Cevapcici (10 Stück)",ProductCategory.International_Gerichte,"mit Ajvar, Pommes frites und Salat",new BigDecimal(9.90));
-		Product product60 = new Product("Rahmschnitzel (Hähnchen)",ProductCategory.International_Gerichte,"mit einer Beilage nach Wahl und Salat \n Wahl aus: mit Pommes frites, mit Spätzle oder ohne Beilage.",new BigDecimal(9.90));
+		Product product60 = new Product("Rahmschnitzel (Hähnchen)",ProductCategory.International_Gerichte,"mit einer Beilage nach Wahl und Salat. \n Wahl aus: mit Pommes frites, mit Spätzle oder ohne Beilage.",new BigDecimal(9.90));
 		product60.getProductOptions().add(productOpton4);
 		product60.getProductOptions().add(productOpton5);
 		product60.getProductOptions().add(productOpton6);
 		
-		Product product61 = new Product("Jägerschnitzel ",ProductCategory.International_Gerichte,"mit einer Beilage nach Wahl und Salat \n Wahl aus: mit Pommes frites, mit Spätzle oder ohne Beilage.",new BigDecimal(9.90));
+		Product product61 = new Product("Jägerschnitzel ",ProductCategory.International_Gerichte,"mit einer Beilage nach Wahl und Salat.\n Wahl aus: mit Pommes frites, mit Spätzle oder ohne Beilage.",new BigDecimal(9.90));
 		
 		product61.getProductOptions().add(productOpton4);
 		product61.getProductOptions().add(productOpton5);
 		product61.getProductOptions().add(productOpton6);
-		Product product62 = new Product("Zigeunerschnitzel ",ProductCategory.International_Gerichte,"mit einer Beilage nach Wahl und Salat \n Wahl aus: mit Pommes frites, mit Spätzle oder ohne Beilage.",new BigDecimal(9.90));
+		Product product62 = new Product("Zigeunerschnitzel ",ProductCategory.International_Gerichte,"mit einer Beilage nach Wahl und Salat. \n Wahl aus: mit Pommes frites, mit Spätzle oder ohne Beilage.",new BigDecimal(9.90));
 		product62.getProductOptions().add(productOpton4);
 		product62.getProductOptions().add(productOpton5);
 		product62.getProductOptions().add(productOpton6);
 		Product product63 = new Product("Paniertes Seelachsfilet",ProductCategory.International_Gerichte,"mit Pommes frites, Remoulade und Salat",new BigDecimal(9.90));
-		Product product64 = new Product("Hähnchen Cordon Bleu",ProductCategory.International_Gerichte,"mit einer Beilage nach Wahl und Salat \n Wahl aus: mit Pommes frites, mit Spätzle oder ohne Beilage.",new BigDecimal(9.90));
+		Product product64 = new Product("Hähnchen Cordon Bleu",ProductCategory.International_Gerichte,"mit einer Beilage nach Wahl und Salat. \n Wahl aus: mit Pommes frites, mit Spätzle oder ohne Beilage.",new BigDecimal(9.90));
 		product64.getProductOptions().add(productOpton4);
 		product64.getProductOptions().add(productOpton5);
 		product64.getProductOptions().add(productOpton6);
@@ -358,7 +358,7 @@ this.productAdditionRepository.saveAll(pizzaAdditionsOnly);
 	// Gyros Spezialitäten
 		
 		Product product70 = new Product("La Strada Spezial Gyrosfleisch",ProductCategory.Gyros_Spezialitäten,"Gyrosfleisch mit Kartoffeln, Krabben, Rahmsauce und Kräuterbrot",new BigDecimal(9.50));
-		Product product71 = new Product("Gyros Teller",ProductCategory.Gyros_Spezialitäten,"mit einer Beilage nach Wahl, Tzatziki und Salat \n Wahl aus: mit Pommes frites, mit Reis oder ohne Beilage.",new BigDecimal(9.50));
+		Product product71 = new Product("Gyros Teller",ProductCategory.Gyros_Spezialitäten,"mit einer Beilage nach Wahl, Tzatziki und Salat. \n Wahl aus: mit Pommes frites, mit Reis oder ohne Beilage.",new BigDecimal(9.50));
 		product71.getProductOptions().add(productOpton4);
 		product71.getProductOptions().add(productOpton6);
 		product71.getProductOptions().add(productOpton10);
@@ -372,17 +372,17 @@ this.productAdditionRepository.saveAll(pizzaAdditionsOnly);
 			
 			Product product74 = new Product("Saag Panir ",ProductCategory.Indische_Gerichte,"Spinat mit Käse \n Wahl aus: mit Fladenbrot.",new BigDecimal(10.0));
 			product74.getProductAdditions().add(pa2);
-			Product product75 = new Product("Bharta",ProductCategory.Indische_Gerichte,"mit gegrillten Auberginen, Zwiebeln und Tomaten \n Wahl aus: mit Fladenbrot.",new BigDecimal(10.0));
+			Product product75 = new Product("Bharta",ProductCategory.Indische_Gerichte,"mit gegrillten Auberginen, Zwiebeln und Tomaten. \n Wahl aus: mit Fladenbrot.",new BigDecimal(10.0));
 			product75.getProductAdditions().add(pa2);
-			Product product76 = new Product("Murgh-Kari",ProductCategory.Indische_Gerichte,"Hähnchenbrustfilet-Curry nach indischer Art \n Wahl aus: mit Fladenbrot.",new BigDecimal(10.0));
+			Product product76 = new Product("Murgh-Kari",ProductCategory.Indische_Gerichte,"Hähnchenbrustfilet-Curry nach indischer Art. \n Wahl aus: mit Fladenbrot.",new BigDecimal(10.0));
 			product76.getProductAdditions().add(pa2);
-			Product product77 = new Product("Murgh-Sagwala",ProductCategory.Indische_Gerichte,"Hähnchenbrustfilet mit Spinat nach indischer Art \n Wahl aus: mit Fladenbrot.",new BigDecimal(10.0));
+			Product product77 = new Product("Murgh-Sagwala",ProductCategory.Indische_Gerichte,"Hähnchenbrustfilet mit Spinat nach indischer Art. \n Wahl aus: mit Fladenbrot.",new BigDecimal(10.0));
 			product77.getProductAdditions().add(pa2);
-			Product product78 = new Product("Murgh-Badami ",ProductCategory.Indische_Gerichte,"mit Hähnchenbrustfilet, milder Kormasauce, Mandeln und Sahne \n Wahl aus: mit Fladenbrot.",new BigDecimal(10.0));
+			Product product78 = new Product("Murgh-Badami ",ProductCategory.Indische_Gerichte,"mit Hähnchenbrustfilet, milder Kormasauce, Mandeln und Sahne. \n Wahl aus: mit Fladenbrot.",new BigDecimal(10.0));
 			product78.getProductAdditions().add(pa2);
-			Product product79 = new Product("Gemüse Biryani",ProductCategory.Indische_Gerichte,"mit verschiedenem Gemüse zubereitet nach indischer Art \n Wahl aus: mit Fladenbrot.",new BigDecimal(10.0));
+			Product product79 = new Product("Gemüse Biryani",ProductCategory.Indische_Gerichte,"mit verschiedenem Gemüse zubereitet nach indischer Art. \n Wahl aus: mit Fladenbrot.",new BigDecimal(10.0));
 			product79.getProductAdditions().add(pa2);
-			Product product80 = new Product("Chicken Biryani",ProductCategory.Indische_Gerichte,"Reis zubereitet mit Hähnchenfleisch, Rosinen und Mandeln nach indischer Art \n Wahl aus: mit Fladenbrot.",new BigDecimal(10.0));
+			Product product80 = new Product("Chicken Biryani",ProductCategory.Indische_Gerichte,"Reis zubereitet mit Hähnchenfleisch, Rosinen und Mandeln nach indischer Art. \n Wahl aus: mit Fladenbrot.",new BigDecimal(10.0));
 			product80.getProductAdditions().add(pa2);
 			
 			
@@ -398,12 +398,12 @@ this.productAdditionRepository.saveAll(pizzaAdditionsOnly);
 	
 			// Pasta
 			
-			Product product88 = new Product("Pasta Napoli",ProductCategory.Pasta,"mit Tomatensauce und Parmesan \n Wahl aus: mit Gnocchi, mit Rigatoni, mit Spaghetti oder mit Tortellini.",new BigDecimal(8.00));
+			Product product88 = new Product("Pasta Napoli",ProductCategory.Pasta,"mit Tomatensauce und Parmesan. \n Wahl aus: mit Gnocchi, mit Rigatoni, mit Spaghetti oder mit Tortellini.",new BigDecimal(8.00));
 			product88.getProductOptions().add(productOpton11);
 			product88.getProductOptions().add(productOpton12);
 			product88.getProductOptions().add(productOpton13);
 			product88.getProductOptions().add(productOpton14);
-			Product product89 = new Product("Pasta Bolognese ",ProductCategory.Pasta,"mit Rindfleisch \n Wahl aus: mit Gnocchi, mit Rigatoni, mit Spaghetti oder mit Tortellini.",new BigDecimal(8.00));
+			Product product89 = new Product("Pasta Bolognese ",ProductCategory.Pasta,"mit Rindfleisch. \n Wahl aus: mit Gnocchi, mit Rigatoni, mit Spaghetti oder mit Tortellini.",new BigDecimal(8.00));
 			product89.getProductOptions().add(productOpton11);
 			product89.getProductOptions().add(productOpton12);
 			product89.getProductOptions().add(productOpton13);
@@ -438,37 +438,37 @@ this.productAdditionRepository.saveAll(pizzaAdditionsOnly);
 			product95.getProductOptions().add(productOpton12);
 			product95.getProductOptions().add(productOpton13);
 			product95.getProductOptions().add(productOpton14);
-			Product product96 = new Product("Pasta Gorgonzola ",ProductCategory.Pasta,"mit Gorgonzola und Sahne\n Wahl aus: mit Gnocchi, mit Rigatoni, mit Spaghetti oder mit Tortellini.",new BigDecimal(8.00));
+			Product product96 = new Product("Pasta Gorgonzola ",ProductCategory.Pasta,"mit Gorgonzola und Sahne.\n Wahl aus: mit Gnocchi, mit Rigatoni, mit Spaghetti oder mit Tortellini.",new BigDecimal(8.00));
 			product96.getProductOptions().add(productOpton11);
 			product96.getProductOptions().add(productOpton12);
 			product96.getProductOptions().add(productOpton13);
 			product96.getProductOptions().add(productOpton14);
-			Product product97 = new Product("Pasta Frutti di Mare",ProductCategory.Pasta,"mit Meeresfrüchten, Knoblauch und Tomatensauce \n Wahl aus: mit Gnocchi, mit Rigatoni, mit Spaghetti oder mit Tortellini.",new BigDecimal(8.00));
+			Product product97 = new Product("Pasta Frutti di Mare",ProductCategory.Pasta,"mit Meeresfrüchten, Knoblauch und Tomatensauce. \n Wahl aus: mit Gnocchi, mit Rigatoni, mit Spaghetti oder mit Tortellini.",new BigDecimal(8.00));
 			product97.getProductOptions().add(productOpton11);
 			product97.getProductOptions().add(productOpton12);
 			product97.getProductOptions().add(productOpton13);
 			product97.getProductOptions().add(productOpton14);
-			Product product98 = new Product("Pasta Napoli Plus",ProductCategory.Pasta,"mit Tomatensauce, Sahne und Mozzarella \n Wahl aus: mit Gnocchi, mit Rigatoni, mit Spaghetti oder mit Tortellini.",new BigDecimal(8.00));
+			Product product98 = new Product("Pasta Napoli Plus",ProductCategory.Pasta,"mit Tomatensauce, Sahne und Mozzarella. \n Wahl aus: mit Gnocchi, mit Rigatoni, mit Spaghetti oder mit Tortellini.",new BigDecimal(8.00));
 			product98.getProductOptions().add(productOpton11);
 			product98.getProductOptions().add(productOpton12);
 			product98.getProductOptions().add(productOpton13);
 			product98.getProductOptions().add(productOpton14);
-			Product product99 = new Product("Pasta Spezial 1",ProductCategory.Pasta,"mit Schinken, Erbsen, Champignons, Käse, Sahne und Tomatensauce \n Wahl aus: mit Gnocchi, mit Rigatoni, mit Spaghetti oder mit Tortellini.",new BigDecimal(8.00));
+			Product product99 = new Product("Pasta Spezial 1",ProductCategory.Pasta,"mit Schinken, Erbsen, Champignons, Käse, Sahne und Tomatensauce. \n Wahl aus: mit Gnocchi, mit Rigatoni, mit Spaghetti oder mit Tortellini.",new BigDecimal(8.00));
 			product99.getProductOptions().add(productOpton11);
 			product99.getProductOptions().add(productOpton12);
 			product99.getProductOptions().add(productOpton13);
 			product99.getProductOptions().add(productOpton14);
-			Product product100 = new Product("Pasta Vegetarisch",ProductCategory.Pasta,"mit verschiedenem Gemüse, Sahne und Tomatensauce\n Wahl aus: mit Gnocchi, mit Rigatoni, mit Spaghetti oder mit Tortellini.",new BigDecimal(8.00));
+			Product product100 = new Product("Pasta Vegetarisch",ProductCategory.Pasta,"mit verschiedenem Gemüse, Sahne und Tomatensauce.\n Wahl aus: mit Gnocchi, mit Rigatoni, mit Spaghetti oder mit Tortellini.",new BigDecimal(8.00));
 			product100.getProductOptions().add(productOpton11);
 			product100.getProductOptions().add(productOpton12);
 			product100.getProductOptions().add(productOpton13);
 			product100.getProductOptions().add(productOpton14);
-			Product product101= new Product("Pasta Spezial 2 ",ProductCategory.Pasta,"mit Rucola, Gorgonzola und Sahnesauce \n Wahl aus: mit Gnocchi, mit Rigatoni, mit Spaghetti oder mit Tortellini.",new BigDecimal(8.00));
+			Product product101= new Product("Pasta Spezial 2 ",ProductCategory.Pasta,"mit Rucola, Gorgonzola und Sahnesauce. \n Wahl aus: mit Gnocchi, mit Rigatoni, mit Spaghetti oder mit Tortellini.",new BigDecimal(8.00));
 			product101.getProductOptions().add(productOpton11);
 			product101.getProductOptions().add(productOpton12);
 			product101.getProductOptions().add(productOpton13);
 			product101.getProductOptions().add(productOpton14);
-			Product product102 = new Product("Pasta Salmone",ProductCategory.Pasta,"mit Lachs und Sahnesauce \n Wahl aus: mit Gnocchi, mit Rigatoni, mit Spaghetti oder mit Tortellini.",new BigDecimal(8.00));
+			Product product102 = new Product("Pasta Salmone",ProductCategory.Pasta,"mit Lachs und Sahnesauce. \n Wahl aus: mit Gnocchi, mit Rigatoni, mit Spaghetti oder mit Tortellini.",new BigDecimal(8.00));
 			product102.getProductOptions().add(productOpton11);
 			product102.getProductOptions().add(productOpton12);
 			product102.getProductOptions().add(productOpton13);
@@ -482,13 +482,13 @@ this.productAdditionRepository.saveAll(pizzaAdditionsOnly);
 			
 			
 			// Calzone
-			Product product105=new Product("Calzone",ProductCategory.Calzone,"mit Putenfleisch, Käse, Paprika und Champignons\n Wahl aus: Klein oder Groß.",null);
+			Product product105=new Product("Calzone",ProductCategory.Calzone,"mit Putenfleisch, Käse, Paprika und Champignons.\n Wahl aus: Klein oder Groß.",null);
 			product105.getProductOptions().add(productOpton17);
 			product105.getProductOptions().add(productOpton18);
-			Product product106=new Product("Calzone Gyros",ProductCategory.Calzone,"mit Gyrosfleisch, Schafskäse, Tomatenscheiben, Zwiebeln und Tzatziki \n Wahl aus: Klein oder Groß.",null);
+			Product product106=new Product("Calzone Gyros",ProductCategory.Calzone,"mit Gyrosfleisch, Schafskäse, Tomatenscheiben, Zwiebeln und Tzatziki.\n Wahl aus: Klein oder Groß.",null);
 			product106.getProductOptions().add(productOpton17);
 			product106.getProductOptions().add(productOpton18);
-			Product product107=new Product("Pizza La Strada Spezial Calzone",ProductCategory.Calzone,"mit Gyrosfleisch, Champignons, Zwiebeln, Hackfleisch, Schinken und Tzatziki\n Wahl aus: Klein oder Groß.",null);
+			Product product107=new Product("Pizza La Strada Spezial Calzone",ProductCategory.Calzone,"mit Gyrosfleisch, Champignons, Zwiebeln, Hackfleisch, Schinken und Tzatziki.\n Wahl aus: Klein oder Groß.",null);
 			product107.getProductOptions().add(productOpton17);
 			product107.getProductOptions().add(productOpton18);
 			
