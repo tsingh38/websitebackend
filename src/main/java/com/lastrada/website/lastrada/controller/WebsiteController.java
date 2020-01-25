@@ -1,6 +1,7 @@
 package com.lastrada.website.lastrada.controller;
 
 import com.lastrada.website.lastrada.model.CustOrder;
+import com.lastrada.website.lastrada.model.OrderStatus;
 import com.lastrada.website.lastrada.model.Product;
 import com.lastrada.website.lastrada.model.ProductAddition;
 import com.lastrada.website.lastrada.model.ProductOption;
@@ -13,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,12 +29,27 @@ public class WebsiteController {
 	    public  List<Product>  fetchAllItems() {
 	     return shopService.fetchAllItems();
 	    }
+	
+	
+	@CrossOrigin
+	   @RequestMapping(value = "/getOrders")
+	    public  Iterable<OrderStatus>  fetchOrder(@RequestHeader("CustOrderFetchMode") String custOrderFetchMode) {
+	     return shopService.fetchOrders(custOrderFetchMode);
+	    }
+	
+	
 	@CrossOrigin
 	  @RequestMapping(value = "/saveOrder")
-	   public ResponseEntity saveOrder(@RequestBody CustOrder order) {
-		   shopService.saveCustomerOrder(order);
-		   return ResponseEntity.ok(HttpStatus.OK);
+	   public Long saveOrder(@RequestBody CustOrder order) {
+		  return shopService.saveCustomerOrder(order);
 	   }
+	
+	@CrossOrigin
+	  @RequestMapping(value = "/updateOrder")
+	   public void updateOrder(@RequestBody OrderStatus order) {
+		   shopService.updateOrder(order);
+	   }
+	
 	   
 	   @RequestMapping(value = "/saveProduct")
 	   public ResponseEntity saveProduct(@RequestBody Product product) {
