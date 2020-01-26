@@ -16,7 +16,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class OrderItem {
 
 	@Id
@@ -30,9 +33,7 @@ public class OrderItem {
 	@ManyToMany( fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
 	@JoinTable(name="orderItem_productaddition",joinColumns=@JoinColumn(name="orderItem_id"), inverseJoinColumns=@JoinColumn(name="ProductAddition_id"))
 	private Set<ProductAddition> listOfAdditions=new HashSet<>();
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(unique = true)
-	private ProductOption selectedOption;
+	private String selectedOptionStr;
 	
 	public OrderItem() {}
 
@@ -68,12 +69,13 @@ public class OrderItem {
 		this.listOfAdditions = listOfAdditions;
 	}
 
-	public ProductOption getProductOption() {
-		return selectedOption;
+
+	public String getSelectedOptionStr() {
+		return selectedOptionStr;
 	}
 
-	public void setProductOption(ProductOption productOption) {
-		this.selectedOption = productOption;
+	public void setSelectedOptionStr(String selectedOptionStr) {
+		this.selectedOptionStr = selectedOptionStr;
 	}
 	
 	
