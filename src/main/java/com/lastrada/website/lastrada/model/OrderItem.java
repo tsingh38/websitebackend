@@ -6,11 +6,13 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -25,7 +27,7 @@ public class OrderItem {
 	private Product product;
 	private Long quantity;
 	private BigDecimal totalPrice;
-	@OneToMany
+	@ManyToMany( fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
 	@JoinTable(name="orderItem_productaddition",joinColumns=@JoinColumn(name="orderItem_id"), inverseJoinColumns=@JoinColumn(name="ProductAddition_id"))
 	private Set<ProductAddition> listOfAdditions=new HashSet<>();
 	@OneToOne(cascade = CascadeType.ALL)
