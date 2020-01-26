@@ -32,7 +32,7 @@ public class OrderItem {
 	private Set<ProductAddition> listOfAdditions=new HashSet<>();
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(unique = true)
-	private ProductOption productOption;
+	private ProductOption selectedOption;
 	
 	public OrderItem() {}
 
@@ -69,11 +69,11 @@ public class OrderItem {
 	}
 
 	public ProductOption getProductOption() {
-		return productOption;
+		return selectedOption;
 	}
 
 	public void setProductOption(ProductOption productOption) {
-		this.productOption = productOption;
+		this.selectedOption = productOption;
 	}
 	
 	
