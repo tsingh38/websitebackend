@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 //@ComponentScan({ "com.lastrada.website.lastrada.*" })
 @SpringBootApplication
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class LastradaApplication  extends WebSecurityConfigurerAdapter implements WebMvcConfigurer{
 
 	public static void main(String[] args) {
@@ -37,7 +39,9 @@ public class LastradaApplication  extends WebSecurityConfigurerAdapter implement
 	  throws Exception {
 	    auth.jdbcAuthentication()
 	      .dataSource(dataSource)
-	      .usersByUsernameQuery("select username,password from credentials");
+	      .usersByUsernameQuery("select username,password,1 from credentials where username=?")
+	      .authoritiesByUsernameQuery("select username, 'ROLE_USER' from credentials where username=?");
+
 	}
 	
 	@Override
@@ -47,11 +51,11 @@ public class LastradaApplication  extends WebSecurityConfigurerAdapter implement
 		authorizeRequests
          .antMatchers("/allitems","/saveOrder").permitAll()
          .antMatchers("/control/**").access("isAuthenticated()")
-         .anyRequest().authenticated());
+         .anyRequest().authenticated()).formLogin().permitAll();
     	    
 	}
 	
-	
+
 	 @Override
 	    public void addCorsMappings(CorsRegistry registry) {
 	        registry.addMapping("/**");
