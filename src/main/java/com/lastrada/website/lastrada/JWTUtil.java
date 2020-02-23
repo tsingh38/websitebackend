@@ -18,8 +18,11 @@ public class JWTUtil {
 	private String secret_key = "secret";
 
 	public String extractUsername(String token) {
+		if(!token.equalsIgnoreCase("null")) {
 		return extractClaim(token, Claims::getSubject);
-	}
+			}
+		return null;
+		}
 
 	public Date extractExpiration(String token) {
 		return extractClaim(token, Claims::getExpiration);

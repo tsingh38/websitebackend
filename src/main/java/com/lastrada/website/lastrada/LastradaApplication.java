@@ -79,13 +79,15 @@ public AuthenticationManager authenticationManagerBean() throws Exception {
     protected void configure(HttpSecurity http)
     	      throws Exception {
 		
+		http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 		http.csrf().disable().authorizeRequests()
+		.antMatchers("/allitems").permitAll()
 		.antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
-		.antMatchers("/allitems","/authenticate").permitAll()
+		.antMatchers("/authenticate").permitAll().and().authorizeRequests()
 				 .anyRequest().authenticated().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+
         .and().logout().clearAuthentication(true)
         .logoutSuccessUrl("/");
-        http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 		
     	    
 	}

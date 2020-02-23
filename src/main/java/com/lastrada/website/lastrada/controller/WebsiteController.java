@@ -52,6 +52,7 @@ public class WebsiteController {
 		return shopService.fetchAllItems();
 	}
 
+	
 	@RequestMapping(value = "/authenticate", consumes= {MediaType.APPLICATION_FORM_URLENCODED_VALUE}, method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticateToken( AuthenticationRequest authenticationRequest)
 			throws Exception {
@@ -67,13 +68,8 @@ public class WebsiteController {
 		return ResponseEntity.ok(new AuthenticationResponse(token));
 	}
 
-	@CrossOrigin(origins = "http://localhost:4200")
-	@RequestMapping({ "/logout" })
-	public ResponseEntity<String> doLogout() {
-		SecurityContextHolder.getContext().setAuthentication(null);
-		return ResponseEntity.ok("User logged out");
-	}
 
+	
 	@RequestMapping(value = "/getOrders")
 	public Iterable<OrderStatus> fetchOrder(@RequestHeader("CustOrderFetchMode") String custOrderFetchMode) {
 		return shopService.fetchOrders(custOrderFetchMode);
