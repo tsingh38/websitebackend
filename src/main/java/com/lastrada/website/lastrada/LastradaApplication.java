@@ -81,9 +81,8 @@ public AuthenticationManager authenticationManagerBean() throws Exception {
 		
 		http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 		http.csrf().disable().authorizeRequests()
-		.antMatchers("/allitems").permitAll()
 		.antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
-		.antMatchers("/authenticate").permitAll().and().authorizeRequests()
+		.antMatchers("/authenticate","/saveOrder","/allitems").permitAll().and().authorizeRequests()
 				 .anyRequest().authenticated().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
         .and().logout().clearAuthentication(true)
