@@ -4,6 +4,8 @@ import com.lastrada.website.lastrada.JWTUtil;
 import com.lastrada.website.lastrada.MyUserDetailsService;
 import com.lastrada.website.lastrada.model.AuthenticationRequest;
 import com.lastrada.website.lastrada.model.AuthenticationResponse;
+import com.lastrada.website.lastrada.model.Credentials;
+import com.lastrada.website.lastrada.model.CredentialsHolder;
 import com.lastrada.website.lastrada.model.CustOrder;
 import com.lastrada.website.lastrada.model.OrderStatus;
 import com.lastrada.website.lastrada.model.Product;
@@ -20,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.ResponseEntity.BodyBuilder;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -106,6 +109,13 @@ public class WebsiteController {
 	@RequestMapping(value = "/getWebsiteStatus")
 	public WebsiteStatus getWebisteStatus() {
 		return shopService.getWebsiteStatus();
+		
+	}
+	
+	@RequestMapping(value = "/processChangeCredentials")
+	public ResponseEntity processChangeCredentials(@RequestBody CredentialsHolder credentials) throws Exception {
+		 shopService.processCredentialsChange(credentials);
+		 return ResponseEntity.ok(HttpStatus.OK);
 		
 	}
 	

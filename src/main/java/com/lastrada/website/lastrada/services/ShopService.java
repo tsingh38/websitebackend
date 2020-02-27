@@ -13,8 +13,15 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.lastrada.website.lastrada.model.Credentials;
+import com.lastrada.website.lastrada.model.CredentialsHolder;
 import com.lastrada.website.lastrada.model.CustOrder;
 import com.lastrada.website.lastrada.model.OrderItem;
 import com.lastrada.website.lastrada.model.OrderStatus;
@@ -24,6 +31,7 @@ import com.lastrada.website.lastrada.model.ProductAddition;
 import com.lastrada.website.lastrada.model.ProductOption;
 import com.lastrada.website.lastrada.model.WebsiteStatus;
 import com.lastrada.website.lastrada.pojo.ProductPOJO;
+import com.lastrada.website.lastrada.repository.CredentialsRepository;
 import com.lastrada.website.lastrada.repository.CustOrderRepository;
 import com.lastrada.website.lastrada.repository.OrderItemRepository;
 import com.lastrada.website.lastrada.repository.OrderStatusRepository;
@@ -54,6 +62,15 @@ public class ShopService {
 	
 	@Autowired
 	private OrderStatusRepository orderStatusRepository;
+	
+	@Autowired
+	private AuthenticationManager authenticationManager;
+	
+	@Autowired
+	private CredentialsRepository credentialsRepository;
+	
+	@Autowired
+	private PasswordEncoder bCryptPasswordEncoder;
 	
 	public List<Product> fetchAllItems() {
 	return (List<Product>) productRepository.findAll();
@@ -113,6 +130,27 @@ public class ShopService {
 	public WebsiteStatus getWebsiteStatus() {
 		ArrayList<WebsiteStatus> webSiteStatus = (ArrayList<WebsiteStatus>) this.websiteStatusRepository.findAll();
 		return webSiteStatus.get(0);
+	}
+	
+	public void processCredentialsChange(CredentialsHolder credentials) throws Exception {
+		try {
+			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+					credentials.getUsername(), credentials.getPassword()));
+			if(!credentials.getNewPassword().equalsIgnoreCase(credentials.getRepeatNewPassword())) {
+				throw new Exception("Old And New Password do not match");
+			}
+		} catch (Exception exception) {
+			throw new Exception("Bad Credentials", exception);
+		}
+		
+		credentialsRepository.deleteAll();
+		Credentials newCredentials = new Credentials();
+		newCredentials.setUsername(credentials.getUsername());
+		String encodedPassword =bCryptPasswordEncoder.encode(credentials.getNewPassword());
+		newCredentials.setPassword(encodedPassword);
+		credentialsRepository.save(newCredentials);
+		
+		
 	}
 	
 	private LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
