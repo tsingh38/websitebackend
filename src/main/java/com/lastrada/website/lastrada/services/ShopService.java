@@ -22,6 +22,7 @@ import com.lastrada.website.lastrada.model.OrderStatusEnum;
 import com.lastrada.website.lastrada.model.Product;
 import com.lastrada.website.lastrada.model.ProductAddition;
 import com.lastrada.website.lastrada.model.ProductOption;
+import com.lastrada.website.lastrada.model.WebsiteStatus;
 import com.lastrada.website.lastrada.pojo.ProductPOJO;
 import com.lastrada.website.lastrada.repository.CustOrderRepository;
 import com.lastrada.website.lastrada.repository.OrderItemRepository;
@@ -29,6 +30,7 @@ import com.lastrada.website.lastrada.repository.OrderStatusRepository;
 import com.lastrada.website.lastrada.repository.ProductAdditionRepository;
 import com.lastrada.website.lastrada.repository.ProductOptionRepository;
 import com.lastrada.website.lastrada.repository.ProductRepository;
+import com.lastrada.website.lastrada.repository.WebsiteStatusRepository;
 
 @Service
 public class ShopService {
@@ -37,6 +39,9 @@ public class ShopService {
 	
 	@Autowired
 	private ProductOptionRepository productOptionRepository;
+	
+	@Autowired
+	private WebsiteStatusRepository websiteStatusRepository;
 	
 	@Autowired
 	private ProductAdditionRepository productAdditionRepository;
@@ -71,7 +76,10 @@ public class ShopService {
 		return null;
 	}
 	
-
+		public void updateWebsiteStatus(WebsiteStatus websiteStatus) {
+			this.websiteStatusRepository.deleteAll();
+			this.websiteStatusRepository.save(websiteStatus);
+		}
 
 	private Iterable<OrderStatus> fetchCustOrderWithGiveTimePeriod(Iterable<OrderStatus> allOrders, CustOrderTimePeriod period) throws ParseException {
 		List<OrderStatus> ordersFromToday=new ArrayList<OrderStatus>();
@@ -101,6 +109,10 @@ public class ShopService {
 
 	public void saveProduct(Product product) {
 		this.productRepository.save(product);
+	}
+	public WebsiteStatus getWebsiteStatus() {
+		ArrayList<WebsiteStatus> webSiteStatus = (ArrayList<WebsiteStatus>) this.websiteStatusRepository.findAll();
+		return webSiteStatus.get(0);
 	}
 	
 	private LocalDate convertToLocalDateViaInstant(Date dateToConvert) {

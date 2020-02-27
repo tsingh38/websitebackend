@@ -10,6 +10,8 @@ import com.lastrada.website.lastrada.model.Product;
 import com.lastrada.website.lastrada.model.ProductAddition;
 import com.lastrada.website.lastrada.model.ProductOption;
 import com.lastrada.website.lastrada.model.User;
+import com.lastrada.website.lastrada.model.WebsiteStatus;
+import com.lastrada.website.lastrada.repository.WebsiteStatusRepository;
 import com.lastrada.website.lastrada.services.ShopService;
 
 import java.util.List;
@@ -44,6 +46,8 @@ public class WebsiteController {
 	@Autowired
 	private JWTUtil jwtUtil;
 
+	
+	private WebsiteStatusRepository websiteStatus;
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
@@ -85,12 +89,27 @@ public class WebsiteController {
 		shopService.updateOrder(order);
 	}
 
+	
+	
 	@RequestMapping(value = "/saveProduct")
 	public ResponseEntity saveProduct(@RequestBody Product product) {
 		shopService.saveProduct(product);
 		return ResponseEntity.ok(HttpStatus.OK);
 	}
 
+	@RequestMapping(value = "/updateWebsiteStatus")
+	public ResponseEntity getWebsiteStatus(@RequestBody WebsiteStatus status) {
+		shopService.updateWebsiteStatus(status);
+		return ResponseEntity.ok(HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/getWebsiteStatus")
+	public WebsiteStatus getWebisteStatus() {
+		return shopService.getWebsiteStatus();
+		
+	}
+	
+	
 	@RequestMapping(value = "/saveProductOption")
 	public ResponseEntity saveProductOption(@RequestBody ProductOption productOption) {
 		shopService.saveProductOption(productOption);
