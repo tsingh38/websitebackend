@@ -3,6 +3,7 @@ package com.lastrada.website.lastrada.bootstrap;
 
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,8 +35,13 @@ public class WebsiteBootstrap implements ApplicationListener<ContextRefreshedEve
 	public void onApplicationEvent(ContextRefreshedEvent arg0) {
 		// Lastrada initial Data
 	//	it should run only once to fill the Data. make sure to comment it afterwards.
+		ArrayList listOfProducts=(ArrayList) this.productRepository.findAll();
+		if(listOfProducts!=null && listOfProducts.size() > 1) {
+			// then do nothing, product already exists
+		}else {
+			initProducts();
+		}
 		
-		//initProducts();
 	}
 	
 	public WebsiteBootstrap( ProductRepository productRepository, ProductAdditionRepository productAdditionRepository,
@@ -63,7 +69,7 @@ public class WebsiteBootstrap implements ApplicationListener<ContextRefreshedEve
 		ProductOption productOpton12=new ProductOption("mit  Rigatoni", new BigDecimal(0), null, null, null, null);
 		ProductOption productOpton13=new ProductOption("mit  Spaghetti", new BigDecimal(0), null, null, null, null);
 		ProductOption productOpton14=new ProductOption("mit  Tortellini", new BigDecimal(0), null, null, null, null);
-		ProductOption productOpton17=new ProductOption("klein, Ø26cm:", null, new BigDecimal(7.50), null, null, null);
+		ProductOption productOpton17=new ProductOption("klein, Ø26cm:", null, new BigDecimal(8.00), null, null, null);
 		ProductOption productOpton18=new ProductOption("Groß, Ø30cm:", null, null, new BigDecimal(9.00), null, null);
 		ProductOption productOpton19=new ProductOption("mit Cocktail -Dressing",new BigDecimal(0),null,null,null,null);
 		ProductOption productOpton20=new ProductOption("mit Essig und öl",new BigDecimal(0),null,null,null,null);
@@ -208,41 +214,44 @@ this.productAdditionRepository.saveAll(pizzaAdditionsOnly);
 		Product product13=new Product("Meckatzer 0,5l", ProductCategory.Alkohlische_Getränke, ",7% volinkl. Pfand (0,08 €)5,08 €/l0,500l", new BigDecimal(2.58));
 		Product product12=new Product("Jim Beam 0,7l", ProductCategory.Alkohlische_Getränke, "27,86 €/l0,700l", new BigDecimal(19.50));
 		Product product11=new Product("Jack Daniel's 0,7l", ProductCategory.Alkohlische_Getränke, "40,0% vol35,71 €/l0,700l", new BigDecimal(25.00));
-		Product product10=new Product("Jack Daniels mit Coca Cola 0,33l ", ProductCategory.Alkohlische_Getränke, "Enthält Koffein (9,6 mg/100 ml)inkl. Pfand (0,25 €)14,64 €/l0,330l", new BigDecimal(5.00));
+		Product product10=new Product("Jack Daniels mit Coca Cola 0,33l Dose", ProductCategory.Alkohlische_Getränke, "Enthält Koffein (9,6 mg/100 ml)inkl. Pfand (0,25 €)14,64 €/l0,330l", new BigDecimal(5.00));
 		Product product9=new Product("Wodka 0,7l", ProductCategory.Alkohlische_Getränke, "35,0% vol21,43 €/l0,700l", new BigDecimal(15.00));
 		Product product8=new Product("Lambrusco 0,75l", ProductCategory.Alkohlische_Getränke, "9,7% vol 8,67 €/l0,750l", new BigDecimal(6.50));
 		Product product7=new Product("Chianti 0,75l", ProductCategory.Alkohlische_Getränke, "10,0% vol10,00 €/l0,750l", new BigDecimal(7.50));
-		Product product6=new Product("Bardolino 0,75l ", ProductCategory.Alkohlische_Getränke, "10,0% vol11,33 €/l0,750l", new BigDecimal(8.50));
 		Product product5=new Product("Soave 0,75l ", ProductCategory.Alkohlische_Getränke, "9,7% vol10,00 €/l0,750l", new BigDecimal(7.50));
 		Product product4=new Product("Frascati 0,75l", ProductCategory.Alkohlische_Getränke, "9,7% vol10,00 €/l0,750l", new BigDecimal(7.50));
-		Product product3=new Product("Asti Cinzano 0,75l ", ProductCategory.Alkohlische_Getränke, "5,0% vol13,33 €/l0,750l", new BigDecimal(10.00));
-		Product product2=new Product("Ficken Schnaps 0,75l", ProductCategory.Alkohlische_Getränke, "5,0% vol21,33 €/l0,750l", new BigDecimal(16.00));
-		Product product1=new Product("Likör 0,75l", ProductCategory.Alkohlische_Getränke, "8,7% vol21,33 €/l0,750l", new BigDecimal(16.00));
+		Product product3=new Product("Württemberger Trollinger-Lemberger 1l", ProductCategory.Alkohlische_Getränke, "5,0% vol9,50 €/l1,000l", new BigDecimal(9.50));
+		Product product2=new Product("Ficken Schnaps 0,75l", ProductCategory.Alkohlische_Getränke, "5,0% vol21,33 €/l0,750l", new BigDecimal(18.00));
+		Product product1=new Product("Likör 0,75l", ProductCategory.Alkohlische_Getränke, "8,7% vol21,33 €/l0,750l", new BigDecimal(18.00));
 		
 		
 		// Alkohalfreie Getränke
 		
-		Product product17=new Product("Coca Cola 1,0l", ProductCategory.Alkohalfrei_Getränke, "Enthält Koffein (10,0 mg/100 ml)inkl. Pfand (0,15 €)2,75 €/l1,000l", new BigDecimal(2.75));
-		Product product18=new Product("Coca Cola light 1,0l", ProductCategory.Alkohalfrei_Getränke, "Enthält Koffein (12,0 mg/100 ml)inkl. Pfand (0,15 €)2,75 €/l1,000l", new BigDecimal(2.75));
-		Product product19=new Product("Fanta 1,0l ", ProductCategory.Alkohalfrei_Getränke, "inkl. Pfand (0,15 €)2,75 €/l1,000l", new BigDecimal(2.75));
-		Product product20=new Product("Sprite 1,0l", ProductCategory.Alkohalfrei_Getränke, "inkl. Pfand (0,15 €)2,75 €/l1,000l", new BigDecimal(2.75));
-		Product product21=new Product("Mezzo Mix 1,0l", ProductCategory.Alkohalfrei_Getränke, "Enthält Koffein (6,0 mg/100 ml)inkl. Pfand (0,15 €)2,75 €/l1,000l", new BigDecimal(2.75));
-		Product product22=new Product("Mineralwasser Medium 1,0l ", ProductCategory.Alkohalfrei_Getränke, "inkl. Pfand (0,15 €)2,15 €/l1,000l", new BigDecimal(2.15));
-		Product product23=new Product("Mineralwasser Still 1,0l ", ProductCategory.Alkohalfrei_Getränke, "inkl. Pfand (0,15 €)2,15 €/l1,000l", new BigDecimal(2.15));
+		Product product17=new Product("Coca Cola 1,0l", ProductCategory.Alkohalfrei_Getränke, "Enthält Koffein (10,0 mg/100 ml)inkl. Pfand (0,25 €)3,15 €/l1,000l", new BigDecimal(3.15));
+		Product product18=new Product("Coca Cola light 1,0l", ProductCategory.Alkohalfrei_Getränke, "Enthält Koffein (12,0 mg/100 ml)inkl. Pfand (0,25 €)3,15 €/l1,000l", new BigDecimal(3.15));
+		Product product19=new Product("Fanta 1,0l ", ProductCategory.Alkohalfrei_Getränke, "inkl. Pfand (0,25 €)3,15 €/l1,000l", new BigDecimal(3.15));
+		Product product20=new Product("Sprite 1,0l", ProductCategory.Alkohalfrei_Getränke, "inkl. Pfand (0,25 €)3,15 €/l1,000l", new BigDecimal(3.15));
+		Product product21=new Product("Mezzo Mix 1,0l", ProductCategory.Alkohalfrei_Getränke, "Enthält Koffein (6,0 mg/100 ml)inkl. Pfand (0,25 €)2,85 €/l1,000l", new BigDecimal(3.15));
+		Product product22=new Product("Mineralwasser Medium 1,0l ", ProductCategory.Alkohalfrei_Getränke, "inkl. Pfand (0,25 €)2,25 €/l1,000l", new BigDecimal(2.25));
+		Product product23=new Product("Mineralwasser Still 1,0l ", ProductCategory.Alkohalfrei_Getränke, "inkl. Pfand (0,25 €)2,75 €/l1,000l", new BigDecimal(2.75));
 		Product product24=new Product("Krumbach Birne-Kräuter 1,0l", ProductCategory.Alkohalfrei_Getränke, "inkl. Pfand (0,25 €)2,75 €/l1,000l", new BigDecimal(2.75));
-		Product product25=new Product("Orangensaft 1,0l ", ProductCategory.Alkohalfrei_Getränke, "inkl. Pfand (0,15 €)3,15 €/l1,000l", new BigDecimal(3.15));
-		Product product26=new Product("Apfelsaft 1,0l", ProductCategory.Alkohalfrei_Getränke, "inkl. Pfand (0,15 €)3,15 €/l1,000l", new BigDecimal(3.15));
+		Product product25=new Product("Orangensaft 1,0l ", ProductCategory.Alkohalfrei_Getränke, "inkl. Pfand (0,25 €)3,25 €/l1,000l", new BigDecimal(3.25));
+		Product product26=new Product("Apfelsaft 1,0l", ProductCategory.Alkohalfrei_Getränke, "inkl. Pfand (0,25 €)3,25 €/l1,000l", new BigDecimal(3.25));
 		Product product27=new Product("Eistee 1,5l", ProductCategory.Alkohalfrei_Getränke, "Enthält Koffein (25,0 mg/100 ml)inkl. Pfand (0,25 €)1,92 €/l1,500l", new BigDecimal(2.75));
 		Product product28=new Product("Red Bull 0,33l", ProductCategory.Alkohalfrei_Getränke, "Enthält Koffein (32,0 mg/100 ml)inkl. Pfand (0,25 €)7,83 €/l0,330l", new BigDecimal(2.75));
 
 	  // Ben & Jerrys
 		Product product28Star=new Product("Ben & Jerry's Cookie Dough 100ml", ProductCategory.BenAndJerrys, "", new BigDecimal(3.60));
-		Product product29=new Product("Ben & Jerry's Cookie Dough 500ml ", ProductCategory.BenAndJerrys, "", new BigDecimal(9.00));
+		Product product29=new Product("Ben & Jerry's Cookie Dough 500ml ", ProductCategory.BenAndJerrys, "", new BigDecimal(9.50));
 			// Dessert
-		Product product30 = new Product("Spaghetti Eis", ProductCategory.Dessert,"", new BigDecimal(2.90));
-		Product product31 = new Product("Tiramisu", ProductCategory.Dessert,"", new BigDecimal(3.50));
-		Product product32 = new Product("Langnese Eis", ProductCategory.Dessert,"", new BigDecimal(2.90));
-		
+		Product product30 = new Product("Spaghetti Eis", ProductCategory.Dessert,"", new BigDecimal(2.50));
+		Product product31 = new Product("Tiramisu", ProductCategory.Dessert,"", new BigDecimal(3.60));
+		Product product32 = new Product("Langnese Eis", ProductCategory.Dessert,"", new BigDecimal(2.80));
+		Product product159 = new Product("Ganze Zitrone gefüllt mit Zitroneneis", ProductCategory.Dessert,"", new BigDecimal(3.50));
+		Product product160 = new Product("Ganze Orange gefüllt mit Orangeneis", ProductCategory.Dessert,"", new BigDecimal(3.50));
+		Product product161 = new Product("Halbe kokosnuss gefüllt mit Kokoseis", ProductCategory.Dessert,"", new BigDecimal(4.00));
+		Product product162 = new Product("Ritter Sport,Milka 100g,(verschiedene  Sorten)", ProductCategory.Dessert,"", new BigDecimal(1.80));
+			
 		
 		
 		// Pide
@@ -271,7 +280,7 @@ this.productAdditionRepository.saveAll(pizzaAdditionsOnly);
 		product39.getProductOptions().add(productOpton1);
 		product39.getProductOptions().add(productOpton2);
 		product39.getProductOptions().add(productOpton3);
-		Product product40= new Product("Lahmacun mit Weichkäse", ProductCategory.Lahmacun, "Wahl aus: mit Cocktailsauce, mit Joghurtsauce oder ohne Sauce.",  new BigDecimal(5.00));
+		Product product40= new Product("Lahmacun mit Weichkäse", ProductCategory.Lahmacun, "Wahl aus: mit Cocktailsauce, mit Joghurtsauce oder ohne Sauce.",  new BigDecimal(5.50));
 		product40.getProductOptions().add(productOpton1);
 		product40.getProductOptions().add(productOpton2);
 		product40.getProductOptions().add(productOpton3);
@@ -312,7 +321,7 @@ this.productAdditionRepository.saveAll(pizzaAdditionsOnly);
 		
 		
 		// Internationalw Gerichte
-		Product product51 = new Product("Pommes frites",ProductCategory.International_Gerichte,"mit Ketchup",new BigDecimal(3.20));
+		Product product51 = new Product("Pommes frites",ProductCategory.International_Gerichte,"mit Ketchup",new BigDecimal(3.30));
 		Product product52 = new Product("Frühlingsrollen (8 Stück)",ProductCategory.International_Gerichte,"mit Chilisauce",new BigDecimal(3.50));
 		Product product53 = new Product("Chicken Wings ",ProductCategory.International_Gerichte,"mit Pommes frites und einer Sauce nach Wahl. \n Wahl aus: mit Chilisauce, mit Currysauce oder ohne Sauce.",new BigDecimal(6.70));
 		product53.getProductOptions().add(productOpton7);
@@ -322,7 +331,7 @@ this.productAdditionRepository.saveAll(pizzaAdditionsOnly);
 		product54.getProductOptions().add(productOpton7);
 		product54.getProductOptions().add(productOpton8);
 		product54.getProductOptions().add(productOpton9);
-		Product product55 = new Product("Wiener Schnitzel ",ProductCategory.International_Gerichte,"mit einer Beilage nach Wahl und Salat. \n Wahl aus: mit Pommes frites, mit Spätzle oder ohne Beilage.",new BigDecimal(8.90));
+		Product product55 = new Product("Wiener Schnitzel ",ProductCategory.International_Gerichte,"mit einer Beilage nach Wahl und Salat. \n Wahl aus: mit Pommes frites, mit Spätzle oder ohne Beilage.",new BigDecimal(9.00));
 		product55.getProductOptions().add(productOpton4);
 		product55.getProductOptions().add(productOpton5);
 		product55.getProductOptions().add(productOpton6);
@@ -730,7 +739,7 @@ this.productAdditionRepository.saveAll(pizzaAdditionsOnly);
 			product145.getProductOptions().add(productOpton21);
 			product145.getProductOptions().add(productOpton22);
 			
-			Product product146= new Product("Mozzarella-Teller (klein)",ProductCategory.Salat,"mit Tomaten und Zwiebeln \n Wahl aus: mit Cocktail-Dressing, mit Essig und Öl, mit Joghurtsauce oder ohne Dressing.",new BigDecimal(4.80));
+			Product product146= new Product("Mozzarella-Teller (klein)",ProductCategory.Salat,"mit Tomaten und Zwiebeln \n Wahl aus: mit Cocktail-Dressing, mit Essig und Öl, mit Joghurtsauce oder ohne Dressing.",new BigDecimal(5.00));
 			product146.getProductOptions().add(productOpton19);
 			product146.getProductOptions().add(productOpton20);
 			product146.getProductOptions().add(productOpton21);
@@ -806,7 +815,6 @@ this.productAdditionRepository.saveAll(pizzaAdditionsOnly);
 			this.productRepository.save(product3);
 			this.productRepository.save(product4);
 			this.productRepository.save(product5);
-			this.productRepository.save(product6);
 			this.productRepository.save(product7);
 			this.productRepository.save(product8);
 			this.productRepository.save(product9);
@@ -833,7 +841,12 @@ this.productAdditionRepository.saveAll(pizzaAdditionsOnly);
 			this.productRepository.save(product29);
 			this.productRepository.save(product30);
 				this.productRepository.save(product31);
+			this.productRepository.save(product159);
+			this.productRepository.save(product160);
+			this.productRepository.save(product161);
+			this.productRepository.save(product162);
 			this.productRepository.save(product32);
+			
 			this.productRepository.save(product33);
 			this.productRepository.save(product34);
 			this.productRepository.save(product35);
