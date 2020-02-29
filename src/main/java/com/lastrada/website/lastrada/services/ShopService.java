@@ -8,6 +8,8 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -109,6 +111,15 @@ public class ShopService {
 				ordersFromToday.add(currentOrder);
 			}
 		}
+		Collections.sort(ordersFromToday, new Comparator<OrderStatus>() {
+
+			@Override
+			public int compare(OrderStatus o1, OrderStatus o2) {
+				if(o1.getId() > o2.getId())
+				return 1;
+				return 0;
+			}
+		});
 		return ordersFromToday;
 	}
 	
