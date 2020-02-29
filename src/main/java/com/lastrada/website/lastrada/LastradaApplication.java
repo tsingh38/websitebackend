@@ -1,6 +1,7 @@
 package com.lastrada.website.lastrada;
 
 import java.io.IOException;
+import java.util.Properties;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +18,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -50,6 +53,8 @@ public class LastradaApplication  extends WebSecurityConfigurerAdapter implement
 	    return new BCryptPasswordEncoder();
 		//return NoOpPasswordEncoder.getInstance();
 	}
+	
+	
 @Override
 @Bean
 public AuthenticationManager authenticationManagerBean() throws Exception {

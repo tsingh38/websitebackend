@@ -42,6 +42,7 @@ import com.lastrada.website.lastrada.repository.WebsiteStatusRepository;
 
 @Service
 public class ShopService {
+	
 	@Autowired
 	private ProductRepository productRepository;
 	
@@ -71,6 +72,9 @@ public class ShopService {
 	
 	@Autowired
 	private PasswordEncoder bCryptPasswordEncoder;
+	
+	@Autowired
+	private EmailService emailService;
 	
 	public List<Product> fetchAllItems() {
 	return (List<Product>) productRepository.findAll();
@@ -193,9 +197,24 @@ public class ShopService {
 	}
 
 	public void updateOrder(OrderStatus order) {
-	
-				 this.orderStatusRepository.save(order);
-				
+		Boolean sendMail=false;
+		Optional<OrderStatus> existingOrder=this.orderStatusRepository.findById(order.getId());
+		if(existingOrder!=null && existingOrder.get()!=null) {
+			OrderStatus existingOrd=existingOrder.get();
+			if(OrderStatusEnum.UNBERABEITET.getValue()==existingOrd.getStatus() && OrderStatusEnum.BEARBEITET.getValue()==order.getStatus()) {
+				sendMail=true;
+			}
+		}
+		this.orderStatusRepository.save(order);
+		if(sendMail) {
+		String emailTo = order.getCustOrder().getEmail();
+		try {
+			emailService.sendEmail(emailTo, order.getCustOrder().getCustomerName(),
+					"Ihre Lastrada Bestellung Nr." + order.getOrderNumber());
+		}catch (Exception exception) {
+
+			}
+		}
 	}
 	
 
