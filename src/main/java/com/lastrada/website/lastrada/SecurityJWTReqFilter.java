@@ -1,6 +1,8 @@
 package com.lastrada.website.lastrada;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -22,14 +24,20 @@ public class SecurityJWTReqFilter extends OncePerRequestFilter {
 	private JWTUtil jwtUtil;
 	@Autowired
 	private MyUserDetailsService myUserDetailsService;
-
+	List<String> allowedURLsWithoutSecurityCheck=new ArrayList<>();
+	
+	{
+		allowedURLsWithoutSecurityCheck.add("/allitems");
+		allowedURLsWithoutSecurityCheck.add("/saveOrder");
+		allowedURLsWithoutSecurityCheck.add("/getWebsiteStatus");
+	}
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		final String authorizationHeader = request.getHeader("Authorization");
 		String username = null;
 		String jwt = null;
-		if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+		if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ") && !allowedURLsWithoutSecurityCheck.contains(request.getRequestURI())) {
 			jwt = authorizationHeader.substring(7);
 			username = jwtUtil.extractUsername(jwt);
 		}
@@ -47,4 +55,8 @@ public class SecurityJWTReqFilter extends OncePerRequestFilter {
 		filterChain.doFilter(request, response);
 	}
 
+	
+
+
+	
 }
