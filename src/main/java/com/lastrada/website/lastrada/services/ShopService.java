@@ -208,12 +208,10 @@ public class ShopService {
 		this.orderStatusRepository.save(order);
 		if(sendMail) {
 		String emailTo = order.getCustOrder().getEmail();
-		try {
+		//try {
 			emailService.sendEmail(emailTo, order.getCustOrder().getCustomerName(),
 					"Ihre Lastrada Bestellung Nr." + order.getOrderNumber());
-		}catch (Exception exception) {
-
-			}
+		//}
 		}
 	}
 	

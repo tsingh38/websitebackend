@@ -26,6 +26,7 @@ public class EmailService {
         msg.setSubject(subject);
         msg.setText(getMailText(custName));
         
+       
   
         javaMailSender.send(msg);
        
