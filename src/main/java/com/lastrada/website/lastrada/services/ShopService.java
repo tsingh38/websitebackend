@@ -142,6 +142,12 @@ public class ShopService {
 	public void saveProduct(Product product) {
 		this.productRepository.save(product);
 	}
+	
+	public void deleteProduct(Product product) {
+		this.productRepository.delete(product);
+	}
+	
+	
 	public WebsiteStatus getWebsiteStatus() {
 		ArrayList<WebsiteStatus> webSiteStatus = (ArrayList<WebsiteStatus>) this.websiteStatusRepository.findAll();
 		return webSiteStatus.get(0);
