@@ -24,6 +24,7 @@ public class Product {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	private String description;
+	private boolean status;
 	private String productCategory;
 	private String optionDescription;
 	private BigDecimal productBasePrice;
@@ -42,9 +43,16 @@ public class Product {
 		this.productCategory=productCategory.toString();
 		this.optionDescription = optionDescription;
 		this.productBasePrice = productBasePrice;
+		this.status=true;
 	}
 
 
+	public boolean isStatus() {
+		return status;
+	}
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
 	public Long getId() {
 		return id;
 	}

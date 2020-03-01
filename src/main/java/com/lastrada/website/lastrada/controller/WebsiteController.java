@@ -78,7 +78,7 @@ public class WebsiteController {
 
 	
 	@RequestMapping(value = "/getOrders")
-	public Iterable<OrderStatus> fetchOrder(@RequestHeader("CustOrderFetchMode") String custOrderFetchMode) {
+	public Iterable<OrderStatus> fetchOrder(@RequestHeader("CustOrderFetchMode") String custOrderFetchMode) throws Exception {
 		return shopService.fetchOrders(custOrderFetchMode);
 	}
 

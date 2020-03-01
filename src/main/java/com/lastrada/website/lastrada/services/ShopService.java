@@ -14,6 +14,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -45,6 +47,7 @@ import com.lastrada.website.lastrada.repository.WebsiteStatusRepository;
 @Service
 public class ShopService {
 	
+	Logger logger = LoggerFactory.getLogger(ShopService.class);
 	@Autowired
 	private ProductRepository productRepository;
 	
@@ -79,8 +82,17 @@ public class ShopService {
 	private EmailService emailService;
 	
 	public List<Product> fetchAllItems() {
-	return (List<Product>) productRepository.findAll();
+		List<Product> allProduct=(List<Product>) productRepository.findAll();
+		List<Product> returnProductsList=new ArrayList<>();
+		for(Product currentProduct :allProduct) {
+			if(currentProduct.isStatus()) {
+			returnProductsList.add(currentProduct);
+			};
+		}
+	return returnProductsList;
 	}
+	
+
 	
 	public Iterable<OrderStatus> fetchOrders(String custOrderFetchMode){
 		try {
@@ -93,10 +105,13 @@ public class ShopService {
 		case "Alle":
 		default:return this.orderStatusRepository.findAll();
 		}
-		}
-		catch(ParseException exception) {
+		} catch(Exception exception) {
+			logger.info(exception.getMessage());
 		}
 		return null;
+		
+		
+		
 	}
 	
 		public void updateWebsiteStatus(WebsiteStatus websiteStatus) {
@@ -144,7 +159,8 @@ public class ShopService {
 	}
 	
 	public void deleteProduct(Product product) {
-		this.productRepository.delete(product);
+		product.setStatus(false);
+		this.productRepository.save(product);
 	}
 	
 	
