@@ -92,8 +92,6 @@ public class WebsiteController {
 		shopService.updateOrder(order);
 	}
 
-	
-	
 	@RequestMapping(value = "/saveProduct")
 	public ResponseEntity saveProduct(@RequestBody Product product) {
 		shopService.saveProduct(product);

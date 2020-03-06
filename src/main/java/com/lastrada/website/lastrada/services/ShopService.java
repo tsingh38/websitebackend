@@ -184,8 +184,9 @@ public class ShopService {
 	}
 	
 	public void deleteProduct(Product product) {
-		product.setStatus(false);
-		this.productRepository.save(product);
+		Product foundProduct=this.productRepository.findById(product.getId()).get();
+		foundProduct.setStatus(false);
+		this.productRepository.save(foundProduct);
 	}
 	
 	
