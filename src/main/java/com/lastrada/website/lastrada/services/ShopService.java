@@ -11,8 +11,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +34,7 @@ import com.lastrada.website.lastrada.model.OrderStatus;
 import com.lastrada.website.lastrada.model.OrderStatusEnum;
 import com.lastrada.website.lastrada.model.Product;
 import com.lastrada.website.lastrada.model.ProductAddition;
+import com.lastrada.website.lastrada.model.ProductCategory;
 import com.lastrada.website.lastrada.model.ProductOption;
 import com.lastrada.website.lastrada.model.WebsiteStatus;
 import com.lastrada.website.lastrada.pojo.ProductPOJO;
@@ -155,7 +158,29 @@ public class ShopService {
 	}
 
 	public void saveProduct(Product product) {
-		this.productRepository.save(product);
+		
+		// saving Pizza
+		if(ProductCategory.Pizza.toString().equals(product.getProductCategory()) || ProductCategory.Vegatarische_Pizza.toString() .equals(product.getProductCategory())) {
+			Product onePizzaProduct =  this.productRepository.findOnePizza();
+			Set<ProductAddition> existingProductAdditions= onePizzaProduct.getProductAdditions();
+			Set<ProductAddition> newProductAdditions=new HashSet<ProductAddition>();
+			for( ProductAddition currentProductAddition:existingProductAdditions) {
+				newProductAdditions.add(currentProductAddition);
+			}
+			product.setProductAdditions(newProductAdditions);
+			product.setStatus(true);
+			this.productOptionRepository.saveAll(product.getProductOptions());
+			this.productRepository.save(product);
+		}else {
+			product.setStatus(true);
+			if(product.getProductOptions().size() > 0) {
+			this.productOptionRepository.saveAll(product.getProductOptions());
+			}
+			if(product.getProductAdditions().size() > 0) {
+				this.productAdditionRepository.saveAll(product.getProductAdditions());
+			}
+			this.productRepository.save(product);
+		}
 	}
 	
 	public void deleteProduct(Product product) {
