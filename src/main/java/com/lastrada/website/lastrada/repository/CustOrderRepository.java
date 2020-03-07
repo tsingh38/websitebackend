@@ -7,4 +7,5 @@ import com.lastrada.website.lastrada.model.CustOrder;
 
 public interface CustOrderRepository extends CrudRepository<CustOrder, Long> {
 
+	
 }

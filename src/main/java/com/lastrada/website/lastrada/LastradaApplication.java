@@ -20,6 +20,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -41,6 +42,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 //@ComponentScan({ "com.lastrada.website.lastrada.*" })
 @SpringBootApplication
+@EnableScheduling
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class LastradaApplication  extends WebSecurityConfigurerAdapter implements WebMvcConfigurer{
 	private final Log logger = LogFactory.getLog(getClass());

@@ -19,6 +19,7 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -53,6 +54,9 @@ public class ShopService {
 	Logger logger = LoggerFactory.getLogger(ShopService.class);
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Value("${app.deleteorder.timePeriodInWeeks}")
+    private Long numberOfWeeksForOldOrderDeletion;
 	
 	@Autowired
 	private ProductOptionRepository productOptionRepository;
@@ -302,6 +306,31 @@ public class ShopService {
 		this.productAdditionRepository.save(productAddition);
 		
 	}
+
+	
+	public void deleteOlderCustOrders() {
+		 List<OrderStatus> allOrders= (List<OrderStatus>) orderStatusRepository.findAll();
+		 for(OrderStatus currentOrder : allOrders) {
+			 try {
+				if(isCurrentOrderOlderThanDefined(currentOrder)) {
+					 this.orderStatusRepository.delete(currentOrder);
+				 }
+			} catch (ParseException e) {
+				logger.error("Order cannot be deleted because :"+e.getMessage());
+				e.printStackTrace();
+			}
+		 }
+	}
+	private boolean isCurrentOrderOlderThanDefined(OrderStatus currentOrder) throws ParseException {
+		 SimpleDateFormat sdformat = new SimpleDateFormat("dd-MM-yyy");
+	      Date orderDate = sdformat.parse(currentOrder.getOrderDate());
+	      LocalDate orderLocalDate=convertToLocalDateViaInstant(orderDate);
+	      LocalDate todaylocalDate= LocalDate.now();
+	      LocalDate twoWeekBefore = todaylocalDate.minus(numberOfWeeksForOldOrderDeletion, ChronoUnit.WEEKS);
+		return orderLocalDate.isBefore(twoWeekBefore);
+	}
+
+
 
 	public void updateOrder(OrderStatus order) {
 		Boolean sendMail=false;
