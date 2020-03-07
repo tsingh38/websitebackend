@@ -199,7 +199,7 @@ public class ShopService {
 		if(oldProductOptions.size() > 0 && newProductOptions.size() > 0 ) {
 			for(ProductOption currentProductOption :newProductOptions) {
 				for(ProductOption oldCurrentProductOption :oldProductOptions) {
-					if(currentProductOption.getId()==oldCurrentProductOption.getId()) {
+					if(currentProductOption.getId().equals(oldCurrentProductOption.getId())) {
 						oldCurrentProductOption.setOptionPrice(currentProductOption.getOptionPrice());
 						oldCurrentProductOption.setDefault(currentProductOption.isDefault());
 						oldCurrentProductOption.setOptionPriceForFamily(currentProductOption.getOptionPriceForFamily());
@@ -217,7 +217,7 @@ public class ShopService {
 		if(oldProductAdditions.size() > 0 && newProductAdditions.size() > 0 ) {
 			for(ProductAddition currentProductAddition :newProductAdditions) {
 				for(ProductAddition oldCurrentProductAddition :oldProductAdditions) {
-					if(currentProductAddition.getId()==oldCurrentProductAddition.getId()) {
+					if(currentProductAddition.getId().equals(oldCurrentProductAddition.getId())) {
 						oldCurrentProductAddition.setAdditionDescription(currentProductAddition.getAdditionDescription());
 						oldCurrentProductAddition.setAdditionPrice(currentProductAddition.getAdditionPrice());
 						oldCurrentProductAddition.setAdditionsPriceForFamily(currentProductAddition.getAdditionsPriceForFamily());
