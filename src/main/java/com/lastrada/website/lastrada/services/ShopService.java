@@ -189,6 +189,54 @@ public class ShopService {
 		this.productRepository.save(foundProduct);
 	}
 	
+	public void editProduct(Product newProduct) {
+		Product foundOldProduct=this.productRepository.findById(newProduct.getId()).get();
+		Set<ProductAddition> oldProductAdditions= foundOldProduct.getProductAdditions();
+		Set<ProductOption> oldProductOptions=foundOldProduct.getProductOptions();
+		Set<ProductAddition> newProductAdditions= newProduct.getProductAdditions();
+		Set<ProductOption> newProductOptions=newProduct.getProductOptions();
+		
+		if(oldProductOptions.size() > 0 && newProductOptions.size() > 0 ) {
+			for(ProductOption currentProductOption :newProductOptions) {
+				for(ProductOption oldCurrentProductOption :oldProductOptions) {
+					if(currentProductOption.getId()==oldCurrentProductOption.getId()) {
+						oldCurrentProductOption.setOptionPrice(currentProductOption.getOptionPrice());
+						oldCurrentProductOption.setDefault(currentProductOption.isDefault());
+						oldCurrentProductOption.setOptionPriceForFamily(currentProductOption.getOptionPriceForFamily());
+						oldCurrentProductOption.setOptionPriceForNormal(currentProductOption.getOptionPriceForNormal());
+						oldCurrentProductOption.setOptionPriceForParty(currentProductOption.getOptionPriceForParty());
+						oldCurrentProductOption.setOptionPriceForSmall(currentProductOption.getOptionPriceForSmall());
+						oldCurrentProductOption.setOptionPrice(currentProductOption.getOptionPrice());
+						oldCurrentProductOption.setProductOptionDescription(currentProductOption.getProductOptionDescription());
+						this.productOptionRepository.save(oldCurrentProductOption);
+						break;
+					}
+				}
+			}
+		}
+		if(oldProductAdditions.size() > 0 && newProductAdditions.size() > 0 ) {
+			for(ProductAddition currentProductAddition :newProductAdditions) {
+				for(ProductAddition oldCurrentProductAddition :oldProductAdditions) {
+					if(currentProductAddition.getId()==oldCurrentProductAddition.getId()) {
+						oldCurrentProductAddition.setAdditionDescription(currentProductAddition.getAdditionDescription());
+						oldCurrentProductAddition.setAdditionPrice(currentProductAddition.getAdditionPrice());
+						oldCurrentProductAddition.setAdditionsPriceForFamily(currentProductAddition.getAdditionsPriceForFamily());
+						oldCurrentProductAddition.setAdditionsPriceForNormal(currentProductAddition.getAdditionsPriceForNormal());
+						oldCurrentProductAddition.setAdditionsPriceForParty(currentProductAddition.getAdditionsPriceForParty());
+						oldCurrentProductAddition.setAdditionsPriceForSmall(currentProductAddition.getAdditionsPriceForSmall());
+						this.productAdditionRepository.save(oldCurrentProductAddition);
+						break;
+					}
+				}
+			}
+		}
+		
+		foundOldProduct.setDescription(newProduct.getDescription());
+		foundOldProduct.setOptionDescription(newProduct.getOptionDescription());
+		foundOldProduct.setProductBasePrice(newProduct.getProductBasePrice());
+		this.productRepository.save(foundOldProduct);
+	}
+	
 	
 	public WebsiteStatus getWebsiteStatus() {
 		ArrayList<WebsiteStatus> webSiteStatus = (ArrayList<WebsiteStatus>) this.websiteStatusRepository.findAll();

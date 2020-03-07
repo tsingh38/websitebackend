@@ -103,6 +103,12 @@ public class WebsiteController {
 		shopService.deleteProduct(product);
 		return ResponseEntity.ok(HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "/editProduct")
+	public ResponseEntity editProduct(@RequestBody Product product) {
+		shopService.editProduct(product);
+		return ResponseEntity.ok(HttpStatus.OK);
+	}
 
 	@RequestMapping(value = "/updateWebsiteStatus")
 	public ResponseEntity getWebsiteStatus(@RequestBody WebsiteStatus status) {
