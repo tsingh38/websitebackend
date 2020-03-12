@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpMethod;
@@ -43,63 +45,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 //@ComponentScan({ "com.lastrada.website.lastrada.*" })
 @SpringBootApplication
 @EnableScheduling
-@EnableGlobalMethodSecurity(prePostEnabled = true)
-public class LastradaApplication  extends WebSecurityConfigurerAdapter implements WebMvcConfigurer{
-	private final Log logger = LogFactory.getLog(getClass());
+public class LastradaApplication extends SpringBootServletInitializer{
+
 	public static void main(String[] args) {
 		SpringApplication.run(LastradaApplication.class, args);
 	}
 
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-	    return new BCryptPasswordEncoder();
-		//return NoOpPasswordEncoder.getInstance();
-	}
-	
-	
-@Override
-@Bean
-public AuthenticationManager authenticationManagerBean() throws Exception {
-	return super.authenticationManagerBean();
-}
-	
-	@Autowired
-	DataSource dataSource;
-	
-	@Autowired
-	private AuthExceptionEntryPoint authExceptionEntryPoint;
-	
-	@Autowired
-	private  MyUserDetailsService myUserDetailsService;
-	
-	@Autowired
-	private SecurityJWTReqFilter jwtRequestFilter;
-	
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) 
-	  throws Exception {
-	  
-		auth.userDetailsService(myUserDetailsService);
-	}
-	
-	@Override
-    protected void configure(HttpSecurity http)
-    	      throws Exception {
-		
-		http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-		http.csrf().disable().authorizeRequests()
-		.antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
-		.antMatchers("/authenticate","/saveOrder","/allitems","/getWebsiteStatus").permitAll().and().authorizeRequests()
-				 .anyRequest().authenticated().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
-        .and().logout().clearAuthentication(true)
-        .logoutSuccessUrl("/");
-		
-    	    
+	protected SpringApplicationBuilder configure (SpringApplicationBuilder builder) {
+		return builder.sources(LastradaApplication.class);
 	}
+	
 
-	 @Override
-	    public void addCorsMappings(CorsRegistry registry) {
-	        registry.addMapping("/**").allowedOrigins("*");
-	    }
 }
