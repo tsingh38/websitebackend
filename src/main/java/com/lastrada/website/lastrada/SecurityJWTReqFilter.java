@@ -27,9 +27,9 @@ public class SecurityJWTReqFilter extends OncePerRequestFilter {
 	List<String> allowedURLsWithoutSecurityCheck=new ArrayList<>();
 	
 	{
-		allowedURLsWithoutSecurityCheck.add("/allitems");
-		allowedURLsWithoutSecurityCheck.add("/saveOrder");
-		allowedURLsWithoutSecurityCheck.add("/getWebsiteStatus");
+		allowedURLsWithoutSecurityCheck.add("/Lastrada/allitems");
+		allowedURLsWithoutSecurityCheck.add("/Lastrada/saveOrder");
+		allowedURLsWithoutSecurityCheck.add("/Lastrada/getWebsiteStatus");
 	}
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -37,7 +37,7 @@ public class SecurityJWTReqFilter extends OncePerRequestFilter {
 		final String authorizationHeader = request.getHeader("Authorization");
 		String username = null;
 		String jwt = null;
-		if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ") && !allowedURLsWithoutSecurityCheck.contains(request.getRequestURI())) {
+		if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ") && !isURLAllowedWithoutSecurityCheck(request.getRequestURI())) {
 			jwt = authorizationHeader.substring(7);
 			username = jwtUtil.extractUsername(jwt);
 		}
@@ -53,6 +53,15 @@ public class SecurityJWTReqFilter extends OncePerRequestFilter {
 			}
 		}
 		filterChain.doFilter(request, response);
+	}
+	
+	private boolean isURLAllowedWithoutSecurityCheck(String currentURI) {
+		for(String currentURLInList:this.allowedURLsWithoutSecurityCheck) {
+			if(currentURLInList.contains(currentURI)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	
