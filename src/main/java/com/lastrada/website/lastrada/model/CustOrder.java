@@ -1,5 +1,6 @@
 package com.lastrada.website.lastrada.model;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -31,7 +32,7 @@ public class CustOrder {
 	@OneToMany
 	@JoinColumn( name="custorder_id")
 	private Set<OrderItem> order=new HashSet<>();
-
+	private BigDecimal totalPrice;
 	
 	CustOrder(){
 	}
@@ -164,6 +165,16 @@ public class CustOrder {
 
 	public void setOrder(Set<OrderItem> order) {
 		this.order = order;
+	}
+
+
+	public BigDecimal getTotalPrice() {
+		return totalPrice;
+	}
+
+
+	public void setTotalPrice(BigDecimal totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 
 

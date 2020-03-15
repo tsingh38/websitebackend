@@ -83,8 +83,12 @@ public class WebsiteController {
 	}
 
 	@RequestMapping(value = "/saveOrder")
-	public Long saveOrder(@RequestBody CustOrder order) {
-		return shopService.saveCustomerOrder(order);
+	public ResponseEntity saveOrder(@RequestBody CustOrder order) {
+		try {
+			return shopService.saveCustomerOrder(order);
+		} catch (Exception e) {
+			return  new ResponseEntity<Long>(new Long(0), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@RequestMapping(value = "/updateOrder")

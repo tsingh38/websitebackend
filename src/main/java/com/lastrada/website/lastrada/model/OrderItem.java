@@ -33,6 +33,7 @@ public class OrderItem {
 	@ManyToMany( fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
 	@JoinTable(name="orderItem_productaddition",joinColumns=@JoinColumn(name="orderItem_id"), inverseJoinColumns=@JoinColumn(name="ProductAddition_id"))
 	private Set<ProductAddition> listOfAdditions=new HashSet<>();
+		private Long selectedOptionId;
 	private String selectedOptionStr;
 	
 	public OrderItem() {}
@@ -77,6 +78,19 @@ public class OrderItem {
 	public void setSelectedOptionStr(String selectedOptionStr) {
 		this.selectedOptionStr = selectedOptionStr;
 	}
+
+	public Long getSelectedOptionId() {
+		return selectedOptionId;
+	}
+
+	public void setSelectedOptionId(Long selectedOptionId) {
+		this.selectedOptionId = selectedOptionId;
+	}
+
+	
+	
+
+	
 	
 	
 	

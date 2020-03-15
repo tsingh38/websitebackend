@@ -1,5 +1,6 @@
 package com.lastrada.website.lastrada.services;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -20,6 +21,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -274,17 +277,124 @@ public class ShopService {
 	      .toLocalDate();
 	}
 	
-	public Long saveCustomerOrder(CustOrder customerOrder) {
-		for(OrderItem orderItem : customerOrder.getOrder()) {
-			
+	public ResponseEntity saveCustomerOrder(CustOrder customerOrder) throws Exception {
+		long orderIdToReturn = 0;
+		if(!compareIfServerProductAndClientProductAreSame(customerOrder)) {
+			return new ResponseEntity<>("Preise sind über die Anwendung Manipuliert.", HttpStatus.BAD_REQUEST);
+		}
+		for(OrderItem orderItem : customerOrder.getOrder()) {		
 			this.orderItemRepository.save(orderItem);
 		}
 		CustOrder savedCustOrder= this.customerOrderRepository.save(customerOrder);
 		this.orderStatusRepository.save(new OrderStatus(customerOrder, OrderStatusEnum.UNBERABEITET.getValue(),getCurrentDate(),getCurrentTime(),savedCustOrder.getId()));
-		return savedCustOrder.getId();
+		  return new ResponseEntity<Long>(savedCustOrder.getId(), HttpStatus.OK);
 	}
 	
 	
+
+
+	private boolean compareIfServerProductAndClientProductAreSame(CustOrder customerOrder) {
+		BigDecimal totalOrderPriceFromClient=customerOrder.getTotalPrice().setScale(2);
+		BigDecimal totalOrderPriceFromServer=BigDecimal.ZERO;
+		for(OrderItem currentOrderItem : customerOrder.getOrder()) {		
+			totalOrderPriceFromServer=totalOrderPriceFromServer.add(fetchCurrentOrderItemPrice(currentOrderItem));
+		}
+		totalOrderPriceFromServer=totalOrderPriceFromServer.setScale(2);
+		return totalOrderPriceFromClient.equals(totalOrderPriceFromServer);
+	}
+
+
+
+
+
+
+	private BigDecimal fetchCurrentOrderItemPrice(OrderItem orderItem) {
+		BigDecimal totalProductPrice = BigDecimal.ZERO;
+		Product product = orderItem.getProduct();
+		Set<ProductAddition> productAddtions =  orderItem.getListOfAdditions();
+		long selectedOptionId = orderItem.getSelectedOptionId();
+		totalProductPrice=totalProductPrice.add(BigDecimal.valueOf(orderItem.getQuantity())
+				.multiply(getProductPrice(product, selectedOptionId, orderItem.getSelectedOptionStr())));
+		if (productAddtions != null && productAddtions.size() > 0) {
+			totalProductPrice=totalProductPrice.add(BigDecimal.valueOf(orderItem.getQuantity())
+					.multiply(getProductAdditionsPrice(product, productAddtions, orderItem.getSelectedOptionStr())));
+		}
+		return totalProductPrice;
+	}
+
+
+
+
+
+	private BigDecimal getProductAdditionsPrice(Product product,Set<ProductAddition> productAddtions, String selectedOption) {
+		boolean isProductPizza = ProductCategory.Pizza.toString().equalsIgnoreCase(product.getProductCategory()) || ProductCategory.Vegatarische_Pizza.toString().equalsIgnoreCase(product.getProductCategory());
+		boolean isProductCalzone = ProductCategory.Calzone.toString().equalsIgnoreCase(product.getProductCategory());
+
+		BigDecimal additionsPrice=BigDecimal.ZERO;
+		for(ProductAddition currentAddition : productAddtions) {
+			Optional<ProductAddition> currentAdditionOpt= this.productAdditionRepository.findById(currentAddition.getId());
+			ProductAddition currentAdditionFromServer = currentAdditionOpt.get();
+			BigDecimal currentAdditionPrice = BigDecimal.ZERO;
+			//
+			if(isProductPizza) {
+				switch(selectedOption) {
+				case "klein, Ø26cm:":currentAdditionPrice= currentAdditionFromServer.getAdditionsPriceForSmall();
+					break;
+				case "Groß, Ø30cm:": currentAdditionPrice= currentAdditionFromServer.getAdditionsPriceForNormal();
+					break;
+				case "Familie,46cm x 33cm:":currentAdditionPrice =currentAdditionFromServer.getAdditionsPriceForFamily();
+					break;
+				case "Party,60cm x 40cm:":currentAdditionPrice= currentAdditionFromServer.getAdditionsPriceForParty();
+					break;
+				}
+			}else if(isProductCalzone) {
+				switch(selectedOption) {
+				case "klein, Ø26cm:":currentAdditionPrice= currentAdditionFromServer.getAdditionsPriceForSmall();
+						break;				
+				case "Groß, Ø30cm:": currentAdditionPrice=currentAdditionFromServer.getAdditionsPriceForNormal();
+						break;
+				}
+			}else {
+				currentAdditionPrice= currentAdditionFromServer.getAdditionPrice();
+			}
+			additionsPrice=additionsPrice.add(currentAdditionPrice);
+		}
+		return additionsPrice;
+	}
+
+
+
+	private BigDecimal getProductPrice(Product product, long selectedOptionId,String selectedOption) {
+		boolean isProductPizza = ProductCategory.Pizza.toString().equalsIgnoreCase(product.getProductCategory()) || ProductCategory.Vegatarische_Pizza.toString().equalsIgnoreCase(product.getProductCategory());
+		boolean isProductCalzone = ProductCategory.Calzone.toString().equalsIgnoreCase(product.getProductCategory());
+		ProductOption productOption=null;
+		if(selectedOptionId > 0) {
+		Optional<ProductOption> productOptionOpt= this.productOptionRepository.findById(selectedOptionId);
+		 productOption=productOptionOpt.get();
+		}
+		if(isProductPizza) {
+			switch(selectedOption) {
+			case "klein, Ø26cm:":return  productOption.getOptionPriceForSmall();
+			
+			case "Groß, Ø30cm:": return  productOption.getOptionPriceForNormal();
+			case "Familie,46cm x 33cm:":return  productOption.getOptionPriceForFamily();
+			
+			case "Party,60cm x 40cm:": return  productOption.getOptionPriceForParty();
+			}
+		}else if(isProductCalzone) {
+			switch(selectedOption) {
+			case "klein, Ø26cm:":return  productOption.getOptionPriceForSmall();
+									
+			case "Groß, Ø30cm:": return  productOption.getOptionPriceForNormal();
+			}
+		}else {
+			return this.productRepository.findById(product.getId()).get().getProductBasePrice();
+		}
+		return BigDecimal.ZERO;
+	}
+
+
+
 	private String getCurrentDate() {
 		Date date = new Date(); 
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
