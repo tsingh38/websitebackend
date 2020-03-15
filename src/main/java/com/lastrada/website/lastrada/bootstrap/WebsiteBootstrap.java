@@ -5,10 +5,12 @@ package com.lastrada.website.lastrada.bootstrap;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.xml.crypto.Data;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -17,10 +19,12 @@ import com.lastrada.website.lastrada.model.Product;
 import com.lastrada.website.lastrada.model.ProductAddition;
 import com.lastrada.website.lastrada.model.ProductCategory;
 import com.lastrada.website.lastrada.model.ProductOption;
+import com.lastrada.website.lastrada.model.WebsiteStatus;
 import com.lastrada.website.lastrada.repository.ProductAdditionRepository;
 
 import com.lastrada.website.lastrada.repository.ProductOptionRepository;
 import com.lastrada.website.lastrada.repository.ProductRepository;
+import com.lastrada.website.lastrada.repository.WebsiteStatusRepository;
 
 @Component
 public class WebsiteBootstrap implements ApplicationListener<ContextRefreshedEvent>{
@@ -29,21 +33,39 @@ public class WebsiteBootstrap implements ApplicationListener<ContextRefreshedEve
 	private ProductRepository productRepository;
 	private ProductAdditionRepository productAdditionRepository;
 	private ProductOptionRepository productOptionRepository;
+	@Autowired
+	private WebsiteStatusRepository webSiteStatusRepository;
 	
 	
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent arg0) {
+		initWebSiteStatus() ;
 		// Lastrada initial Data
 	//	it should run only once to fill the Data. make sure to comment it afterwards.
 		ArrayList listOfProducts=(ArrayList) this.productRepository.findAll();
 		if(listOfProducts!=null && listOfProducts.size() > 1) {
 			// then do nothing, product already exists
 		}else {
+			initWebSiteStatus();
 			initProducts();
 		}
 		
 	}
 	
+	/*
+	 * In very beginning Website should be online by default
+	 */
+	private void initWebSiteStatus() {
+		List<WebsiteStatus> allWebStatus =  (List<WebsiteStatus>) this.webSiteStatusRepository.findAll();
+		if(allWebStatus==null || allWebStatus.size() < 1) {
+			WebsiteStatus defaultWebStatus = new WebsiteStatus();
+			defaultWebStatus.setStatus(true);
+			defaultWebStatus.setMessage("Website is online");
+			this.webSiteStatusRepository.save(defaultWebStatus);
+		}
+		
+	}
+
 	public WebsiteBootstrap( ProductRepository productRepository, ProductAdditionRepository productAdditionRepository,
 			ProductOptionRepository productOptionRepository) {
 		this.productRepository=productRepository;
