@@ -35,7 +35,7 @@ public class EmailService {
 	private String getMailText(String custName) {
 		StringBuilder sb=new StringBuilder();
 		sb.append("Guten Tag "+custName+",\n\n");
-		sb.append("vielen Dank  für Ihre Bestellung beim La Strada.Ihre Bestellung wird nun bearbeitet.");
+		sb.append("vielen Dank für Ihre Bestellung beim La Strada.Ihre Bestellung wird nun bearbeitet.");
 		sb.append("\n\n\n");
 		sb.append("Mit Freundlichen Grüßen \n");
 		sb.append("La Strada Ravensburg");
