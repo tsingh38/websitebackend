@@ -68,7 +68,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter implements Web
 			http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 			http.csrf().disable().authorizeRequests()
 			.antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
-			.antMatchers("/authenticate","/saveOrder","/allitems","/getWebsiteStatus").permitAll().and().authorizeRequests()
+			.antMatchers("/authenticate","/saveOrder","/","/allitems","/logout","/getWebsiteStatus").permitAll().and().authorizeRequests()
 					 .anyRequest().authenticated().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
 	        .and().logout().clearAuthentication(true)

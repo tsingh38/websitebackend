@@ -26,8 +26,9 @@ public class SecurityJWTReqFilter extends OncePerRequestFilter {
 	private MyUserDetailsService myUserDetailsService;
 	List<String> allowedURLsWithoutSecurityCheck=new ArrayList<>();
 	
-	{
+	{	allowedURLsWithoutSecurityCheck.add("/Lastrada/");
 		allowedURLsWithoutSecurityCheck.add("/Lastrada/allitems");
+		allowedURLsWithoutSecurityCheck.add("/Lastrada/logout");
 		allowedURLsWithoutSecurityCheck.add("/Lastrada/saveOrder");
 		allowedURLsWithoutSecurityCheck.add("/Lastrada/getWebsiteStatus");
 	}
