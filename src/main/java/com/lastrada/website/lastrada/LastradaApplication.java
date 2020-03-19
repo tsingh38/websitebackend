@@ -18,6 +18,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -42,9 +43,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.savedrequest.NullRequestCache;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
 //@ComponentScan({ "com.lastrada.website.lastrada.*" })
 @SpringBootApplication
 @EnableScheduling
+@EnableEncryptableProperties
+@PropertySource(name="EncryptedProperties",value="classpath:application.properties")
 public class LastradaApplication extends SpringBootServletInitializer{
 
 	public static void main(String[] args) {
