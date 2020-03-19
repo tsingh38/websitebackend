@@ -10,6 +10,7 @@ import java.util.Set;
 
 import javax.xml.crypto.Data;
 
+import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -39,6 +40,8 @@ public class WebsiteBootstrap implements ApplicationListener<ContextRefreshedEve
 	
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent arg0) {
+		StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();     
+		encryptor.setPassword("Remoso#2019!");
 		initWebSiteStatus() ;
 		// Lastrada initial Data
 	//	it should run only once to fill the Data. make sure to comment it afterwards.
@@ -97,8 +100,8 @@ public class WebsiteBootstrap implements ApplicationListener<ContextRefreshedEve
 		ProductOption productOpton20=new ProductOption("mit Essig und öl",new BigDecimal(0),null,null,null,null);
 		ProductOption productOpton21=new ProductOption("mit Joghurtsauce",new BigDecimal(0),null,null,null,null);
 		ProductOption productOpton22=new ProductOption("ohne Dressing",new BigDecimal(0),null,null,null,null);
-		ProductOption pizza790=new ProductOption("klein, Ø26cm:", null, new BigDecimal(7.90), null, null, null);
-		ProductOption pizza900=new ProductOption("Groß, Ø30cm:", null, null, new BigDecimal(9.00), null, null);
+		ProductOption pizza790=new ProductOption("klein, Ø26cm:", null, new BigDecimal(8.00), null, null, null);
+		ProductOption pizza900=new ProductOption("Groß, Ø30cm:", null, null, new BigDecimal(9.50), null, null);
 		ProductOption pizza1850=new ProductOption("Familie,46cm x 33cm:", null, null, null, new BigDecimal(18.50), null);
 		ProductOption pizza2350=new ProductOption("Party,60cm x 40cm:", null, null, null, null, new BigDecimal(23.50));
 		
@@ -107,16 +110,16 @@ public class WebsiteBootstrap implements ApplicationListener<ContextRefreshedEve
 		ProductOption pizza1570=new ProductOption("Familie,46cm x 33cm:", null, null, null, new BigDecimal(15.70), null);
 		ProductOption pizza1900=new ProductOption("Party,60cm x 40cm:", null, null, null, null, new BigDecimal(19.00));
 		
-		ProductOption pizza640=new ProductOption("klein, Ø26cm:", null, new BigDecimal(6.40), null, null, null);
-		ProductOption pizza790Second=new ProductOption("Groß, Ø30cm:", null, null, new BigDecimal(7.90), null, null);
-		ProductOption pizza1600=new ProductOption("Familie,46cm x 33cm:", null, null, null, new BigDecimal(16.00), null);
-		ProductOption pizza1990=new ProductOption("Party,60cm x 40cm:", null, null, null, null, new BigDecimal(19.90));
+		ProductOption pizza640=new ProductOption("klein, Ø26cm:", null, new BigDecimal(6.50), null, null, null);
+		ProductOption pizza790Second=new ProductOption("Groß, Ø30cm:", null, null, new BigDecimal(8.00), null, null);
+		ProductOption pizza1600=new ProductOption("Familie,46cm x 33cm:", null, null, null, new BigDecimal(16.50), null);
+		ProductOption pizza1990=new ProductOption("Party,60cm x 40cm:", null, null, null, null, new BigDecimal(20.00));
 		
 		
-		ProductOption pizza690=new ProductOption("klein, Ø26cm:", null, new BigDecimal(6.90), null, null, null);
-		ProductOption pizza840=new ProductOption("Groß, Ø30cm:", null, null, new BigDecimal(8.40), null, null);
+		ProductOption pizza690=new ProductOption("klein, Ø26cm:", null, new BigDecimal(7.00), null, null, null);
+		ProductOption pizza840=new ProductOption("Groß, Ø30cm:", null, null, new BigDecimal(8.50), null, null);
 		ProductOption pizza1750=new ProductOption("Familie,46cm x 33cm:", null, null, null, new BigDecimal(17.50), null);
-		ProductOption pizza2100=new ProductOption("Party,60cm x 40cm:", null, null, null, null, new BigDecimal(21.00));
+		ProductOption pizza2100=new ProductOption("Party,60cm x 40cm:", null, null, null, null, new BigDecimal(21.50));
 		
 		
 		ProductOption pizza940=new ProductOption("Groß, Ø30cm:", null, null, new BigDecimal(9.40), null, null);
@@ -167,6 +170,8 @@ public class WebsiteBootstrap implements ApplicationListener<ContextRefreshedEve
 		
 		ProductAddition pa1=new ProductAddition("Sahnesauce", new BigDecimal(1.00), null, null, null, null);
 		ProductAddition pa2=new ProductAddition("Fladenbrot", new BigDecimal(2.50), null, null, null, null);
+		ProductAddition paa1=new ProductAddition("Käse überbacken Aufpreis", new BigDecimal(1.50), null, null, null, null);
+
 		ProductAddition pa3=new ProductAddition("Ananas", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
 		ProductAddition pa4=new ProductAddition("Artischocken", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
 		ProductAddition pa5=new ProductAddition("Broccoli",null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
@@ -193,8 +198,117 @@ public class WebsiteBootstrap implements ApplicationListener<ContextRefreshedEve
 		ProductAddition pa26=new ProductAddition("Tomaten", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
 		ProductAddition pa27=new ProductAddition("Tzatziki", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
 		ProductAddition pa28=new ProductAddition("Zwiebeln", null, new BigDecimal(1.00), new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50));
-		ProductAddition pa29=new ProductAddition("käserand", null, new BigDecimal(2.00), new BigDecimal(2.50), new BigDecimal(1.50), new BigDecimal(1.50));
-
+		ProductAddition pa29=new ProductAddition("käse im Rand", null, new BigDecimal(2.00), new BigDecimal(2.50), new BigDecimal(4.50), new BigDecimal(5.00));
+		
+		//Additions for Rösti 
+		ProductAddition pa3Rösti=new ProductAddition("Ananas", new BigDecimal(1.00), null,null,null,null);
+		ProductAddition pa4Rösti=new ProductAddition("Artischocken",new BigDecimal(1.00), null,null,null,null);
+		ProductAddition pa5Rösti=new ProductAddition("Broccoli",new BigDecimal(1.00), null,null,null,null);
+		ProductAddition pa6Rösti=new ProductAddition("Champignons",new BigDecimal(1.00), null,null,null,null);
+		ProductAddition pa7Rösti=new ProductAddition("Ei", new BigDecimal(1.00), null,null,null,null);
+		ProductAddition pa8Rösti=new ProductAddition("Gorgonzola",new BigDecimal(1.00), null,null,null,null);
+		ProductAddition pa9Rösti=new ProductAddition("Gyrosfleisch", new BigDecimal(1.00), null,null,null,null);
+		ProductAddition pa10Rösti=new ProductAddition("Hähnchenfleisch",new BigDecimal(1.00), null,null,null,null);
+		ProductAddition pa11Rösti=new ProductAddition("Käse,extra",new BigDecimal(1.00), null,null,null,null);
+		ProductAddition pa12Rösti=new ProductAddition("knoblauch",new BigDecimal(1.00), null,null,null,null);
+		ProductAddition pa13Rösti=new ProductAddition("krabben",new BigDecimal(1.50), null,null,null,null);
+		ProductAddition pa14Rösti=new ProductAddition("Lachs",new BigDecimal(1.50), null,null,null,null);
+		ProductAddition pa15Rösti=new ProductAddition("Mais", new BigDecimal(1.00), null,null,null,null);
+		ProductAddition pa16Rösti=new ProductAddition("Meeresfrüchten", new BigDecimal(1.00), null,null,null,null);
+		ProductAddition pa17Rösti=new ProductAddition("Mozzarella", new BigDecimal(1.00), null,null,null,null);
+		ProductAddition pa18Rösti=new ProductAddition("Paprika", new BigDecimal(1.00), null,null,null,null);
+		ProductAddition pa19Rösti=new ProductAddition("Peperoni", new BigDecimal(1.00), null,null,null,null);
+		ProductAddition pa20Rösti=new ProductAddition("Salami", new BigDecimal(1.00), null,null,null,null);
+		ProductAddition pa21Rösti=new ProductAddition("Sardellen",new BigDecimal(1.50), null,null,null,null);
+		ProductAddition pa22Rösti=new ProductAddition("Schafskäse", new BigDecimal(1.00), null,null,null,null);
+		ProductAddition pa23Rösti=new ProductAddition("Schinken", new BigDecimal(1.00), null,null,null,null);
+		ProductAddition pa24Rösti=new ProductAddition("Spinat", new BigDecimal(1.00), null,null,null,null);
+		ProductAddition pa25Rösti=new ProductAddition("Thunfisch",new BigDecimal(1.50), null,null,null,null);
+		ProductAddition pa26Rösti=new ProductAddition("Tomaten",new BigDecimal(1.00), null,null,null,null);
+		ProductAddition pa27Rösti=new ProductAddition("Tzatziki", new BigDecimal(1.00), null,null,null,null);
+		ProductAddition pa28Rösti=new ProductAddition("Zwiebeln", new BigDecimal(1.00), null,null,null,null);
+		ProductAddition pa29Rösti=new ProductAddition("käse im Rand", new BigDecimal(1.00), null,null,null,null);
+		
+		
+		// addition for calzone
+		ProductAddition pa3calzone=new ProductAddition("Ananas", null, new BigDecimal(1.00), new BigDecimal(1.50), null, null);
+		ProductAddition pa4calzone=new ProductAddition("Artischocken", null, new BigDecimal(1.00), new BigDecimal(1.50), null,null);
+		ProductAddition pa5calzone=new ProductAddition("Broccoli",null, new BigDecimal(1.00), new BigDecimal(1.50), null,null);
+		ProductAddition pa6calzone=new ProductAddition("Champignons", null, new BigDecimal(1.00), new BigDecimal(1.50), null,null);
+		ProductAddition pa7calzone=new ProductAddition("Ei", null, new BigDecimal(1.00), new BigDecimal(1.50), null,null);
+		ProductAddition pa8calzone=new ProductAddition("Gorgonzola", null, new BigDecimal(1.00), new BigDecimal(1.50), null,null);
+		ProductAddition pa9calzone=new ProductAddition("Gyrosfleisch", null, new BigDecimal(1.00), new BigDecimal(1.50), null,null);
+		ProductAddition pa10calzone=new ProductAddition("Hähnchenfleisch",null, new BigDecimal(1.00), new BigDecimal(1.50), null,null);
+		ProductAddition pa11calzone=new ProductAddition("Käse,extra", null, new BigDecimal(1.00), new BigDecimal(1.50),null,null);
+		ProductAddition pa12calzone=new ProductAddition("knoblauch", null, new BigDecimal(1.00), new BigDecimal(1.50), null,null);
+		ProductAddition pa15calzone=new ProductAddition("Mais", null, new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50), new BigDecimal(1.50));
+		ProductAddition pa17calzone=new ProductAddition("Mozzarella", null, new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50), new BigDecimal(1.50));
+		ProductAddition pa18calzone=new ProductAddition("Paprika", null, new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50), new BigDecimal(1.50));
+		ProductAddition pa19calzone=new ProductAddition("Peperoni", null, new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50), new BigDecimal(1.50));
+		ProductAddition pa20calzone=new ProductAddition("Salami", null, new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(2.00), new BigDecimal(2.00));
+		ProductAddition pa22calzone=new ProductAddition("Schafskäse", null, new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50), new BigDecimal(1.50));
+		ProductAddition pa23calzone=new ProductAddition("Schinken", null, new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(2.00), new BigDecimal(2.00));
+		ProductAddition pa24calzone=new ProductAddition("Spinat", null, new BigDecimal(1.00), new BigDecimal(1.50),new BigDecimal(1.50), new BigDecimal(1.50));
+		ProductAddition pa26calzone=new ProductAddition("Tomaten", null, new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50), new BigDecimal(1.50));
+		ProductAddition pa27calzone=new ProductAddition("Tzatziki", null, new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50), new BigDecimal(1.50));
+		ProductAddition pa28calzone=new ProductAddition("Zwiebeln", null, new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(1.50), new BigDecimal(1.50));
+		ProductAddition pa29calzone=new ProductAddition("käse im Rand", null, new BigDecimal(1.00), new BigDecimal(1.50), new BigDecimal(4.50), new BigDecimal(5.00));
+		
+		
+		Set<ProductAddition> calzoneAdditionsOnly = new HashSet<>();
+		calzoneAdditionsOnly.add(pa3calzone);
+		calzoneAdditionsOnly.add(pa4calzone);
+		calzoneAdditionsOnly.add(pa5calzone);
+		calzoneAdditionsOnly.add(pa6calzone);
+		calzoneAdditionsOnly.add(pa7calzone);
+		calzoneAdditionsOnly.add(pa8calzone);
+		calzoneAdditionsOnly.add(pa9calzone);
+		calzoneAdditionsOnly.add(pa10calzone);
+		calzoneAdditionsOnly.add(pa11calzone);
+		calzoneAdditionsOnly.add(pa12calzone);
+		calzoneAdditionsOnly.add(pa15calzone);
+		calzoneAdditionsOnly.add(pa17calzone);
+		calzoneAdditionsOnly.add(pa18calzone);
+		calzoneAdditionsOnly.add(pa19calzone);
+		calzoneAdditionsOnly.add(pa20calzone);
+		calzoneAdditionsOnly.add(pa22calzone);
+		calzoneAdditionsOnly.add(pa23calzone);
+		calzoneAdditionsOnly.add(pa24calzone);
+		calzoneAdditionsOnly.add(pa26calzone);
+		calzoneAdditionsOnly.add(pa27calzone);
+		calzoneAdditionsOnly.add(pa28calzone);
+		calzoneAdditionsOnly.add(pa29calzone);
+		
+		Set<ProductAddition>röstiAdditionsOnly=new HashSet<>();
+		röstiAdditionsOnly.add(pa3Rösti);
+		röstiAdditionsOnly.add(pa4Rösti);
+		röstiAdditionsOnly.add(pa5Rösti);
+		röstiAdditionsOnly.add(pa6Rösti);
+		röstiAdditionsOnly.add(pa7Rösti);
+		röstiAdditionsOnly.add(pa8Rösti);
+		röstiAdditionsOnly.add(pa9Rösti);
+		röstiAdditionsOnly.add(pa10Rösti);
+		röstiAdditionsOnly.add(pa11Rösti);
+		röstiAdditionsOnly.add(pa12Rösti);
+		röstiAdditionsOnly.add(pa13Rösti);
+		röstiAdditionsOnly.add(pa14Rösti);
+		röstiAdditionsOnly.add(pa15Rösti);
+		röstiAdditionsOnly.add(pa16Rösti);
+		röstiAdditionsOnly.add(pa17Rösti);
+		röstiAdditionsOnly.add(pa18Rösti);
+		röstiAdditionsOnly.add(pa19Rösti);
+		röstiAdditionsOnly.add(pa20Rösti);
+		röstiAdditionsOnly.add(pa21Rösti);
+		röstiAdditionsOnly.add(pa22Rösti);
+		röstiAdditionsOnly.add(pa23Rösti);
+		röstiAdditionsOnly.add(pa24Rösti);
+		röstiAdditionsOnly.add(pa25Rösti);
+		röstiAdditionsOnly.add(pa26Rösti);
+		röstiAdditionsOnly.add(pa27Rösti);
+		röstiAdditionsOnly.add(pa28Rösti);
+		röstiAdditionsOnly.add(pa29Rösti);
+		
+		//Pizza Additions 
 		Set<ProductAddition>pizzaAdditionsOnly=new HashSet<>();
 		pizzaAdditionsOnly.add(pa3);
 		pizzaAdditionsOnly.add(pa4);
@@ -225,8 +339,11 @@ public class WebsiteBootstrap implements ApplicationListener<ContextRefreshedEve
 		pizzaAdditionsOnly.add(pa29);
 
 this.productAdditionRepository.save(pa1);
+this.productAdditionRepository.save(paa1);
 this.productAdditionRepository.save(pa2);
 this.productAdditionRepository.saveAll(pizzaAdditionsOnly);
+this.productAdditionRepository.saveAll(calzoneAdditionsOnly);
+this.productAdditionRepository.saveAll(röstiAdditionsOnly);
 
 		
 		// Alkohlische Getränke
@@ -243,10 +360,8 @@ this.productAdditionRepository.saveAll(pizzaAdditionsOnly);
 		Product product5=new Product("219 Soave 0,75l ", ProductCategory.Alkohlische_Getränke, "9,7% vol10,00 €/l0,750l", new BigDecimal(7.50));
 		Product product4=new Product("220 Frascati 0,75l", ProductCategory.Alkohlische_Getränke, "9,7% vol10,00 €/l0,750l", new BigDecimal(7.50));
 		Product product3=new Product("218 Württemberger Trollinger-Lemberger 1l", ProductCategory.Alkohlische_Getränke, "5,0% vol9,50 €/l1,000l", new BigDecimal(9.50));
-		Product product2=new Product("222 Ficken Schnaps 0,75l", ProductCategory.Alkohlische_Getränke, "5,0% vol21,33 €/l0,750l", new BigDecimal(18.00));
-		Product product1=new Product("222 Likör 0,75l", ProductCategory.Alkohlische_Getränke, "8,7% vol21,33 €/l0,750l", new BigDecimal(18.00));
-		
-		
+		Product product2=new Product("222 Ficken Schnaps 0,75l", ProductCategory.Alkohlische_Getränke, "15,0% vol21,33 €/l0,750l", new BigDecimal(18.00));
+				
 		// Alkohalfreie Getränke
 		
 		Product product17=new Product("223 Coca Cola 1,0l", ProductCategory.Alkohalfrei_Getränke, "Enthält Koffein (10,0 mg/100 ml)inkl. Pfand (0,25 €)3,15 €/l1,000l", new BigDecimal(3.15));
@@ -318,11 +433,11 @@ this.productAdditionRepository.saveAll(pizzaAdditionsOnly);
 		product42.getProductOptions().add(productOpton1);
 		product42.getProductOptions().add(productOpton2);
 		product42.getProductOptions().add(productOpton3);
-		Product product43=new Product("506 Döner Kebab Spezial",ProductCategory.Döner_kebab,"Drehhackfleischspieß im Fladenbrot mitWeichkäse, Salat und Sauce. \n Wahl aus: mit Cocktailsauce, mit Joghurtsauce oder ohne Sauce.",new BigDecimal(5.00));
+		Product product43=new Product("506 Döner Kebab mit Weichkäse",ProductCategory.Döner_kebab,"Drehhackfleischspieß im Fladenbrot mitWeichkäse, Salat und Sauce. \n Wahl aus: mit Cocktailsauce, mit Joghurtsauce oder ohne Sauce.",new BigDecimal(5.50));
 		product43.getProductOptions().add(productOpton1);
 		product43.getProductOptions().add(productOpton2);
 		product43.getProductOptions().add(productOpton3);
-		Product product44=new Product("507 Döner Box ",ProductCategory.Döner_kebab,"mit Pommes frites, Drehhackfleischspieß und Sauce. \n Wahl aus: mit Cocktailsauce, mit Joghurtsauce oder ohne Sauce.",new BigDecimal(5.00));
+		Product product44=new Product("507 Döner Box mit Pommes",ProductCategory.Döner_kebab,"mit Pommes frites, Drehhackfleischspieß und Sauce. \n Wahl aus: mit Cocktailsauce, mit Joghurtsauce oder ohne Sauce.",new BigDecimal(5.00));
 		product44.getProductOptions().add(productOpton1);
 		product44.getProductOptions().add(productOpton2);
 		product44.getProductOptions().add(productOpton3);
@@ -336,10 +451,13 @@ this.productAdditionRepository.saveAll(pizzaAdditionsOnly);
 		// Rösti
 		
 		Product product47 = new Product("501 Rösti mit Zwiebeln und Spiegelei,mit Käse überbacken", ProductCategory.Rösti, "", new BigDecimal(8.50));
+		product47.getProductAdditions().addAll(röstiAdditionsOnly);
 		Product product48 = new Product("502 Rösti mit Schinken und Zwiebeln,mit Käse überbacken", ProductCategory.Rösti, "", new BigDecimal(8.50));
+		product48.getProductAdditions().addAll(röstiAdditionsOnly);
 		Product product49 = new Product("503 Rösti mit Spinat und Schafskäse,mit Käse überbacken", ProductCategory.Rösti, "", new BigDecimal(8.50));
+		product49.getProductAdditions().addAll(röstiAdditionsOnly);
 		Product product50 = new Product("504 Rösti mit Schinken und Champignons,mit Käse überbacken", ProductCategory.Rösti, "", new BigDecimal(8.50));
-		
+		product50.getProductAdditions().addAll(röstiAdditionsOnly);
 		
 		
 		// Internationalw Gerichte
@@ -396,8 +514,6 @@ this.productAdditionRepository.saveAll(pizzaAdditionsOnly);
 		
 		Product product72 = new Product("143 Gyros überbacken mit Pommes frites, Tzatziki und Salat",ProductCategory.Gyros_Spezialitäten,"",new BigDecimal(9.50));
 		Product product73 = new Product("144 Gyros überbacken mit Tomaten, Paprika, Zwiebeln",ProductCategory.Gyros_Spezialitäten,"Pommes frites und Salat\n Wahl aus: mit Sahnesauce.",new BigDecimal(9.50));
-			product73.getProductAdditions().add(pa1);
-			
 			
 			//Indische Gerichte
 			
@@ -436,76 +552,91 @@ this.productAdditionRepository.saveAll(pizzaAdditionsOnly);
 			product88.getProductOptions().add(productOpton12);
 			product88.getProductOptions().add(productOpton13);
 			product88.getProductOptions().add(productOpton14);
+			product88.getProductAdditions().add(paa1);
 			Product product89 = new Product("146 Pasta Bolognese ",ProductCategory.Pasta,"mit Rindfleisch. \n Wahl aus: mit Gnocchi, mit Rigatoni, mit Spaghetti oder mit Tortellini.",new BigDecimal(8.00));
 			product89.getProductOptions().add(productOpton11);
 			product89.getProductOptions().add(productOpton12);
 			product89.getProductOptions().add(productOpton13);
 			product89.getProductOptions().add(productOpton14);
+			product89.getProductAdditions().add(paa1);
 			Product product90 = new Product("147 Pasta Carbonara",ProductCategory.Pasta,"mit Schinken, Sahne und Ei\n Wahl aus: mit Gnocchi, mit Rigatoni, mit Spaghetti oder mit Tortellini.",new BigDecimal(8.00));
 			product90.getProductOptions().add(productOpton11);
 			product90.getProductOptions().add(productOpton12);
 			product90.getProductOptions().add(productOpton13);
 			product90.getProductOptions().add(productOpton14);
+			product90.getProductAdditions().add(paa1);
 			Product product91 = new Product("148 Pasta Alla Panna",ProductCategory.Pasta,"mit Schinken und Sahne\n Wahl aus: mit Gnocchi, mit Rigatoni, mit Spaghetti oder mit Tortellini.",new BigDecimal(8.00));
 			product91.getProductOptions().add(productOpton11);
 			product91.getProductOptions().add(productOpton12);
 			product91.getProductOptions().add(productOpton13);
 			product91.getProductOptions().add(productOpton14);
+			product91.getProductAdditions().add(paa1);
 			Product product92 = new Product("149 Pasta Aglio e Olio",ProductCategory.Pasta,"mit frischen Tomaten und pikanter Knoblauchsauce\n Wahl aus: mit Gnocchi, mit Rigatoni, mit Spaghetti oder mit Tortellini.",new BigDecimal(8.00));
 			product92.getProductOptions().add(productOpton11);
 			product92.getProductOptions().add(productOpton12);
 			product92.getProductOptions().add(productOpton13);
 			product92.getProductOptions().add(productOpton14);
+			product92.getProductAdditions().add(paa1);
 			Product product93 = new Product("150 Pasta Tonno ",ProductCategory.Pasta,"mit Thunfisch, Knoblauch und Tomatensauce\n Wahl aus: mit Gnocchi, mit Rigatoni, mit Spaghetti oder mit Tortellini.",new BigDecimal(8.00));
 			product93.getProductOptions().add(productOpton11);
 			product93.getProductOptions().add(productOpton12);
 			product93.getProductOptions().add(productOpton13);
 			product93.getProductOptions().add(productOpton14);
+			product93.getProductAdditions().add(paa1);
 			Product product94 = new Product("151 Pasta Spinaci",ProductCategory.Pasta,"mit Spinat und Sahnesauce\n Wahl aus: mit Gnocchi, mit Rigatoni, mit Spaghetti oder mit Tortellini.",new BigDecimal(8.00));
 			product94.getProductOptions().add(productOpton11);
 			product94.getProductOptions().add(productOpton12);
 			product94.getProductOptions().add(productOpton13);
 			product94.getProductOptions().add(productOpton14);
+			product94.getProductAdditions().add(paa1);
 			Product product95 = new Product("153 Pasta Quattro Formaggi ",ProductCategory.Pasta,"mit 4 verschiedenen Käsesorten\n Wahl aus: mit Gnocchi, mit Rigatoni, mit Spaghetti oder mit Tortellini.",new BigDecimal(8.00));
 			product95.getProductOptions().add(productOpton11);
 			product95.getProductOptions().add(productOpton12);
 			product95.getProductOptions().add(productOpton13);
 			product95.getProductOptions().add(productOpton14);
+			product95.getProductAdditions().add(paa1);
 			Product product96 = new Product("154 Pasta Gorgonzola ",ProductCategory.Pasta,"mit Gorgonzola und Sahne.\n Wahl aus: mit Gnocchi, mit Rigatoni, mit Spaghetti oder mit Tortellini.",new BigDecimal(8.00));
 			product96.getProductOptions().add(productOpton11);
 			product96.getProductOptions().add(productOpton12);
 			product96.getProductOptions().add(productOpton13);
 			product96.getProductOptions().add(productOpton14);
+			product96.getProductAdditions().add(paa1);
 			Product product97 = new Product("155 Pasta Frutti di Mare",ProductCategory.Pasta,"mit Meeresfrüchten, Knoblauch und Tomatensauce. \n Wahl aus: mit Gnocchi, mit Rigatoni, mit Spaghetti oder mit Tortellini.",new BigDecimal(8.00));
 			product97.getProductOptions().add(productOpton11);
 			product97.getProductOptions().add(productOpton12);
 			product97.getProductOptions().add(productOpton13);
 			product97.getProductOptions().add(productOpton14);
+			product97.getProductAdditions().add(paa1);
 			Product product98 = new Product("156 Pasta Napoli Plus",ProductCategory.Pasta,"mit Tomatensauce, Sahne und Mozzarella. \n Wahl aus: mit Gnocchi, mit Rigatoni, mit Spaghetti oder mit Tortellini.",new BigDecimal(8.00));
 			product98.getProductOptions().add(productOpton11);
 			product98.getProductOptions().add(productOpton12);
 			product98.getProductOptions().add(productOpton13);
 			product98.getProductOptions().add(productOpton14);
+			product98.getProductAdditions().add(paa1);
 			Product product99 = new Product("157 Pasta Spezial 1",ProductCategory.Pasta,"mit Schinken, Erbsen, Champignons, Käse, Sahne und Tomatensauce. \n Wahl aus: mit Gnocchi, mit Rigatoni, mit Spaghetti oder mit Tortellini.",new BigDecimal(8.00));
 			product99.getProductOptions().add(productOpton11);
 			product99.getProductOptions().add(productOpton12);
 			product99.getProductOptions().add(productOpton13);
 			product99.getProductOptions().add(productOpton14);
+			product99.getProductAdditions().add(paa1);
 			Product product100 = new Product("158 Pasta Vegetarisch",ProductCategory.Pasta,"mit verschiedenem Gemüse, Sahne und Tomatensauce.\n Wahl aus: mit Gnocchi, mit Rigatoni, mit Spaghetti oder mit Tortellini.",new BigDecimal(8.00));
 			product100.getProductOptions().add(productOpton11);
 			product100.getProductOptions().add(productOpton12);
 			product100.getProductOptions().add(productOpton13);
 			product100.getProductOptions().add(productOpton14);
+			product100.getProductAdditions().add(paa1);
 			Product product101= new Product("159 Pasta Spezial 2 ",ProductCategory.Pasta,"mit Rucola, Gorgonzola und Sahnesauce. \n Wahl aus: mit Gnocchi, mit Rigatoni, mit Spaghetti oder mit Tortellini.",new BigDecimal(8.00));
 			product101.getProductOptions().add(productOpton11);
 			product101.getProductOptions().add(productOpton12);
 			product101.getProductOptions().add(productOpton13);
 			product101.getProductOptions().add(productOpton14);
+			product101.getProductAdditions().add(paa1);
 			Product product102 = new Product("160 Pasta Salmone",ProductCategory.Pasta,"mit Lachs und Sahnesauce. \n Wahl aus: mit Gnocchi, mit Rigatoni, mit Spaghetti oder mit Tortellini.",new BigDecimal(8.00));
 			product102.getProductOptions().add(productOpton11);
 			product102.getProductOptions().add(productOpton12);
 			product102.getProductOptions().add(productOpton13);
 			product102.getProductOptions().add(productOpton14);
+			product102.getProductAdditions().add(paa1);
 			
 			
 			// Pizzabrot
@@ -518,12 +649,15 @@ this.productAdditionRepository.saveAll(pizzaAdditionsOnly);
 			Product product105=new Product("135 Calzone",ProductCategory.Calzone,"mit Putenfleisch, Käse, Paprika und Champignons.\n Wahl aus: Klein oder Groß.",null);
 			product105.getProductOptions().add(productOpton17);
 			product105.getProductOptions().add(productOpton18);
+			product105.getProductAdditions().addAll(calzoneAdditionsOnly);
 			Product product106=new Product("136 Calzone Gyros",ProductCategory.Calzone,"mit Gyrosfleisch, Schafskäse, Tomatenscheiben, Zwiebeln und Tzatziki.\n Wahl aus: Klein oder Groß.",null);
 			product106.getProductOptions().add(productOpton17);
 			product106.getProductOptions().add(productOpton18);
+			product106.getProductAdditions().addAll(calzoneAdditionsOnly);
 			Product product107=new Product("137 Pizza La Strada Spezial Calzone",ProductCategory.Calzone,"mit Gyrosfleisch, Champignons, Zwiebeln, Hackfleisch, Schinken und Tzatziki.\n Wahl aus: Klein oder Groß.",null);
 			product107.getProductOptions().add(productOpton17);
 			product107.getProductOptions().add(productOpton18);
+			product107.getProductAdditions().addAll(calzoneAdditionsOnly);
 			
 			
 			// Vegetarische Pizza
@@ -834,7 +968,7 @@ this.productAdditionRepository.saveAll(pizzaAdditionsOnly);
 			product158.getProductAdditions().add(pa2);
 		
 			
-			this.productRepository.save(product1);
+			
 			this.productRepository.save(product2);
 			this.productRepository.save(product3);
 			this.productRepository.save(product4);

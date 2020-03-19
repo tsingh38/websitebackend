@@ -178,7 +178,30 @@ public class ShopService {
 			product.setStatus(true);
 			this.productOptionRepository.saveAll(product.getProductOptions());
 			this.productRepository.save(product);
-		}else {
+		}else if(ProductCategory.Calzone.toString().equals(product.getProductCategory())) {
+			Product oneCalzoneProduct =  this.productRepository.findOneCalzone();
+			Set<ProductAddition> existingProductAdditions= oneCalzoneProduct.getProductAdditions();
+			Set<ProductAddition> newProductAdditions=new HashSet<ProductAddition>();
+			for( ProductAddition currentProductAddition:existingProductAdditions) {
+				newProductAdditions.add(currentProductAddition);
+			}
+			product.setProductAdditions(newProductAdditions);
+			product.setStatus(true);
+			this.productOptionRepository.saveAll(product.getProductOptions());
+			this.productRepository.save(product);
+		}else if(ProductCategory.Rösti.toString().equals(product.getProductCategory())) {
+			Product oneRöstiProduct =  this.productRepository.findOneRösti();
+			Set<ProductAddition> existingProductAdditions= oneRöstiProduct.getProductAdditions();
+			Set<ProductAddition> newProductAdditions=new HashSet<ProductAddition>();
+			for( ProductAddition currentProductAddition:existingProductAdditions) {
+				newProductAdditions.add(currentProductAddition);
+			}
+			product.setProductAdditions(newProductAdditions);
+			product.setStatus(true);
+			this.productOptionRepository.saveAll(product.getProductOptions());
+			this.productRepository.save(product);
+		}
+		else {
 			product.setStatus(true);
 			if(product.getProductOptions().size() > 0) {
 			this.productOptionRepository.saveAll(product.getProductOptions());

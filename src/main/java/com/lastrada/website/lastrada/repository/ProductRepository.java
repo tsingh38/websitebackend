@@ -13,4 +13,10 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
 	
 	@Query( value = "SELECT * FROM product p WHERE p.product_category = 'Pizza' LIMIT 1", nativeQuery = true)
 	Product findOnePizza();
+	
+	@Query( value = "SELECT * FROM product p WHERE p.product_category = 'Calzone' LIMIT 1", nativeQuery = true)
+	Product findOneCalzone();
+	
+	@Query( value = "SELECT * FROM product p WHERE p.product_category = 'Rösti' LIMIT 1", nativeQuery = true)
+	Product findOneRösti();
 }
