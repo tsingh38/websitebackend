@@ -7,6 +7,7 @@ import com.lastrada.website.lastrada.model.AuthenticationResponse;
 import com.lastrada.website.lastrada.model.Credentials;
 import com.lastrada.website.lastrada.model.CredentialsHolder;
 import com.lastrada.website.lastrada.model.CustOrder;
+import com.lastrada.website.lastrada.model.Notification;
 import com.lastrada.website.lastrada.model.OrderStatus;
 import com.lastrada.website.lastrada.model.Product;
 import com.lastrada.website.lastrada.model.ProductAddition;
@@ -76,6 +77,17 @@ public class WebsiteController {
 		return ResponseEntity.ok(new AuthenticationResponse(token));
 	}
 
+	
+	@RequestMapping(value="/getAllSounds")
+	public List<Notification> getNotificationSounds() throws Exception{
+		return this.shopService.getAllNotificationSounds();
+	}
+	
+	@RequestMapping(value="/updateNotificationStatus")
+	public ResponseEntity<HttpStatus> updateNotification(@RequestBody List<Notification> notifications) throws Exception{
+		this.shopService.updateNotificationSettings(notifications);
+		return ResponseEntity.ok(HttpStatus.OK);
+	}
 
 	
 	@RequestMapping(value = "/getOrders")

@@ -16,11 +16,13 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
+import com.lastrada.website.lastrada.model.Notification;
 import com.lastrada.website.lastrada.model.Product;
 import com.lastrada.website.lastrada.model.ProductAddition;
 import com.lastrada.website.lastrada.model.ProductCategory;
 import com.lastrada.website.lastrada.model.ProductOption;
 import com.lastrada.website.lastrada.model.WebsiteStatus;
+import com.lastrada.website.lastrada.repository.NotificationRepository;
 import com.lastrada.website.lastrada.repository.ProductAdditionRepository;
 
 import com.lastrada.website.lastrada.repository.ProductOptionRepository;
@@ -36,25 +38,61 @@ public class WebsiteBootstrap implements ApplicationListener<ContextRefreshedEve
 	private ProductOptionRepository productOptionRepository;
 	@Autowired
 	private WebsiteStatusRepository webSiteStatusRepository;
+	@Autowired
+	private NotificationRepository notificationRepository;
 	
 	
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent arg0) {
-		StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();     
-		encryptor.setPassword("Remoso#2019!");
 		initWebSiteStatus() ;
+		initNotificationSounds();
 		// Lastrada initial Data
 	//	it should run only once to fill the Data. make sure to comment it afterwards.
 		ArrayList listOfProducts=(ArrayList) this.productRepository.findAll();
 		if(listOfProducts!=null && listOfProducts.size() > 1) {
 			// then do nothing, product already exists
 		}else {
+			initNotificationSounds();
 			initWebSiteStatus();
 			initProducts();
 		}
 		
 	}
 	
+	private void initNotificationSounds() {
+		 List<Notification> allNotifications=(List<Notification>) this.notificationRepository.findAll();
+		 if(allNotifications!=null && allNotifications.size() <=0) {
+	Notification notification1= new Notification();
+	notification1.setToneOn(true);
+	notification1.setToneName("klingel_1.mp3");
+	this.notificationRepository.save(notification1);
+	Notification notification2= new Notification();
+	notification2.setToneOn(false);
+	notification2.setToneName("klingel_2.mp3");
+	this.notificationRepository.save(notification2);
+	Notification notification3= new Notification();
+	notification3.setToneOn(false);
+	notification3.setToneName("klingel_3.mp3");
+	this.notificationRepository.save(notification3);
+	Notification notification4= new Notification();
+	notification4.setToneOn(false);
+	notification4.setToneName("klingel_4.mp3");
+	this.notificationRepository.save(notification4);
+	Notification notification5= new Notification();
+	notification5.setToneOn(false);
+	notification5.setToneName("klingel_5.mp3");
+	this.notificationRepository.save(notification5);
+	Notification notification6= new Notification();
+	notification6.setToneOn(false);
+	notification6.setToneName("klingel_6.mp3");
+	this.notificationRepository.save(notification6);
+	Notification notification7= new Notification();
+	notification7.setToneOn(false);
+	notification7.setToneName("klingel_7.mp3");
+	this.notificationRepository.save(notification7);
+		 }
+	}
+
 	/*
 	 * In very beginning Website should be online by default
 	 */

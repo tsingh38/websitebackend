@@ -33,6 +33,7 @@ import org.springframework.stereotype.Service;
 import com.lastrada.website.lastrada.model.Credentials;
 import com.lastrada.website.lastrada.model.CredentialsHolder;
 import com.lastrada.website.lastrada.model.CustOrder;
+import com.lastrada.website.lastrada.model.Notification;
 import com.lastrada.website.lastrada.model.OrderItem;
 import com.lastrada.website.lastrada.model.OrderStatus;
 import com.lastrada.website.lastrada.model.OrderStatusEnum;
@@ -44,6 +45,7 @@ import com.lastrada.website.lastrada.model.WebsiteStatus;
 import com.lastrada.website.lastrada.pojo.ProductPOJO;
 import com.lastrada.website.lastrada.repository.CredentialsRepository;
 import com.lastrada.website.lastrada.repository.CustOrderRepository;
+import com.lastrada.website.lastrada.repository.NotificationRepository;
 import com.lastrada.website.lastrada.repository.OrderItemRepository;
 import com.lastrada.website.lastrada.repository.OrderStatusRepository;
 import com.lastrada.website.lastrada.repository.ProductAdditionRepository;
@@ -88,6 +90,8 @@ public class ShopService {
 	@Autowired
 	private PasswordEncoder bCryptPasswordEncoder;
 	
+	@Autowired
+	private NotificationRepository notificationRepository;
 	@Autowired
 	private EmailService emailService;
 	
@@ -482,6 +486,21 @@ public class ShopService {
 					"Ihre Lastrada Bestellung Nr." + order.getOrderNumber());
 		//}
 		}
+	}
+
+
+
+	public void updateNotificationSettings( List<Notification> notifications) {
+		this.notificationRepository.deleteAll();
+		this.notificationRepository.saveAll(notifications);
+		
+	}
+
+
+
+	public List<Notification> getAllNotificationSounds() {	
+		List<Notification> allNotification= (List<Notification>) this.notificationRepository.findAll();
+		return allNotification;
 	}
 	
 
